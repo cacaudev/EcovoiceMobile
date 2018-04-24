@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">EcovoiceTest</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="forgot_password">Esqueceu sua senha?</string>
+    <string name="access">Acessar</string>
+    <string name="create_account">Criar uma conta</string>
+    <string name="logo_name">Ecovoice</string>
+</resources>
