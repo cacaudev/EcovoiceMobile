@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Cadastro_de_Arvore">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        map:layout_constraintBottom_toTopOf="@+id/textNomeCientifico"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintHorizontal_bias="0.5"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent"
+        tools:context=".Cadastro_de_Arvore" />
+
+    <EditText
+        android:id="@+id/nomeCientifico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/scientificName"
+        app:layout_constraintBottom_toTopOf="@+id/textNomeComum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNomeCientifico" />
+
+    <EditText
+        android:id="@+id/nomeComum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/commonName"
+        app:layout_constraintBottom_toTopOf="@+id/textMaisInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNomeComum" />
+
+    <EditText
+        android:id="@+id/maisInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/moreInfo"
+        app:layout_constraintBottom_toTopOf="@+id/adicionarFotos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMaisInfo" />
+
+    <TextView
+        android:id="@+id/textNomeCientifico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/scientificName"
+        app:layout_constraintStart_toStartOf="@+id/nomeCientifico"
+        app:layout_constraintBottom_toTopOf="@+id/nomeCientifico"
+        app:layout_constraintTop_toBottomOf="@+id/map"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/textNomeComum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/commonName"
+        app:layout_constraintStart_toStartOf="@+id/nomeComum"
+        app:layout_constraintBottom_toTopOf="@+id/nomeComum"
+        app:layout_constraintTop_toBottomOf="@+id/nomeCientifico"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/textMaisInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/moreInfo"
+        app:layout_constraintBottom_toTopOf="@+id/maisInfo"
+        app:layout_constraintStart_toStartOf="@+id/maisInfo"
+        app:layout_constraintTop_toBottomOf="@+id/nomeComum" />
+
+    <Button
+        android:id="@+id/adicionarFotos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/addPhotos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/adicionarArvore"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maisInfo"
+        android:onClick="insertPhoto"/>
+
+
+    <Button
+        android:id="@+id/adicionarArvore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_tree"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/adicionarFotos"
+        app:layout_constraintTop_toBottomOf="@+id/maisInfo"
+        android:onClick="efetuaCadastro"/>
+
+</android.support.constraint.ConstraintLayout>

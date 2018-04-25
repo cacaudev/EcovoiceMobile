@@ -2,13 +2,15 @@
     <string name="app_name">EcovoiceTest</string>
     <string name="email">Email</string>
     <string name="password">Senha</string>
-    <string name="password_confirm">Confirmação de senha</string>
     <string name="forgot_password">Esqueceu sua senha?</string>
     <string name="access">Acessar</string>
     <string name="create_account">Criar uma conta</string>
     <string name="logo_name">Ecovoice</string>
-    <string name="register">Cadastrar</string>
-    <string name="first_name">Nome</string>
-    <string name="last_name">Sobrenome</string>
-    <string name="have_account_question">Já tem uma conta?</string>
+    <string name="create_tree">Adicionar Arvore</string>
+    <string name="scientificName">Nome Científico</string>
+    <string name="commonName">Nome Comum</string>
+    <string name="moreInfo">Informações Adicionais</string>
+    <string name="addPhotos">Adicionar Fotos</string>
+    <string name="location">Localização da Arvore</string>
+    <string name="successInsert">Arvore Inserida com Sucesso!</string>
 </resources>
