@@ -2,10 +2,15 @@
     <string name="app_name">EcovoiceTest</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="password_confirm">Confirm password</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="access">Access</string>
     <string name="create_account">Create an account</string>
     <string name="logo_name">Ecovoice</string>
+    <string name="register">Register</string>
+    <string name="first_name">Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="have_account_question">Already have an account?</string>
     <string name="create_tree">Place Tree</string>
     <string name="scientificName">Scientific Name</string>
     <string name="commonName">Common Name</string>
@@ -13,4 +18,5 @@
     <string name="addPhotos">Add Photos</string>
     <string name="location">Tree Location</string>
     <string name="successInsert">Tree Inserted!</string>
+    <string name="title_activity_cadastro_de__arvore">Register Tree</string>
 </resources>

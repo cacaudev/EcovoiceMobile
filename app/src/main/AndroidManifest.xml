@@ -24,6 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginScreen" />
+        <activity android:name=".RegisterScreen" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -36,9 +37,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".Cadastro_de_Arvore"
-            android:label="@string/title_activity_cadastro_de__arvore"></activity>
+        <activity android:name=".Cadastro_de_Arvore"
+            android:label="Cadastro"></activity>
     </application>
 
 </manifest>

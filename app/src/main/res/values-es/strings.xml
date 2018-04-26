@@ -2,8 +2,14 @@
     <string name="app_name">EcovoiceTest</string>
     <string name="email">E-mail</string>
     <string name="password">Contraseña</string>
+    <string name="password_confirm">Confirmar contraseña</string>
     <string name="forgot_password">Se te olvidó tu contraseña?</string>
     <string name="access">Acceso</string>
     <string name="create_account">Crea una cuenta</string>
     <string name="logo_name">Ecovoice</string>
+    <string name="register">Registro</string>
+    <string name="first_name">Nombre</string>
+    <string name="last_name">Apellido</string>
+    <string name="have_account_question">ya tienes una cuenta?</string>
+    <string name="title_activity_cadastro_de__arvore">Cadastro</string>
 </resources>

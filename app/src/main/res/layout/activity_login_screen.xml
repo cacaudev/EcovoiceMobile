@@ -8,20 +8,20 @@
 
     <ImageView
         android:id="@+id/logo_name"
-        android:layout_width="287dp"
-        android:layout_height="76dp"
+        android:layout_width="234dp"
+        android:layout_height="50dp"
         android:contentDescription="@string/logo_name"
-        app:layout_constraintBottom_toTopOf="@+id/email_text"
+        app:layout_constraintBottom_toTopOf="@+id/login_email_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/vertical_guideline_2"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.636"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.216"
-        app:srcCompat="@drawable/logo_mini" />
+        app:layout_constraintVertical_bias="0.569"
+        app:srcCompat="@drawable/favicon" />
 
     <TextView
-        android:id="@+id/email_text"
+        android:id="@+id/login_email_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/email"
@@ -33,10 +33,22 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.308" />
+        app:layout_constraintVertical_bias="0.236" />
+
+    <EditText
+        android:id="@+id/login_email_field"
+        android:layout_width="304dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.301" />
 
     <TextView
-        android:id="@+id/password_text"
+        android:id="@+id/login_password_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/password"
@@ -47,22 +59,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/email_field"
-        android:layout_width="304dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.391" />
+        app:layout_constraintVertical_bias="0.382" />
 
     <EditText
-        android:id="@+id/password_field"
+        android:id="@+id/login_password_field"
         android:layout_width="304dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -71,10 +72,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.495" />
+        app:layout_constraintVertical_bias="0.453" />
 
     <TextView
-        android:id="@+id/forgot_password_button"
+        android:id="@+id/login_forgot_password_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/forgot_password"
@@ -86,10 +87,10 @@
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.599" />
+        app:layout_constraintVertical_bias="0.561" />
 
     <Button
-        android:id="@+id/access_button"
+        android:id="@+id/login_access_button"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="307dp"
         android:layout_height="wrap_content"
@@ -103,7 +104,7 @@
         app:layout_constraintVertical_bias="0.703" />
 
     <Button
-        android:id="@+id/criar_conta_button"
+        android:id="@+id/login_create_account_button"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="306dp"
         android:layout_height="wrap_content"
@@ -116,12 +117,11 @@
         app:layout_constraintVertical_bias="0.807" />
 
     <Button
-        android:id="@+id/cadastrar_arvore"
+        android:id="@+id/login_cadastrar_arvore"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="306dp"
         android:layout_height="wrap_content"
         android:background="#90B349"
-        android:onClick="cadastraArvore"
         android:text="@string/create_tree"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
