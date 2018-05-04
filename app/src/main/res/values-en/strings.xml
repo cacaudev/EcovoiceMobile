@@ -19,4 +19,26 @@
     <string name="location">Tree Location</string>
     <string name="successInsert">Tree Inserted!</string>
     <string name="title_activity_cadastro_de__arvore">Register Tree</string>
+
+    <string name="profile">Profile</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="feedback">Feedback</string>
+    <string name="news_feed">News Feed</string>
+    <string name="trees">Trees</string>
+    <string name="species">Species</string>
+    <string name="companies">Companies</string>
+    <string name="my_companies">My Companies</string>
+    <string name="users">Users</string>
+    <string name="add_tree">Add Tree</string>
+    <string name="btn_detail">Detail</string>
+    <string name="res_scient_name">Not identified</string>
+    <string name="res_com_name">Common name</string>
+    <string name="res_prof">Profile</string>
+    <string name="res_pos">Position</string>
+    <string name="res_link_prof">Profile Link</string>
+    <string name="res_date_add">Creation date</string>
+
+
+
+
 </resources>

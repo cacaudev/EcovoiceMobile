@@ -3,8 +3,8 @@ package com.example.cacau2.ecovoicetest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View.OnClickListener;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -44,6 +44,8 @@ public class LoginScreen extends AppCompatActivity implements OnClickListener {
 
         switch(view.getId()) {
             case R.id.login_access_button:
+                Intent n = new Intent(getBaseContext(),MenuMap.class);
+                startActivity(n);
                 Toast.makeText(getApplicationContext(),"Tela Feed ainda não foi implementada.",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.login_create_account_button:
