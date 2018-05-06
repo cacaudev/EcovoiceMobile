@@ -36,4 +36,7 @@
     <string name="res_pos">Posição</string>
     <string name="res_date_add">Data criação</string>
 
+    <string name="password_incorrect">Senha Incorreta</string>
+    <string name="email_blank">Email em branco</string>
+    <string name="password_blank">Senha em branco</string>
 </resources>

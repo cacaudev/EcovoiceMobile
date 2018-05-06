@@ -82,6 +82,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textSize="18sp"
         android:typeface="sans"
+        android:onClick="forgotPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
@@ -96,6 +97,7 @@
         android:layout_height="wrap_content"
         android:background="#31519b"
         android:text="@string/access"
+        android:onClick="signIn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
@@ -109,25 +111,13 @@
         android:layout_width="306dp"
         android:layout_height="wrap_content"
         android:background="#90B349"
+        android:onClick="signUp"
         android:text="@string/create_account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.807" />
-
-    <Button
-        android:id="@+id/login_cadastrar_arvore"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="306dp"
-        android:layout_height="wrap_content"
-        android:background="#90B349"
-        android:text="@string/create_tree"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.911" />
 
     <android.support.constraint.Guideline
         android:id="@+id/vertical_guide"

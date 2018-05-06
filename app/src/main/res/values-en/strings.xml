@@ -39,6 +39,7 @@
     <string name="res_date_add">Creation date</string>
 
 
-
-
+    <string name="password_incorrect">Password incorrect</string>
+    <string name="email_blank">Email blank</string>
+    <string name="password_blank">Password blank</string>
 </resources>

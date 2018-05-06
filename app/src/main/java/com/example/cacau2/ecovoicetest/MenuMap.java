@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -131,6 +132,9 @@ public class MenuMap extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Intent intent = getIntent();
+        String email_user = intent.getStringExtra("email");
+        Toast.makeText(getApplicationContext(),"Logado(a) com email " + email_user ,Toast.LENGTH_SHORT).show();
 
         setContentView(R.layout.activity_menu_map);
 
@@ -141,14 +145,8 @@ public class MenuMap extends AppCompatActivity
         ListView myListView = (ListView) findViewById(R.id.time_line);
         myListView.setAdapter(myAdapter);
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-
-
-
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -344,8 +342,6 @@ public class MenuMap extends AppCompatActivity
                 currentMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.tree_icon));
                 slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
                 currentMarker = null;
-
-
             }
         }
         return false;
@@ -449,8 +445,6 @@ public class MenuMap extends AppCompatActivity
 
             //Obtem atualizações de posição
             //lm.requestSingleUpdate(provider,this,null );
-
-
             }
         }
 
@@ -479,9 +473,6 @@ public class MenuMap extends AppCompatActivity
     }
     @SuppressLint("MissingPermission")
     public void myLocation(View v){
-
-
-
             currentLocation = getLocation(provider);
             Log.i("BUTTON", "Requested location");
 
