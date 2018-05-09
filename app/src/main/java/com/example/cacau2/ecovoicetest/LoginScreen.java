@@ -10,8 +10,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.HashMap;
 
 public class LoginScreen extends AppCompatActivity{
 
@@ -19,6 +22,8 @@ public class LoginScreen extends AppCompatActivity{
     public EditText email_field, password_field;
     public Button create_account, access, registerTree;
     private ConexaoDB connectionRemoteDB = null;
+    SessionManagement session;
+    Switch remember_me_switch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +40,23 @@ public class LoginScreen extends AppCompatActivity{
         create_account = findViewById(R.id.login_create_account_button);
         access = findViewById(R.id.login_access_button);
         forgot_password = findViewById(R.id.login_forgot_password_text);
-        //registerTree = findViewById(R.id.login_cadastrar_arvore);
-        //registerTree.setOnClickListener(this);
 
+        remember_me_switch = findViewById(R.id.remember_me_switch);
+
+        //Create new connection to remote db
         connectionRemoteDB = new ConexaoDB();
         connectToHeroku();
+
+        //Create a login session manager
+        session = new SessionManagement(getApplicationContext());
+
+        //Get user data if remember-me option was checked
+        if(session.isRememberChecked()){
+            remember_me_switch.setChecked(true);
+            HashMap<String, String> current_user = session.getUserDetails();
+            email_field.setText(current_user.get(SessionManagement.KEY_EMAIL));
+            password_field.setText(current_user.get(SessionManagement.KEY_PASSWORD));
+        }
     }
 
     @Override
@@ -53,6 +70,19 @@ public class LoginScreen extends AppCompatActivity{
             connectionRemoteDB = null;
         }
         Log.v("BancoDeDados", "Conexao está fechada MAIN.class");
+    }
+
+    @Override
+    protected  void onResume() {
+        super.onResume();
+        //Get user data if remember-me option was checked
+        if(session.isRememberChecked()){
+            remember_me_switch.setChecked(true);
+            HashMap<String, String> current_user = session.getUserDetails();
+            email_field.setText(current_user.get(SessionManagement.KEY_EMAIL));
+            password_field.setText(current_user.get(SessionManagement.KEY_PASSWORD));
+        }
+        Log.v("BancoDeDados", "loginscreen onResume");
     }
 
     public Boolean checkInternet() {
@@ -99,12 +129,22 @@ public class LoginScreen extends AppCompatActivity{
                 }
 
                 if (resultado_comparacao) {
-                    Log.v("DEBUG", "Senhas deram match MAIN.class");
+                    Log.v("BancoDeDados", "Senhas deram match MAIN.class");
+
+                    if(remember_me_switch.isChecked()) {
+                        session.createLoginSession(email_user, password_plain, true);
+                        Log.v("BancoDeDados", "pediu para lembrar MAIN.class");
+                    }
+                    else {
+                        session.createLoginSession(email_user, password_plain, false);
+                        Log.v("BancoDeDados", "não pediu para lembrar MAIN.class");
+                    }
+
                     Intent intent = new Intent(getBaseContext(), MenuMap.class);
-                    intent.putExtra("email", email_field.getText().toString());
+                    //intent.putExtra("email", email_field.getText().toString());
                     startActivity(intent);
                 } else {
-                    Log.v("DEBUG", "Senhas deram errado MAIN.class");
+                    Log.v("BancoDeDados", "Senhas deram errado MAIN.class");
                     Toast.makeText(getApplicationContext(), R.string.password_incorrect,
                             Toast.LENGTH_SHORT).show();
                 }

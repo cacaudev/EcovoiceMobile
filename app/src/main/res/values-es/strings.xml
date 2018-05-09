@@ -33,4 +33,8 @@
     <string name="password_incorrect">Contraseña incorrecta</string>
     <string name="email_blank">E-mail en blanco</string>
     <string name="password_blank">Contraseña en blanco</string>
+
+    <string name="action_settings">Ajustes</string>
+    <string name="logout">Cerrar Sesión</string>
+    <string name="remember_me">Recuérdame</string>
 </resources>

@@ -42,4 +42,8 @@
     <string name="password_incorrect">Password incorrect</string>
     <string name="email_blank">Email blank</string>
     <string name="password_blank">Password blank</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="remember_me">Remember me  </string>
 </resources>
