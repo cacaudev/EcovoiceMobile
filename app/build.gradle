@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -34,4 +35,7 @@ dependencies {
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.github.qapqap:TimelineView:v1.6'
+    implementation 'com.android.support:multidex:1.0.1'
+    implementation files('libs/postgresql-42.2.2.jre7.jar')
+    compile group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
 }

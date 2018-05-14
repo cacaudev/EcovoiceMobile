@@ -30,6 +30,11 @@
     <string name="res_link_prof">Link Perfil</string>
     <string name="res_date_add">Fecha de creación</string>
 
+    <string name="password_incorrect">Contraseña incorrecta</string>
+    <string name="email_blank">E-mail en blanco</string>
+    <string name="password_blank">Contraseña en blanco</string>
 
-
+    <string name="action_settings">Ajustes</string>
+    <string name="logout">Cerrar Sesión</string>
+    <string name="remember_me">Recuérdame</string>
 </resources>

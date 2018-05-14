@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -42,9 +43,12 @@ import org.qap.ctimelineview.TimelineViewAdapter;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class MenuMap extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener,LocationListener {
+
+    SessionManagement session;
 
     private LatLng vicosa = new LatLng(-20.752946, -42.879097);
     private LatLng google = new LatLng(37.25194,  -122.084017);
@@ -59,6 +63,7 @@ public class MenuMap extends AppCompatActivity
     private LocationManager lm;
     private Criteria criteria;
     private String provider;
+
     private  ArrayList<TimelineRow> timelineRowsList = new ArrayList<>();
     public void timeLine(){
         // Create Timeline rows List
@@ -122,17 +127,24 @@ public class MenuMap extends AppCompatActivity
 // Add the new row to the list
         timelineRowsList.add(myRow);
         timelineRowsList.add(myRow2);
-
-
     }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_menu_map);
+
+        //Create a login session manager
+        session = new SessionManagement(getApplicationContext());
+        Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
+
+        //Get user data from session
+        HashMap<String, String> current_user = session.getUserDetails();
+        String user_email = current_user.get(SessionManagement.KEY_EMAIL);
+        Toast.makeText(getApplicationContext(),"Logado(a) com " + user_email ,Toast.LENGTH_SHORT).show();
+
+
 
         timeLine();
         ArrayAdapter<TimelineRow> myAdapter = new TimelineViewAdapter(this, 0, timelineRowsList,
@@ -141,14 +153,8 @@ public class MenuMap extends AppCompatActivity
         ListView myListView = (ListView) findViewById(R.id.time_line);
         myListView.setAdapter(myAdapter);
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-
-
-
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -344,8 +350,6 @@ public class MenuMap extends AppCompatActivity
                 currentMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.tree_icon));
                 slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
                 currentMarker = null;
-
-
             }
         }
         return false;
@@ -396,6 +400,10 @@ public class MenuMap extends AppCompatActivity
         Intent it;
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        } else if(id == R.id.action_logout) {
+            Log.v("BancoDeDados", "Foi deslogado");
+            session.logoutUser();
             return true;
         } else if (id == R.id.add_tree) {
             it = new Intent(this,Cadastro_de_Arvore.class);
@@ -449,8 +457,6 @@ public class MenuMap extends AppCompatActivity
 
             //Obtem atualizações de posição
             //lm.requestSingleUpdate(provider,this,null );
-
-
             }
         }
 
@@ -479,9 +485,6 @@ public class MenuMap extends AppCompatActivity
     }
     @SuppressLint("MissingPermission")
     public void myLocation(View v){
-
-
-
             currentLocation = getLocation(provider);
             Log.i("BUTTON", "Requested location");
 
