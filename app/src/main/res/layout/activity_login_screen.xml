@@ -78,17 +78,17 @@
         android:id="@+id/login_forgot_password_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="forgotPassword"
         android:text="@string/forgot_password"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textSize="18sp"
         android:typeface="sans"
-        android:onClick="forgotPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.561" />
+        app:layout_constraintVertical_bias="0.65" />
 
     <Button
         android:id="@+id/login_access_button"
@@ -96,14 +96,14 @@
         android:layout_width="307dp"
         android:layout_height="wrap_content"
         android:background="#31519b"
-        android:text="@string/access"
         android:onClick="signIn"
+        android:text="@string/access"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.703" />
+        app:layout_constraintVertical_bias="0.792" />
 
     <Button
         android:id="@+id/login_create_account_button"
@@ -117,7 +117,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.807" />
+        app:layout_constraintVertical_bias="0.896" />
 
     <android.support.constraint.Guideline
         android:id="@+id/vertical_guide"
@@ -132,5 +132,23 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="332dp" />
+
+    <Switch
+        android:id="@+id/remember_me_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:splitTrack="false"
+        android:switchPadding="10dp"
+        android:text="@string/remember_me"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textSize="18sp"
+        android:thumbTint="@color/colorPrimaryDark"
+        android:trackTint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.155"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.57" />
 
 </android.support.constraint.ConstraintLayout>
