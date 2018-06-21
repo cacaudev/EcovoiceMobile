@@ -37,10 +37,7 @@
     <string name="action_settings">Ajustes</string>
     <string name="logout">Cerrar Sesión</string>
     <string name="remember_me">Recuérdame</string>
-<<<<<<< HEAD
     <string name="user_logged">Usuario registrado con éxito</string>
     <string name="email_not_found">Email no encontrado</string>
     <string name="connection_timeout">El tiempo de conexión expiro</string>
-=======
->>>>>>> 637cba7413393ed1ac0e6e991251339f7e237996
 </resources>
