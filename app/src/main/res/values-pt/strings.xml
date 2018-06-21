@@ -43,7 +43,10 @@
     <string name="action_settings">Configurações</string>
     <string name="logout">Sair</string>
     <string name="remember_me">Lembrar de mim</string>
+<<<<<<< HEAD
     <string name="user_logged">Login feito com sucesso</string>
     <string name="email_not_found">Email não encontrado</string>
     <string name="connection_timeout">Tempo de conexão esgotado</string>
+=======
+>>>>>>> 637cba7413393ed1ac0e6e991251339f7e237996
 </resources>

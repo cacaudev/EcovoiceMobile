@@ -134,9 +134,22 @@ public class MenuMap extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_map);
+<<<<<<< HEAD
+=======
+
+        //Create a login session manager
+        session = new SessionManagement(getApplicationContext());
+        Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
+
+        //Get user data from session
+        HashMap<String, String> current_user = session.getUserDetails();
+        String user_email = current_user.get(SessionManagement.KEY_EMAIL);
+        Toast.makeText(getApplicationContext(),"Logado(a) com " + user_email ,Toast.LENGTH_SHORT).show();
+>>>>>>> 637cba7413393ed1ac0e6e991251339f7e237996
 
         // *****************************************************************************************
 
+<<<<<<< HEAD
         //Create a login session manager
         session = new SessionManagement(getApplicationContext());
 
@@ -149,6 +162,8 @@ public class MenuMap extends AppCompatActivity
                 "Logado(a) com " + user_name + " email: " + user_email ,Toast.LENGTH_SHORT).show();
 
         // *****************************************************************************************
+=======
+>>>>>>> 637cba7413393ed1ac0e6e991251339f7e237996
 
         timeLine();
         ArrayAdapter<TimelineRow> myAdapter = new TimelineViewAdapter(this, 0, timelineRowsList,
@@ -406,7 +421,12 @@ public class MenuMap extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         } else if(id == R.id.action_logout) {
+<<<<<<< HEAD
             session.logoutUser(session.getToken());
+=======
+            Log.v("BancoDeDados", "Foi deslogado");
+            session.logoutUser();
+>>>>>>> 637cba7413393ed1ac0e6e991251339f7e237996
             return true;
         } else if (id == R.id.add_tree) {
             it = new Intent(this,Cadastro_de_Arvore.class);
