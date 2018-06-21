@@ -407,6 +407,7 @@ public class MenuMap extends AppCompatActivity
             return true;
         } else if(id == R.id.action_logout) {
             session.logoutUser(session.getToken());
+            finish();
             return true;
         } else if (id == R.id.add_tree) {
             it = new Intent(this,Cadastro_de_Arvore.class);

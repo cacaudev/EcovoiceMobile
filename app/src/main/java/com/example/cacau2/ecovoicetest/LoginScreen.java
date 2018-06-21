@@ -53,23 +53,29 @@ public class LoginScreen extends AppCompatActivity{
 
         //Create a login session manager
         session = new SessionManagement(getApplicationContext());
-
-        //Get user data if remember-me option was checked (auth-token is always renewed so dont save it)
-        if(session.isRememberChecked()){
-            remember_me_switch.setChecked(true);
-            HashMap<String, String> current_user = session.getUserDetails();
-            email_field.setText(current_user.get(SessionManagement.KEY_EMAIL));
-            password_field.setText(current_user.get(SessionManagement.KEY_PASSWORD));
-        }
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();    }
+    protected void onDestroy() { super.onDestroy(); }
 
     @Override
     protected  void onResume() {
         super.onResume();
+
+        // Se o usuario ainda estiver logado, mas apenas colocou a activity em espera
+        if(session.isLoggedIn()) {
+            Intent intent = new Intent(getBaseContext(), MenuMap.class);
+            startActivity(intent);
+            finish();
+        }
+        else
+            //Get user data if remember-me option was checked (auth-token is always renewed so dont save it)
+            if(session.isRememberChecked()){
+                remember_me_switch.setChecked(true);
+                HashMap<String, String> current_user = session.getUserDetails();
+                email_field.setText(current_user.get(SessionManagement.KEY_EMAIL));
+                password_field.setText(current_user.get(SessionManagement.KEY_PASSWORD));
+            }
     }
 
     public Boolean checkInternet() {
@@ -80,15 +86,16 @@ public class LoginScreen extends AppCompatActivity{
         boolean isConnected = activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting();
 
+        if (!isConnected){
+            Toast.makeText(getApplicationContext(), "Não há conexão internet", Toast.LENGTH_SHORT).show();
+        }
+
         return isConnected;
     }
 
     public void signIn(View view) {
 
-        if (!checkInternet()){
-            Toast.makeText(getApplicationContext(), "Não há conexão internet", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        if (!checkInternet()) return;
 
         mProgressDialog = new ProgressDialog(LoginScreen.this);
         mProgressDialog.setMax(100);
@@ -113,9 +120,10 @@ public class LoginScreen extends AppCompatActivity{
 
 
     public void signUp(View view) {
+        if (!checkInternet()) return;
+
         Intent register_screen = new Intent(getBaseContext(), RegisterScreen.class);
         startActivity(register_screen);
-        finish();
     }
 
     public void forgotPassword(View view) {
@@ -148,17 +156,14 @@ public class LoginScreen extends AppCompatActivity{
 
                         String auth_token = response.body().getData().getAuth_token();
 
-                        if (remember_me_switch.isChecked()) {
+                        if (remember_me_switch.isChecked())
                             session.saveLoginSession(email, password,current_user.getFull_name(),  true, auth_token);
-                            Log.v("BancoDeDados", "pediu para lembrar MAIN.class");
-                        } else {
+                        else
                             session.saveLoginSession(email, password,current_user.getFull_name(), false, auth_token);
-                            Log.v("BancoDeDados", "não pediu para lembrar MAIN.class");
-                        }
-
 
                         Intent intent = new Intent(getBaseContext(), MenuMap.class);
                         startActivity(intent);
+                        finish();
 
                     } catch (Exception e) {
                         Log.v("API", "Erro ao converter o objeto json data: " + e.getMessage());
