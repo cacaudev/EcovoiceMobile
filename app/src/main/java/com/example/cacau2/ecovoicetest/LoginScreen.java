@@ -31,6 +31,8 @@ public class LoginScreen extends AppCompatActivity{
 
     SessionManagement session;
     Switch remember_me_switch;
+    User current_user;
+    String auth_token;
     ProgressDialog mProgressDialog;
 
     @Override
@@ -113,9 +115,7 @@ public class LoginScreen extends AppCompatActivity{
             Toast.makeText(getApplicationContext(), R.string.password_blank, Toast.LENGTH_SHORT).show();
 
         if (!email_user.matches("") && !password_plain.matches(""))
-            createSession(email_user, password_plain);
-
-        mProgressDialog.dismiss();
+            callCreateSession(email_user, password_plain);
     }
 
 
@@ -130,7 +130,7 @@ public class LoginScreen extends AppCompatActivity{
         Toast.makeText(getApplicationContext(),"Tela Mandar Senha ainda não foi implementada.",Toast.LENGTH_SHORT).show();
     }
 
-    public void createSession(String email, String password) {
+    public void callCreateSession(String email, String password) {
 
         SessionEndPointsAPI apiService = ApiClient.getClient().
                 create(SessionEndPointsAPI.class);
@@ -157,10 +157,13 @@ public class LoginScreen extends AppCompatActivity{
                         String auth_token = response.body().getData().getAuth_token();
 
                         if (remember_me_switch.isChecked())
-                            session.saveLoginSession(email, password,current_user.getFull_name(),  true, auth_token);
+                            session.saveLoginSession(email, password,current_user.getFull_name(),
+                                    true, auth_token, current_user.getId());
                         else
-                            session.saveLoginSession(email, password,current_user.getFull_name(), false, auth_token);
+                            session.saveLoginSession(email, password,current_user.getFull_name(),
+                                    false, auth_token, current_user.getId());
 
+                        mProgressDialog.dismiss();
                         Intent intent = new Intent(getBaseContext(), MenuMap.class);
                         startActivity(intent);
                         finish();
@@ -176,6 +179,7 @@ public class LoginScreen extends AppCompatActivity{
                                 + response.code() + " STATUS: "
                                 + jsonObject.getString("status")
                                 + " Message: " + jsonObject.getString("message"));
+                        mProgressDialog.dismiss();
 
                         if (response.code() == 401) {
                             Toast.makeText(getApplicationContext(), R.string.password_incorrect, Toast.LENGTH_SHORT).show();
@@ -193,7 +197,8 @@ public class LoginScreen extends AppCompatActivity{
             @Override
             public void onFailure(Call<ResponseApiObject> call, Throwable t) {
                 Log.v("API", "Api Failure: " + t.toString());
-                Toast.makeText(getApplicationContext(), R.string.password_incorrect, Toast.LENGTH_SHORT).show();
+                mProgressDialog.dismiss();
+                Toast.makeText(getApplicationContext(), R.string.connection_timeout, Toast.LENGTH_SHORT).show();
             }
         });
     }

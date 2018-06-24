@@ -45,6 +45,9 @@ public class SessionManagement {
     // Email address (make variable public to access from outside)
     public static final String KEY_EMAIL = "email";
 
+    // User ID
+    public static final String KEY_ID = "id";
+
     // User password
     public static final String KEY_PASSWORD = "password";
 
@@ -65,7 +68,7 @@ public class SessionManagement {
      *  Create login session
      * */
     public void saveLoginSession(String email, String password, String full_name,
-                                   Boolean remember_choice, String auth_token){
+                                   Boolean remember_choice, String auth_token, int id){
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGGED, true);
 
@@ -84,6 +87,9 @@ public class SessionManagement {
         // Storing auth_token in pref
         editor.putString(KEY_AUTH_TOKEN, "Token token=\"" + auth_token + "\"");
 
+        // Storing user id
+        editor.putInt(KEY_ID, id);
+
         // commit changes
         editor.commit();
     }
@@ -94,6 +100,13 @@ public class SessionManagement {
      **/
     public boolean isLoggedIn(){
         return preferences.getBoolean(IS_LOGGED, false);
+    }
+
+    /**
+     * Quick check for id
+     **/
+    public int getUserID(){
+        return preferences.getInt(KEY_ID, 0);
     }
 
     /**

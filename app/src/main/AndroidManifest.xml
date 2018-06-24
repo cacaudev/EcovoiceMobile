@@ -68,7 +68,9 @@
             android:name=".MenuMap"
             android:label="@string/title_activity_menu_map"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ShowUsersScreen"></activity>
+        <activity android:name=".ShowUsersScreen" />
+        <activity android:name=".RegisterTree" />
+        <activity android:name=".ShowTreesTest"></activity>
     </application>
 
 </manifest>

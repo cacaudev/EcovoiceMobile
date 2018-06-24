@@ -410,7 +410,7 @@ public class MenuMap extends AppCompatActivity
             finish();
             return true;
         } else if (id == R.id.add_tree) {
-            it = new Intent(this,Cadastro_de_Arvore.class);
+            it = new Intent(this,RegisterTree.class);
             startActivity(it);
             return true;
         }
@@ -434,12 +434,17 @@ public class MenuMap extends AppCompatActivity
 
         } else if (id == R.id.nav_trees) {
             //TODO all trees
+            Intent intent = new Intent(getBaseContext(), ShowTreesTest.class);
+            startActivity(intent);
         } else if (id == R.id.nav_species) {
             //TODO all species
         } else if (id == R.id.nav_companies) {
 
         } else if (id == R.id.nav_users) {
             //TODO all users
+            Intent intent = new Intent(getBaseContext(), ShowUsersScreen.class);
+            startActivity(intent);
+            //finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

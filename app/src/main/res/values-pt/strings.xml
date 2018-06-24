@@ -1,4 +1,9 @@
 <resources>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_detail">detail</string>
+    <string name="title_activity_menu_map">MenuMap</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="app_name">EcovoiceTest</string>
     <string name="email">Email</string>
     <string name="password">Senha</string>
@@ -46,4 +51,10 @@
     <string name="user_logged">Login feito com sucesso</string>
     <string name="email_not_found">Email não encontrado</string>
     <string name="connection_timeout">Tempo de conexão esgotado</string>
+
+
+    <string name="first_name_blank">Nome em branco</string>
+    <string name="last_name_blank">Sobrenome em branco</string>
+    <string name="password_confirmation_blank">Confirmacao de senha em branco</string>
+    <string name="user_created_success">Usuário criado com sucesso</string>
 </resources>

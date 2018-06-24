@@ -12,33 +12,31 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
- * Created by Cacau2 on 19/06/2018.
+ * Created by Cacau2 on 23/06/2018.
  */
 
-public interface UserEndpointsAPI {
+public interface TreeEndpointsAPI {
 
-    //Funcionando -só que não!
-    @GET("/api/v1/users")
-    Call<ResponseBody> getAllUsers(@Header("Authorization") String token);
+    @GET("/api/v1/trees/index")
+    Call<ResponseBody> getAllTrees(@Header("Authorization") String token);
 
-    @GET("/api/v1/users/{id}")
-    Call<ResponseBody> getSingleUserByID(@Header("Authorization") String token,
-                                              @Path("id") int id);
+    @GET("/api/v1/trees/{id}")
+    Call<ResponseBody> getSingleTreeByID(@Header("Authorization") String token,
+                                         @Path("id") int id);
 
-    //Funcionando
-    @POST("/api/v1/users")
-    Call<ResponseBody> createUser(@Body UserPOST user);
+    @POST("/api/v1/trees")
+    Call<ResponseBody> createTree(@Header("Authorization") String token,
+                                  @Body TreePOST user);
 
-    @PATCH("/api/v1/users/{id}")
-    Call<ResponseApiObject> updateSingleUserByID(@Header("Authorization") String token,
+    @PATCH("/api/v1/trees/{id}")
+    Call<ResponseApiObject> updateSingleTreeByID(@Header("Authorization") String token,
                                                  @Path("id") int id,
                                                  @Field("email") String email,
                                                  @Field("first_name") String first_name,
                                                  @Field("last_name") String last_name,
                                                  @Field("password") String password,
                                                  @Field("password_confirmation") String password_confirmation);
-    @DELETE("/api/v1/users/{id}")
-    Call<ResponseApiObject> deleteSingleUserByID(@Header("Authorization") String token,
+    @DELETE("/api/v1/trees/{id}")
+    Call<ResponseApiObject> deleteSingleTreeByID(@Header("Authorization") String token,
                                                  @Path("id") int id);
-
 }

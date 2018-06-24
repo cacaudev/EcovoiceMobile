@@ -22,10 +22,10 @@ public class User {
     public User() {
         this.id = -1;
         this.email = "";
-        this.full_name = null;
+        this.full_name = "";
         this.birthday = null;
-        this.website = null;
-        this.avatar = null;
+        this.website = "";
+        this.avatar = "";
         this.trees_count = 0;
         this.kinds_count = 0;
         this.locale = null;
