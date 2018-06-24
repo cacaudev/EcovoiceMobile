@@ -95,6 +95,8 @@ public class Cadastro_de_Arvore extends FragmentActivity implements OnMapReadyCa
             if (l != null){
                 LatLng pos = new LatLng(l.getLatitude(), l.getLongitude());
                 return pos;
+            }else {
+                Log.e( "PROVEDOR", "Location null no getLocation!" );
             }
         }
         return null;
@@ -105,9 +107,19 @@ public class Cadastro_de_Arvore extends FragmentActivity implements OnMapReadyCa
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         mMap.setOnMapLongClickListener(this);
         if(provider != null) {
+            Log.e( "PROVEDOR", "Usou provedor no onMapReady!" );
             currentLocation = getLocation(provider);
-            updateCamera(currentLocation, z);
-            createMyLocationMarker(currentLocation);
+            if (currentLocation != null) {
+                Log.e( "PROVEDOR", "Localização encontrada: Latitude:" + currentLocation.latitude
+                        + " Longitude: " + currentLocation.longitude );
+                updateCamera(currentLocation, z);
+                createMyLocationMarker(currentLocation);
+             } else {
+                Log.e( "PROVEDOR", "Current Location está null no onMapReady!" );
+            }
+
+        }else {
+            Log.e( "PROVEDOR", "Não usou provedor no onMapReady!" );
         }
 
 

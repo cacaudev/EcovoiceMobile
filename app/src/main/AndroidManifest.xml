@@ -60,7 +60,6 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDHFkYMSwGSYiNQN7nJ89s7qrx-Pf3wyxA" />
@@ -69,6 +68,9 @@
             android:name=".MenuMap"
             android:label="@string/title_activity_menu_map"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ShowUsersScreen" />
+        <activity android:name=".RegisterTree" />
+        <activity android:name=".ShowTreesTest"></activity>
     </application>
 
 </manifest>

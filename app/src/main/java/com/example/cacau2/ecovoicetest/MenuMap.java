@@ -135,19 +135,20 @@ public class MenuMap extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_map);
 
+        // *****************************************************************************************
+
         //Create a login session manager
         session = new SessionManagement(getApplicationContext());
-        Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
 
         //Get user data from session
         HashMap<String, String> current_user = session.getUserDetails();
+        String user_name = current_user.get(SessionManagement.KEY_NAME);
         String user_email = current_user.get(SessionManagement.KEY_EMAIL);
-        Toast.makeText(getApplicationContext(),"Logado(a) com " + user_email ,Toast.LENGTH_SHORT).show();
 
-        Intent intent = getIntent();
-        String email_user = intent.getStringExtra("email");
-        Toast.makeText(getApplicationContext(),"Logado(a) com email " + email_user ,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),
+                "Logado(a) com " + user_name + " email: " + user_email ,Toast.LENGTH_SHORT).show();
 
+        // *****************************************************************************************
 
         timeLine();
         ArrayAdapter<TimelineRow> myAdapter = new TimelineViewAdapter(this, 0, timelineRowsList,
@@ -405,11 +406,11 @@ public class MenuMap extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         } else if(id == R.id.action_logout) {
-            Log.v("BancoDeDados", "Foi deslogado");
-            session.logoutUser();
+            session.logoutUser(session.getToken());
+            finish();
             return true;
         } else if (id == R.id.add_tree) {
-            it = new Intent(this,Cadastro_de_Arvore.class);
+            it = new Intent(this,RegisterTree.class);
             startActivity(it);
             return true;
         }
@@ -424,7 +425,7 @@ public class MenuMap extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-
+            //TODO current user
         } else if (id == R.id.nav_profile_edit) {
 
         } else if (id == R.id.nav_feedback) {
@@ -432,13 +433,18 @@ public class MenuMap extends AppCompatActivity
         } else if (id == R.id.nav_feed) {
 
         } else if (id == R.id.nav_trees) {
-
+            //TODO all trees
+            Intent intent = new Intent(getBaseContext(), ShowTreesTest.class);
+            startActivity(intent);
         } else if (id == R.id.nav_species) {
-
+            //TODO all species
         } else if (id == R.id.nav_companies) {
 
         } else if (id == R.id.nav_users) {
-
+            //TODO all users
+            Intent intent = new Intent(getBaseContext(), ShowUsersScreen.class);
+            startActivity(intent);
+            //finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

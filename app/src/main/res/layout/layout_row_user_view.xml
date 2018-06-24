@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="63dp"
+    android:background="#F3F3F3">
+
+    <ImageView
+        android:id="@+id/image_view_item"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="12dip"
+        android:layout_marginRight="6dip"
+        android:src="@drawable/common_google_signin_btn_icon_dark" />
+
+    <TextView
+        android:id="@+id/email_view_item"
+        android:layout_width="fill_parent"
+        android:layout_height="26dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/image_view_item"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:layout_marginBottom="6dip"
+        android:text="Description"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/name_user_view_item"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/email_view_item"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="6dip"
+        android:layout_alignParentTop="true"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_toRightOf="@id/image_view_item"
+        android:gravity="center_vertical"
+        android:text="Example application"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

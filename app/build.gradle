@@ -37,5 +37,7 @@ dependencies {
     implementation 'com.github.qapqap:TimelineView:v1.6'
     implementation 'com.android.support:multidex:1.0.1'
     implementation files('libs/postgresql-42.2.2.jre7.jar')
-    compile group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
 }
