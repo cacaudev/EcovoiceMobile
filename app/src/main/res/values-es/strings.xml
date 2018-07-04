@@ -1,9 +1,4 @@
 <resources>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_detail">detail</string>
-    <string name="title_activity_menu_map">Pantalla de mapa</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="app_name">EcovoiceTest</string>
     <string name="email">E-mail</string>
     <string name="password">Contraseña</string>
@@ -17,14 +12,14 @@
     <string name="last_name">Apellido</string>
     <string name="have_account_question">ya tienes una cuenta?</string>
     <string name="title_activity_cadastro_de__arvore">Cadastro</string>
-    <string name="profile"> Perfil </string>
-    <string name="edit_profile"> Editar perfil </string>
-    <string name="feedback"> Feedback </string>
-    <string name="news_feed"> Feed de noticias </string>
-    <string name="trees"> Árboles </string>
-    <string name="species"> Especies </string>
-    <string name="sociedades"> Empresas </string>
-    <string name="my_companies"> Mis empresas </string>
+    <string name = "profile"> Perfil </string>
+    <string name = "edit_profile"> Editar perfil </string>
+    <string name = "feedback"> Feedback </string>
+    <string name = "news_feed"> Feed de noticias </string>
+    <string name = "trees"> Árboles </string>
+    <string name = "species"> Especies </string>
+    <string name = "sociedades"> Empresas </string>
+    <string name = "my_companies"> Mis empresas </string>
     <string name="users">Usuarios</string>
     <string name="add_tree">Añadir árbol</string>
     <string name="btn_detail">Detalle</string>
@@ -34,6 +29,9 @@
     <string name="res_pos">Posición</string>
     <string name="res_link_prof">Link Perfil</string>
     <string name="res_date_add">Fecha de creación</string>
+    <string name="dont_know">No sé</string>
+    <string name="next">Continuar</string>
+    <string name="scientificName">Nombre Científico</string>
 
     <string name="password_incorrect">Contraseña incorrecta</string>
     <string name="email_blank">E-mail en blanco</string>
@@ -42,12 +40,4 @@
     <string name="action_settings">Ajustes</string>
     <string name="logout">Cerrar Sesión</string>
     <string name="remember_me">Recuérdame</string>
-    <string name="user_logged">Usuario registrado con éxito</string>
-    <string name="email_not_found">Email no encontrado</string>
-    <string name="connection_timeout">El tiempo de conexión expiro</string>
-
-    <string name="first_name_blank">Nombre en blanco</string>
-    <string name="last_name_blank">Apellido en blanco</string>
-    <string name="password_confirmation_blank">Confirmación de contraseña en blanco</string>
-    <string name="user_created_success">Usuario creado con éxito</string>
 </resources>

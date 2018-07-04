@@ -1,9 +1,4 @@
 <resources>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_detail">detail</string>
-    <string name="title_activity_menu_map">Tela mapa</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="app_name">EcovoiceTest</string>
     <string name="email">Email</string>
     <string name="password">Senha</string>
@@ -17,8 +12,8 @@
     <string name="last_name">Sobrenome</string>
     <string name="have_account_question">Já tem uma conta?</string>
     <string name="create_tree">Adicionar Árvore</string>
-    <string name="scientificName">Nome Científico</string>
     <string name="commonName">Nome Comum</string>
+    <string name="scientificName">Nome Científico</string>
     <string name="moreInfo">Informações Adicionais</string>
     <string name="addPhotos">Adicionar Fotos</string>
     <string name="location">Localização da Arvore</string>
@@ -40,6 +35,11 @@
     <string name="res_prof">Perfil</string>
     <string name="res_pos">Posição</string>
     <string name="res_date_add">Data criação</string>
+    <string name="dont_know">Não sei</string>
+    <string name="next">Continuar</string>
+    <string name="insertPicture">Insira uma foto</string>
+    <string name="observations">Observações</string>
+
 
     <string name="password_incorrect">Senha Incorreta</string>
     <string name="email_blank">Email em branco</string>
@@ -48,13 +48,4 @@
     <string name="action_settings">Configurações</string>
     <string name="logout">Sair</string>
     <string name="remember_me">Lembrar de mim</string>
-    <string name="user_logged">Login feito com sucesso</string>
-    <string name="email_not_found">Email não encontrado</string>
-    <string name="connection_timeout">Tempo de conexão esgotado</string>
-
-
-    <string name="first_name_blank">Nome em branco</string>
-    <string name="last_name_blank">Sobrenome em branco</string>
-    <string name="password_confirmation_blank">Confirmacao de senha em branco</string>
-    <string name="user_created_success">Usuário criado com sucesso</string>
 </resources>

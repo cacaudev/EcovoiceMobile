@@ -1,7 +1,6 @@
 package com.example.cacau2.ecovoicetest;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,8 +16,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -39,30 +36,19 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.maps.android.clustering.ClusterManager;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.qap.ctimelineview.TimelineRow;
 import org.qap.ctimelineview.TimelineViewAdapter;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MenuMap extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener,LocationListener {
 
-    public static ArrayList<Tree> arrayTrees= new ArrayList<Tree>();
     SessionManagement session;
-    private ClusterManager<Tree_item> mClusterManager;
 
     private LatLng vicosa = new LatLng(-20.752946, -42.879097);
     private LatLng google = new LatLng(37.25194,  -122.084017);
@@ -72,96 +58,112 @@ public class MenuMap extends AppCompatActivity
     private SlidingUpPanelLayout slidingLayout;
     private LinearLayout small_info;
     private LatLng currentLocation;
-    private int z = 18;
+    private int z = 17;
     private float anchor = 0.3125f;
     private LocationManager lm;
     private Criteria criteria;
     private String provider;
 
     private  ArrayList<TimelineRow> timelineRowsList = new ArrayList<>();
-
-    private View tree_id;
-    ProgressDialog mProgressDialog;
-
-
-    private ArrayList<Comment_data> comment_list_data;
-    Event_view_adapter adapter;
-    public List<Event_data> fill_with_data() {
-
-        List<Event_data> data = new ArrayList<>();
-        List<Comment_data> comments = new ArrayList<>();
-        List<Comment_data> comments1 = new ArrayList<>();
-        List<Comment_data> comments2 = new ArrayList<>();
-        List<Comment_data> comments3 = new ArrayList<>();
-        List<Comment_data> comments4 = new ArrayList<>();
-        List<Comment_data> comments5 = new ArrayList<>();
+    public void timeLine(){
+        // Create Timeline rows List
 
 
-        comments1.add(new Comment_data("Igor Oliveira","Teste", "1",0));
-        comments1.add(new Comment_data("Igor Oliveira","Teste", "1",0));
+// Create new timeline row (Row Id)
+        TimelineRow myRow = new TimelineRow(0);
+        TimelineRow myRow2 = new TimelineRow(1);
 
-        comments2.add(new Comment_data("Igor Oliveira","Teste", "2",1));
-        comments3.add(new Comment_data("Igor Oliveira","Teste", "3",2));
-        comments4.add(new Comment_data("Igor Oliveira","Teste", "4",3));
-        comments5.add(new Comment_data("Igor Oliveira","Teste", "5",4));
+// To set the row Date (optional)
+        myRow2.setDate(new Date());
+// To set the row Title (optional)
+        myRow2.setTitle("Title");
+// To set the row Description (optional)
+        myRow2.setDescription("Description");
+// To set the row bitmap image (optional)
+        myRow2.setImage(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
+// To set row Below Line Color (optional)
+        myRow2.setBellowLineColor(Color.argb(255, 0, 0, 0));
+// To set row Below Line Size in dp (optional)
+        myRow2.setBellowLineSize(6);
+// To set row Image Size in dp (optional)
+        myRow2.setImageSize(40);
+// To set background color of the row image (optional)
+        myRow2.setBackgroundColor(Color.argb(255, 0, 0, 0));
+// To set the Background Size of the row image in dp (optional)
+        myRow2.setBackgroundSize(60);
+// To set row Date text color (optional)
+        myRow2.setDateColor(Color.argb(255, 0, 0, 0));
+// To set row Title text color (optional)
+        myRow2.setTitleColor(Color.argb(255, 0, 0, 0));
+// To set row Description text color (optional)
+        myRow2.setDescriptionColor(Color.argb(255, 0, 0, 0));
 
-        comments.add(new Comment_data("Igor Oliveira","Teste", "6",5));
 
-        data.add(new Event_data("Batman vs Superman", "Following the destruction of Metropolis, Batman embarks on a personal vendetta against Superman  Batman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against Superman Batman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against SupermanBatman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against SupermanBatman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against SupermanBatman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against SupermanBatman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against Superman", R.drawable.ic_launcher_background,1,"igor",comments));
-        data.add(new Event_data("X-Men: Apocalypse", "X-Men: Apocalypse is an upcoming American superhero film based on the X-Men characters that appear in Marvel Comics ", R.drawable.ic_launcher_background,2,"igor",comments1));
-        data.add(new Event_data("Captain America: Civil War", "A feud between Captain America and Iron Man leaves the Avengers in turmoil.  ", R.drawable.ic_launcher_background,3,"igor",comments2));
-        data.add(new Event_data("Kung Fu Panda 3", "After reuniting with his long-lost father, Po  must train a village of pandas", R.drawable.ic_launcher_background,4,"igor",comments3));
-        data.add(new Event_data("Warcraft", "Fleeing their dying home to colonize another, fearsome orc warriors invade the peaceful realm of Azeroth. ", R.drawable.ic_launcher_background,5,"igor",comments4));
-        data.add(new Event_data("Alice in Wonderland", "Alice in Wonderland: Through the Looking Glass ", R.drawable.ic_launcher_background,6,"igor",comments5));
+        // To set the row Date (optional)
+        myRow.setDate(new Date());
+// To set the row Title (optional)
+        myRow.setTitle("Title");
+// To set the row Description (optional)
+        myRow.setDescription("Description");
+// To set the row bitmap image (optional)
+        myRow.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.ic_account_box_black_48dp));
+// To set row Below Line Color (optional)
+        myRow.setBellowLineColor(Color.argb(255, 0, 0, 0));
+// To set row Below Line Size in dp (optional)
+        myRow.setBellowLineSize(2);
+// To set row Image Size in dp (optional)
+        myRow.setImageSize(40);
+// To set background color of the row image (optional)
+        myRow.setBackgroundColor(Color.argb(255, 0, 0, 0));
+// To set the Background Size of the row image in dp (optional)
+        myRow.setBackgroundSize(40);
+// To set row Date text color (optional)
+        myRow.setDateColor(Color.argb(255, 0, 0, 0));
+// To set row Title text color (optional)
+        myRow.setTitleColor(Color.argb(255, 0, 0, 0));
+// To set row Description text color (optional)
+        myRow.setDescriptionColor(Color.argb(255, 0, 0, 0));
 
-        return data;
+// Add the new row to the list
+        timelineRowsList.add(myRow);
+        timelineRowsList.add(myRow2);
     }
-
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
-
-
         super.onCreate(savedInstanceState);
-
-
-        List<Event_data> data = fill_with_data();
-
-
-
-
-
         setContentView(R.layout.activity_menu_map);
-
-        // *****************************************************************************************
 
         //Create a login session manager
         session = new SessionManagement(getApplicationContext());
-
-
-        Log.d("LOAD",this.arrayTrees.size()+ "  ARRAY ");
+        Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
 
         //Get user data from session
         HashMap<String, String> current_user = session.getUserDetails();
-        String user_name = current_user.get(SessionManagement.KEY_NAME);
         String user_email = current_user.get(SessionManagement.KEY_EMAIL);
-
-        Toast.makeText(getApplicationContext(),
-                "Logado(a) com " + user_name + " email: " + user_email ,Toast.LENGTH_SHORT).show();
-
-        // *****************************************************************************************
+        Toast.makeText(getApplicationContext(),"Logado(a) com " + user_email ,Toast.LENGTH_SHORT).show();
 
 
+
+        timeLine();
+        ArrayAdapter<TimelineRow> myAdapter = new TimelineViewAdapter(this, 0, timelineRowsList,
+                //if true, list will be sorted by date
+                true);
+        ListView myListView = (ListView) findViewById(R.id.time_line);
+        myListView.setAdapter(myAdapter);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });*/
 
         currentMarker = null;
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -176,7 +178,19 @@ public class MenuMap extends AppCompatActivity
         //maps
 
         ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
+        /*new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    SupportMapFragment mv = new SupportMapFragment();
+                    mv.onCreate(null);
+                    mv.onPause();
+                    mv.onDestroy();
+                }catch (Exception ignored){
 
+                }
+            }
+        }).start();*/
 
         small_info = (LinearLayout) findViewById(R.id.small_info);
 
@@ -249,9 +263,6 @@ public class MenuMap extends AppCompatActivity
         provider = lm.getBestProvider(criteria, true);
 
 
-
-
-
     }
 
     public void closePanel(View v){
@@ -280,10 +291,6 @@ public class MenuMap extends AppCompatActivity
     }
 
     public void createMarker(LatLng pos) {
-        //mClusterManager.addItem(new StringClusterItem("Marker #" + (i + 1), latLng));
-
-        //mClusterManager.cluster();
-
         if(map != null) {
             map.addMarker(new MarkerOptions()
                     .position(pos)
@@ -296,16 +303,12 @@ public class MenuMap extends AppCompatActivity
     }
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
         map = googleMap;
-
-        mClusterManager = new ClusterManager<Tree_item>(this, map);
-       // map.setOnCameraMoveListener((GoogleMap.OnCameraMoveListener) mClusterManager);
 
         map.setOnMarkerClickListener(this);
         map.getUiSettings().setMyLocationButtonEnabled(true);
         if(provider != null) {
-            currentLocation  = vicosa;//= getLocation(provider);
+            currentLocation = getLocation(provider);
             updateCamera(currentLocation, z);
             createMyLocationMarker(currentLocation);
         }
@@ -318,7 +321,6 @@ public class MenuMap extends AppCompatActivity
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng point) {
-
                 if (currentMarker != null) {
                     currentMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.tree_icon));
                     currentMarker = null;
@@ -333,19 +335,11 @@ public class MenuMap extends AppCompatActivity
         });
 
 
-        LoadTrees loadTrees = new LoadTrees(session,findViewById(R.id.map).getContext(),this.map);
-        this.arrayTrees = loadTrees.getArrayTree();
-
-
 
     }
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        adapter = new Event_view_adapter(fill_with_data(), getApplication());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         if(!marker.equals(myPos)) {
             if (currentMarker == null && myPos != null) {
                 currentMarker = marker;
@@ -408,11 +402,11 @@ public class MenuMap extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         } else if(id == R.id.action_logout) {
-            session.logoutUser(session.getToken());
-            finish();
+            Log.v("BancoDeDados", "Foi deslogado");
+            session.logoutUser();
             return true;
         } else if (id == R.id.add_tree) {
-            it = new Intent(this,RegisterTree.class);
+            it = new Intent(this,AddTree_Step1.class);
             startActivity(it);
             return true;
         }
@@ -427,7 +421,7 @@ public class MenuMap extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-            //TODO current user
+
         } else if (id == R.id.nav_profile_edit) {
 
         } else if (id == R.id.nav_feedback) {
@@ -435,18 +429,13 @@ public class MenuMap extends AppCompatActivity
         } else if (id == R.id.nav_feed) {
 
         } else if (id == R.id.nav_trees) {
-            //TODO all trees
-            Intent intent = new Intent(getBaseContext(), ShowTreesTest.class);
-            startActivity(intent);
+
         } else if (id == R.id.nav_species) {
-            //TODO all species
+
         } else if (id == R.id.nav_companies) {
 
         } else if (id == R.id.nav_users) {
-            //TODO all users
-            Intent intent = new Intent(getBaseContext(), ShowUsersScreen.class);
-            startActivity(intent);
-            //finish();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
