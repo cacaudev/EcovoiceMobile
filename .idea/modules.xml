@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EcovoiceMobile.iml" filepath="$PROJECT_DIR$/EcovoiceMobile.iml" />
-      <module fileurl="file://C:\Users\igoro\AndroidStudioProjects\EcovoiceMobile\EcovoiceTest.iml" filepath="C:\Users\igoro\AndroidStudioProjects\EcovoiceMobile\EcovoiceTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
