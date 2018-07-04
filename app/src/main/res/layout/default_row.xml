@@ -1,0 +1,80 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/default_cards"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp"
+    android:clickable="false"
+    android:padding="0dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/default_clayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="0dp">
+
+
+        <View
+
+            android:id="@+id/comment_bar"
+
+            android:layout_width="2dp"
+
+            android:layout_height="0dp"
+
+            android:layout_gravity="center"
+            android:layout_marginEnd="8dp"
+            android:background="@color/cardview_light_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.094"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/default_img"
+            app:layout_constraintVertical_bias="0.0"
+            android:layout_marginRight="8dp" />
+
+        <ImageView
+            android:id="@+id/default_img"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="8dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/speaker_note"
+            android:cropToPadding="true"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="@+id/comment_bar"
+            app:layout_constraintStart_toStartOf="@+id/comment_bar"
+            app:layout_constraintTop_toTopOf="parent"
+             />
+
+        <TextView
+            android:id="@+id/default_recent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Recent"
+            app:layout_constraintStart_toStartOf="@+id/default_event"
+            app:layout_constraintTop_toTopOf="@+id/default_img" />
+
+        <TextView
+            android:id="@+id/default_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="Events"
+            app:layout_constraintBottom_toBottomOf="@+id/comment_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/default_img"
+            app:layout_constraintTop_toBottomOf="@+id/default_recent"
+            app:layout_constraintVertical_bias="0.19" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.v7.widget.CardView>
