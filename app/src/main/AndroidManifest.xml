@@ -60,7 +60,6 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDHFkYMSwGSYiNQN7nJ89s7qrx-Pf3wyxA" />
@@ -72,9 +71,6 @@
         <activity android:name=".ShowUsersScreen" />
         <activity android:name=".RegisterTree" />
         <activity android:name=".ShowTreesTest"></activity>
-        <activity android:name=".Activity_comments" />
-        <activity android:name=".Event_view_adapter" />
-        <activity android:name=".Activity_post_event"/>
     </application>
 
 </manifest>

@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">EcovoiceTest</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="password_confirm">Confirmação de senha</string>
+    <string name="forgot_password">Esqueceu sua senha?</string>
+    <string name="access">Acessar</string>
+    <string name="create_account">Criar uma conta</string>
+    <string name="logo_name">Ecovoice</string>
+    <string name="register">Cadastrar</string>
+    <string name="first_name">Nome</string>
+    <string name="last_name">Sobrenome</string>
+    <string name="have_account_question">Já tem uma conta?</string>
+    <string name="create_tree">Adicionar Árvore</string>
+    <string name="commonName">Nome Comum</string>
+    <string name="scientificName">Nome Científico</string>
+    <string name="moreInfo">Informações Adicionais</string>
+    <string name="addPhotos">Adicionar Fotos</string>
+    <string name="location">Localização da Arvore</string>
+    <string name="successInsert">Arvore Inserida com Sucesso!</string>
+    <string name="title_activity_cadastro_de__arvore">Cadastro</string>
+    <string name="profile">Perfil</string>
+    <string name="edit_profile">Editar Perfil</string>
+    <string name="feedback">Feedback</string>
+    <string name="news_feed">Feed Notícias</string>
+    <string name="trees">Árvores</string>
+    <string name="species">Espécies</string>
+    <string name="companies">Empresas</string>
+    <string name="my_companies">Minhas Empresas</string>
+    <string name="users">Usuários</string>
+    <string name="add_tree">Adicionar árvore</string>
+    <string name="btn_detail">Detalhe</string>
+    <string name="res_scient_name">Não identificada</string>
+    <string name="res_com_name">Nome Comum</string>
+    <string name="res_prof">Perfil</string>
+    <string name="res_pos">Posição</string>
+    <string name="res_date_add">Data criação</string>
+    <string name="dont_know">Não sei</string>
+    <string name="next">Continuar</string>
+    <string name="insertPicture">Insira uma foto</string>
+    <string name="observations">Observações</string>
+
+
+    <string name="password_incorrect">Senha Incorreta</string>
+    <string name="email_blank">Email em branco</string>
+    <string name="password_blank">Senha em branco</string>
+
+    <string name="action_settings">Configurações</string>
+    <string name="logout">Sair</string>
+    <string name="remember_me">Lembrar de mim</string>
+</resources>

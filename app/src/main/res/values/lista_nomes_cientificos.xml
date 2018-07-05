@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="lista_nomes_cientificos">
+        <item>Meliosma itatiaiae</item>
+        <item>Copaifera langsdorfii</item>
+        <item>Cedrela fissilis</item>
+        <item>Eriotheca candolleana</item>
+        <item>Cassia grandis</item>
+        <item>Roupala brasiliensis</item>
+        <item>Dilodendron elegans</item>
+        <item>Schinus terebinthifolia</item>
+        <item>Piptadenia pterosperma</item>
+        <item>Machaerium hirtum</item>
+    </string-array>
+</resources>
