@@ -111,7 +111,7 @@ public class AddTree_Step1 extends AppCompatActivity implements OnMapReadyCallba
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         mMap.setOnMapLongClickListener(this);
         if(provider != null) {
-            currentLocation = getLocation(provider);
+            currentLocation = vicosa;//getLocation(provider);
             updateCamera(currentLocation, z);
             createMyLocationMarker(currentLocation);
         }

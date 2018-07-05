@@ -27,12 +27,12 @@ public class ConexaoDB extends AsyncTask<String, Integer, Connection> {
 
         // complete with heroku credentials
         private Connection connection = null;
-        private String host = "ec2-54-204-41-74.compute-1.amazonaws.com";
-        private String db = "d2ppauescms70t";
+        private String host = "";
+        private String db = "";
         private int port = 5432;
-        private String user = "ckznlmuufuldwm";
-        private String password = "0_-duk6luF2vg8o0YRZFJxI2kA";
-        private String url = "jdbc:postgresql://%s:%d/%s?sslmode=require&user=%s&password=%s";
+        private String user = "";
+        private String password = "";
+        private String url = "";
 
         // Constructor
         public ConexaoDB() {
