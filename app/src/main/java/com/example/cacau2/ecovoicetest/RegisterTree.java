@@ -43,8 +43,8 @@ public class RegisterTree extends AppCompatActivity {
         int user_id = session.getUserID();
 
 
-        Float latitude_test = Float.parseFloat(latitude.getText().toString());
-        Float longitude_test = Float.parseFloat(longitude.getText().toString());
+        Double latitude_test = Double.parseDouble(latitude.getText().toString());
+        Double longitude_test = Double.parseDouble(longitude.getText().toString());
 
         Log.v("API", "User_id: " + user_id + " Latitude: " + latitude_test + " Longitude: " + longitude_test);
 
@@ -54,7 +54,7 @@ public class RegisterTree extends AppCompatActivity {
         createSingleTree(latitude_test, longitude_test, user_id);
 
     }
-    public void createSingleTree(float latitude, float longitude, int user_id) {
+    public void createSingleTree(Double latitude, Double longitude, int user_id) {
         mProgressDialog = new ProgressDialog(RegisterTree.this);
         mProgressDialog.setMax(100);
         mProgressDialog.setIndeterminate(false);

@@ -71,6 +71,16 @@
         <activity android:name=".ShowUsersScreen" />
         <activity android:name=".RegisterTree" />
         <activity android:name=".ShowTreesTest"></activity>
+        <activity android:name=".Activity_comments" />
+        <activity android:name=".Event_view_adapter" />
+        <activity android:name=".Activity_post_event"/>
+        <activity
+            android:name=".AddTree_Step1"
+            android:label="@string/title_activity_add_tree__step1" />
+        <activity android:name=".AddTree_Step2" />
+        <activity android:name=".AddTree_Step3"></activity>
+
+
     </application>
 
 </manifest>

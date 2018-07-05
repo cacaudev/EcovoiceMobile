@@ -153,7 +153,7 @@ public class LoadTrees {
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.v("API", "Api Failure: " + t.toString());
                 mProgressDialog.dismiss();
-                Toast.makeText(context, R.string.connection_timeout, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, R.string.connection_timeout, Toast.LENGTH_SHORT).show();
             }
 
 

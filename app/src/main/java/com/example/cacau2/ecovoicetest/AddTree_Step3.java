@@ -1,9 +1,12 @@
 package com.example.cacau2.ecovoicetest;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
@@ -18,13 +21,28 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
+import java.util.Locale;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.example.cacau2.ecovoicetest.LoadTrees.mProgressDialog;
 
 public class AddTree_Step3 extends AppCompatActivity {
     public static final int PICK_IMAGE = 1;
     public static final int TAKE_PICTURE = 10;
+
+    ProgressDialog mProgressDialog;
+    EditText latitude, longitude;
+    SessionManagement session;
     String dir;
     Bundle params;
 
@@ -41,6 +59,7 @@ public class AddTree_Step3 extends AppCompatActivity {
         dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/EcoVoice/";
         File newdir = new File(dir);
         newdir.mkdirs();
+        session = new SessionManagement(getApplicationContext());
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -156,6 +175,84 @@ public class AddTree_Step3 extends AppCompatActivity {
                 finish();
             }
         },1000);
+        createSingleTree(latitude, longitude, session.getUserID());
+
+    }
+    public void createSingleTree(Double latitude, Double longitude, int user_id) {
+        mProgressDialog = new ProgressDialog(AddTree_Step3.this);
+        mProgressDialog.setMax(100);
+        mProgressDialog.setIndeterminate(false);
+        mProgressDialog.setMessage("Cadastrando....");
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mProgressDialog.show();
+
+        //Prepara o objeto tree como formulário
+        TreeForm treeToSend = new TreeForm(latitude, longitude, user_id);
+        TreePOST requestObject = new TreePOST(treeToSend);
+
+        TreeEndpointsAPI apiService = ApiClient.getClient().
+                create(TreeEndpointsAPI.class);
+
+        Call<ResponseBody> createTask = apiService.createTree(session.getToken(), requestObject);
+
+        createTask.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                if (response.code() == 201) {
+                    try {
+                        JSONObject apiResponse = new JSONObject(response.body().string());
+                        Log.v("API", "Código: " + response.code() +
+                                " Status: " + apiResponse.getString("status") +
+                                " Message: " + apiResponse.getString("message"));
+
+                        mProgressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), "Árvore criada com sucesso", Toast.LENGTH_SHORT).show();
+
+                    } catch (Exception e) {
+                        Log.v("API", "Código: " + response.code() + " Erro de Exceção: " + e.getMessage());
+                    }
+                }
+                if (response.code() == 422) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                        Log.v("API", "Código: "
+                                + response.code() + " STATUS: "
+                                + jsonObject.getString("status")
+                                + " Message: " + jsonObject.getString("message"));
+                        Toast.makeText(getApplicationContext(), "Email já em uso", Toast.LENGTH_SHORT).show();
+                        //TODO
+                    } catch (Exception e) {
+                        Log.v("API", "Código: " + response.code() + " Erro de Exceção: " + e.getMessage());
+                    }
+                    mProgressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.v("API", "Api Failure: " + t.toString());
+                mProgressDialog.dismiss();
+                Toast.makeText(getApplicationContext(), R.string.connection_timeout, Toast.LENGTH_SHORT).show();
+                //TODO
+            }
+        });
+    }
+
+
+    public String getAddress(double latitude, double longitude) {
+        String address = "Not found";
+        try {
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            if (addresses.size() > 0) {
+                address = addresses.get(0).toString();
+            }
+        } catch (IOException e) {
+            Log.e("tag", e.getMessage());
+        }
+
+        return address;
     }
 
 }

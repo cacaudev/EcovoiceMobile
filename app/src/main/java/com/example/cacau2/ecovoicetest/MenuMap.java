@@ -138,19 +138,23 @@ public class MenuMap extends AppCompatActivity
 
         setContentView(R.layout.activity_menu_map);
 
+        // *****************************************************************************************
+
         //Create a login session manager
         session = new SessionManagement(getApplicationContext());
-        Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
 
 
         Log.d("LOAD",this.arrayTrees.size()+ "  ARRAY ");
 
         //Get user data from session
         HashMap<String, String> current_user = session.getUserDetails();
+        String user_name = current_user.get(SessionManagement.KEY_NAME);
         String user_email = current_user.get(SessionManagement.KEY_EMAIL);
-        Toast.makeText(getApplicationContext(),"Logado(a) com " + user_email ,Toast.LENGTH_SHORT).show();
 
+        Toast.makeText(getApplicationContext(),
+                "Logado(a) com " + user_name + " email: " + user_email ,Toast.LENGTH_SHORT).show();
 
+        // *****************************************************************************************
 
 
 
@@ -214,7 +218,7 @@ public class MenuMap extends AppCompatActivity
 
                 if (v < 0.8)
                     small_info.setVisibility(View.VISIBLE);
-               // Log.i("igor", "onPanelSlide, offset " + v);
+                // Log.i("igor", "onPanelSlide, offset " + v);
             }
 
             @Override
@@ -296,7 +300,7 @@ public class MenuMap extends AppCompatActivity
         map = googleMap;
 
         mClusterManager = new ClusterManager<Tree_item>(this, map);
-       // map.setOnCameraMoveListener((GoogleMap.OnCameraMoveListener) mClusterManager);
+        // map.setOnCameraMoveListener((GoogleMap.OnCameraMoveListener) mClusterManager);
 
         map.setOnMarkerClickListener(this);
         map.getUiSettings().setMyLocationButtonEnabled(true);
@@ -367,12 +371,12 @@ public class MenuMap extends AppCompatActivity
             if (slidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED) {
                 slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
             }
-            if (slidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
+            else if (slidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
                 slidingLayout.setAnchorPoint(anchor);
                 slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
                 small_info.setVisibility(View.VISIBLE);
             }
-            if (currentMarker != null) {
+            else if (currentMarker != null) {
                 currentMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.tree_icon));
                 currentMarker = null;
             }
@@ -404,8 +408,8 @@ public class MenuMap extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         } else if(id == R.id.action_logout) {
-            Log.v("BancoDeDados", "Foi deslogado");
-            session.logoutUser();
+            session.logoutUser(session.getToken());
+            finish();
             return true;
         } else if (id == R.id.add_tree) {
             it = new Intent(this,AddTree_Step1.class);
@@ -423,7 +427,7 @@ public class MenuMap extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-
+            //TODO current user
         } else if (id == R.id.nav_profile_edit) {
 
         } else if (id == R.id.nav_feedback) {
@@ -431,13 +435,18 @@ public class MenuMap extends AppCompatActivity
         } else if (id == R.id.nav_feed) {
 
         } else if (id == R.id.nav_trees) {
-
+            //TODO all trees
+            Intent intent = new Intent(getBaseContext(), ShowTreesTest.class);
+            startActivity(intent);
         } else if (id == R.id.nav_species) {
-
+            //TODO all species
         } else if (id == R.id.nav_companies) {
 
         } else if (id == R.id.nav_users) {
-
+            //TODO all users
+            Intent intent = new Intent(getBaseContext(), ShowUsersScreen.class);
+            startActivity(intent);
+            //finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -459,8 +468,8 @@ public class MenuMap extends AppCompatActivity
 
             //Obtem atualizações de posição
             //lm.requestSingleUpdate(provider,this,null );
-            }
         }
+    }
 
     @SuppressLint("MissingPermission")
     public LatLng getLocation(String provider)
@@ -487,11 +496,11 @@ public class MenuMap extends AppCompatActivity
     }
     @SuppressLint("MissingPermission")
     public void myLocation(View v){
-            currentLocation = getLocation(provider);
-            Log.i("BUTTON", "Requested location");
+        currentLocation = vicosa;//getLocation(provider);
+        Log.i("BUTTON", "Requested location");
 
-            updateCamera(currentLocation, z);
-            createMyLocationMarker(currentLocation);
+        updateCamera(currentLocation, z);
+        createMyLocationMarker(currentLocation);
     }
     @Override
     public void onLocationChanged(Location location) {

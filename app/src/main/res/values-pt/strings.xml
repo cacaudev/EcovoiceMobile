@@ -52,6 +52,7 @@
     <string name="email_not_found">Email não encontrado</string>
     <string name="connection_timeout">Tempo de conexão esgotado</string>
 
+    <string name="observations">Observações</string>
 
     <string name="first_name_blank">Nome em branco</string>
     <string name="last_name_blank">Sobrenome em branco</string>

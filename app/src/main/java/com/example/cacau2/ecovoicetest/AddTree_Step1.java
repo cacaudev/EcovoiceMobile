@@ -38,6 +38,8 @@ public class AddTree_Step1 extends AppCompatActivity implements OnMapReadyCallba
     public LocationManager lm;
     public Criteria criteria;
     public String provider;
+    private LatLng vicosa = new LatLng(-20.752946, -42.879097);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,7 +194,7 @@ public class AddTree_Step1 extends AppCompatActivity implements OnMapReadyCallba
     }
     @SuppressLint("MissingPermission")
     public void myLocation(View v){
-        currentLocation = getLocation(provider);
+        currentLocation = vicosa;//getLocation(provider);
         updateCamera(currentLocation, z);
         createMyLocationMarker(currentLocation);
     }

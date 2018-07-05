@@ -4,7 +4,7 @@
     android:id="@+id/activity_life_time"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_light_background">
+    android:background="#ffff">
 
     <Button
         android:id="@+id/btn_detail"

@@ -40,6 +40,17 @@ public class Tree_item implements ClusterItem {
     public LatLng getPosition() {
         return new LatLng(this.getLatitude(), this.getLongitude());
     }
+
+    @Override
+    public String getTitle() {
+        return null;
+    }
+
+    @Override
+    public String getSnippet() {
+        return null;
+    }
+
     public Tree_item(Tree tree){
         setId(tree.getId());
         setKind_id(tree.getKind_id());

@@ -8,15 +8,15 @@ import com.google.gson.annotations.Expose;
 
 public class TreeForm {
     @Expose
-    private float latitude;
+    private Double latitude;
 
     @Expose
-    private float longitude;
+    private Double longitude;
 
     @Expose
     private int user_id;
 
-    public TreeForm(float latitude, float longitude, int user_id){
+    public TreeForm(Double latitude, Double longitude, int user_id){
         this.latitude = latitude;
         this.longitude = longitude;
         this.user_id = user_id;
