@@ -17,7 +17,8 @@
         android:layout_marginTop="14dp"
         android:text="@string/btn_detail"
         android:textSize="12sp"
-        tools:ignore="NotSibling" />
+        tools:ignore="NotSibling"
+        android:onClick="newEvent"/>
 
     <RelativeLayout
         android:id="@+id/time_line_layout"

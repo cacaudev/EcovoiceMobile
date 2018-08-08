@@ -4,88 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".AddTree_Step3"
     tools:layout_editor_absoluteY="81dp">
 
-    <ImageButton
-        android:id="@+id/cameraButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:onClick="tirarFoto"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/photo"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
-
-    <ImageButton
-        android:id="@+id/galleryButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:onClick="abreGaleria"
-        app:layout_constraintStart_toEndOf="@+id/cameraButton"
-        app:layout_constraintTop_toTopOf="@+id/cameraButton"
-        app:srcCompat="@android:drawable/ic_menu_gallery" />
-
-    <ImageView
-        android:id="@+id/photo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/cameraButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:srcCompat="@drawable/cast_album_art_placeholder" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/insertPicture"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:text="@string/observations"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/obsEdit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cameraButton" />
-
-    <EditText
-        android:id="@+id/obsEdit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/concluir"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <Button
-        android:id="@+id/concluir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+    <android.support.v7.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="Concluir"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@color/cardview_light_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:onClick="insereArvore" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:srcCompat="@drawable/cast_album_art_placeholder" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/insertPicture"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/concluir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/btn_rounded_post"
+                android:onClick="insereArvore"
+                android:text="Concluir"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout5" />
+
+            <include
+                layout="@layout/divider_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/concluir"
+                app:layout_constraintEnd_toEndOf="@+id/photo"
+                app:layout_constraintStart_toStartOf="@+id/photo"
+                app:layout_constraintTop_toBottomOf="@+id/photo"
+                app:layout_constraintVertical_bias="1.0">
+
+                <Button
+                    android:id="@+id/cameraButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="false"
+                    android:background="@drawable/btn_add_cam"
+                    android:onClick="tirarFoto"
+                    android:scaleType="fitXY"
+                    tools:layout_editor_absoluteX="42dp"
+                    tools:layout_editor_absoluteY="411dp" />
+
+                <Button
+                    android:id="@+id/galleryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/btn_add_galery"
+                    android:onClick="abreGaleria"
+                    android:scaleType="fitXY"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="463dp" />
+            </LinearLayout>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+
 </android.support.constraint.ConstraintLayout>

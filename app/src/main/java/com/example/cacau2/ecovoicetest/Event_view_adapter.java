@@ -29,7 +29,6 @@ public class Event_view_adapter extends RecyclerView.Adapter<Event_view_holder> 
     private ConstraintLayout mRelativeLayout;
     private Button mButton;
 
-    private PopupWindow mPopupWindow;
     List<Event_data> list = Collections.emptyList();
     List<Comment_data> comments = Collections.emptyList();
     Context context;
@@ -45,7 +44,7 @@ public class Event_view_adapter extends RecyclerView.Adapter<Event_view_holder> 
     @Override
     public Event_view_holder onCreateViewHolder(final ViewGroup parent, int viewType) {
         //Inflate the layout, initialize the View Holder
-
+        View w = LayoutInflater.from(parent.getContext()).inflate(R.layout.default_row, parent, false);
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_layout, parent, false);
         viewg = parent;
 

@@ -1,9 +1,11 @@
 package com.example.cacau2.ecovoicetest;
 
 import android.app.AlertDialog;
+import android.app.MediaRouteButton;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.DataSetObserver;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,11 +21,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 
 public class Comment_view_adapter extends ArrayAdapter<Comment_data> {
     private List<Comment_data> mData = new ArrayList<Comment_data>();
     Button b;
     PopupMenu popup;
+    @Nullable
+    View emptyView;
+
     private ListView comment_list;
 
     public Comment_view_adapter(Context context, int textViewResourceId) {
@@ -32,9 +40,12 @@ public class Comment_view_adapter extends ArrayAdapter<Comment_data> {
 
     public Comment_view_adapter(Context context, int resource, List<Comment_data> items) {
         super(context, 0, items);
+
         mData = new ArrayList<Comment_data>(items);
     }
+
     public void addItem(final Comment_data item) {
+
         mData.add(item);
         notifyDataSetChanged();
     }
@@ -42,7 +53,6 @@ public class Comment_view_adapter extends ArrayAdapter<Comment_data> {
     public View getView(final int position, final View convertView, final ViewGroup parent) {
 
         View v = convertView;
-
         if (v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
@@ -53,6 +63,8 @@ public class Comment_view_adapter extends ArrayAdapter<Comment_data> {
 
 
         comment_list = parent.findViewById(R.id.list_comments);
+        //comment_list.setEmptyView(parent.findViewById(R.id.emptyElement));
+
         Comment_data p = getItem(position);
             if (p != null) {
                 TextView tt1 = (TextView) v.findViewById(R.id.default_recent);
@@ -139,6 +151,7 @@ public class Comment_view_adapter extends ArrayAdapter<Comment_data> {
     public void insert(Comment_data data,int pos){
         mData.add(pos, data);
 
+
     }
     public void update(Comment_data data,int pos,String text){
 
@@ -148,9 +161,12 @@ public class Comment_view_adapter extends ArrayAdapter<Comment_data> {
         notifyDataSetChanged();
     }
     public void insertComment(Comment_data commentData){
+       // comment_list.setEmptyView(null);
         mData.add(commentData);
         notifyDataSetChanged();
+        notifyDataSetInvalidated();
     }
+
     @Override
     public boolean areAllItemsEnabled() {
         return false;
@@ -181,10 +197,7 @@ public class Comment_view_adapter extends ArrayAdapter<Comment_data> {
         return mData.get(position);
     }
 
-    @Override
-    public int getViewTypeCount() {
-        return mData.size();
-    }
+
 
     @Override
     public boolean isEmpty() {
@@ -192,7 +205,9 @@ public class Comment_view_adapter extends ArrayAdapter<Comment_data> {
     }
 
 
-
+    public int getItemCount() {
+        return getCount();
+    }
 }
 
 

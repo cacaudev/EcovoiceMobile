@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".Activity_user_register">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:cardBackgroundColor="@color/cardview_light_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp">
+
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="20dp"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/logo_name"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.529"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/register_divider"
+                        android:textSize="12sp"
+                        android:typeface="sans"
+                        app:layout_constraintStart_toStartOf="@+id/imageView6"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+                    <View
+                        android:id="@+id/register_divider1"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="24dp"
+                        android:background="@color/color_divider"
+                        app:layout_constraintEnd_toEndOf="@+id/register_password_field"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/register_confirm_password_field"
+                        app:layout_constraintTop_toBottomOf="@+id/register_confirm_password_field" />
+
+                    <TextView
+                        android:id="@+id/register_email_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/email"
+                        app:layout_constraintEnd_toEndOf="@+id/register_divider2"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/register_divider2"
+                        app:layout_constraintTop_toBottomOf="@+id/register_divider2" />
+
+                    <EditText
+                        android:id="@+id/register_email_field"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edittext_rect"
+                        android:ems="10"
+                        android:hint="@string/hint_register_email"
+                        android:inputType="textPersonName"
+                        android:textSize="22sp"
+                        app:layout_constraintEnd_toEndOf="@+id/register_divider2"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/register_email_text"
+                        app:layout_constraintTop_toBottomOf="@+id/register_email_text" />
+
+                    <TextView
+                        android:id="@+id/register_first_name_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/first_name"
+                        app:layout_constraintEnd_toEndOf="@+id/register_email_field"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/register_email_field"
+                        app:layout_constraintTop_toBottomOf="@+id/register_email_field" />
+
+                    <EditText
+                        android:id="@+id/register_first_name_field"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edittext_rect"
+                        android:ems="10"
+                        android:hint="@string/hint_register_name"
+                        android:inputType="textPersonName"
+                        android:textSize="22sp"
+                        app:layout_constraintEnd_toEndOf="@+id/register_email_field"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/register_first_name_text"
+                        app:layout_constraintTop_toBottomOf="@+id/register_first_name_text" />
+
+                    <TextView
+                        android:id="@+id/register_last_name_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/last_name"
+                        app:layout_constraintEnd_toEndOf="@+id/register_first_name_field"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/register_first_name_field"
+                        app:layout_constraintTop_toBottomOf="@+id/register_first_name_field" />
+
+                    <EditText
+                        android:id="@+id/register_last_name_field"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edittext_rect"
+                        android:ems="10"
+                        android:hint="@string/hint_register_last_name"
+                        android:inputType="textShortMessage|textPersonName"
+                        android:textSize="22sp"
+                        app:layout_constraintEnd_toEndOf="@+id/register_first_name_field"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/register_last_name_text"
+                        app:layout_constraintTop_toBottomOf="@+id/register_last_name_text" />
+
+                    <TextView
+                        android:id="@+id/register_password_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/password"
+                        app:layout_constraintEnd_toEndOf="@+id/register_last_name_field"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/register_last_name_field"
+                        app:layout_constraintTop_toBottomOf="@+id/register_last_name_field" />
+
+                    <EditText
+                        android:id="@+id/register_password_field"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edittext_rect"
+                        android:ems="10"
+                        android:hint="@string/hint_register_password"
+                        android:inputType="textPersonName"
+                        android:textSize="22sp"
+                        app:layout_constraintEnd_toEndOf="@+id/register_last_name_field"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/register_password_text"
+                        app:layout_constraintTop_toBottomOf="@+id/register_password_text" />
+
+                    <TextView
+                        android:id="@+id/register_confirm_password_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/password_confirm"
+                        app:layout_constraintEnd_toEndOf="@+id/register_password_field"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/register_password_field"
+                        app:layout_constraintTop_toBottomOf="@+id/register_password_field" />
+
+                    <EditText
+                        android:id="@+id/register_confirm_password_field"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edittext_rect"
+                        android:ems="10"
+                        android:hint="@string/hint_register_password_confirm"
+                        android:inputType="textPersonName"
+                        android:textSize="22sp"
+                        app:layout_constraintEnd_toEndOf="@+id/register_password_field"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/register_confirm_password_text"
+                        app:layout_constraintTop_toBottomOf="@+id/register_confirm_password_text" />
+
+                    <View
+                        android:id="@+id/register_divider2"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="2dp"
+                        android:background="@color/color_divider"
+                        app:layout_constraintEnd_toEndOf="@+id/imageView6"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/textView17"
+                        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+                    <Button
+                        android:id="@+id/register_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/btn_rounded_post"
+                        android:text="@string/register"
+                        android:textColor="@color/cardview_light_background"
+                        app:layout_constraintEnd_toEndOf="@+id/register_divider1"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/register_divider1"
+                        app:layout_constraintTop_toBottomOf="@+id/register_divider1" />
+
+                    <Button
+                        android:id="@+id/register_back_to_login_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/btn_rounded_sucess"
+                        android:text="@string/have_account_question"
+                        android:textColor="@color/cardview_light_background"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/register_button"
+                        app:layout_constraintStart_toStartOf="@+id/register_button"
+                        app:layout_constraintTop_toBottomOf="@+id/register_button" />
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

@@ -8,7 +8,8 @@
     android:layout_marginLeft="2dp"
     android:layout_marginRight="2dp"
     android:clickable="false"
-    android:padding="0dp">
+    android:padding="0dp"
+    app:cardBackgroundColor="@color/cardview_light_background">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/default_clayout"
@@ -27,28 +28,28 @@
 
             android:layout_gravity="center"
             android:layout_marginEnd="8dp"
-            android:background="#ffff"
+            android:background="@color/wallet_bright_foreground_disabled_holo_light"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.094"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/default_img"
-            app:layout_constraintVertical_bias="0.0"
-            android:layout_marginRight="8dp" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/default_img"
             android:layout_width="38dp"
             android:layout_height="38dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:adjustViewBounds="true"
             android:background="@drawable/speaker_note"
             android:cropToPadding="true"
             android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/comment_bar"
             app:layout_constraintStart_toStartOf="@+id/comment_bar"
-            app:layout_constraintTop_toTopOf="parent"
-             />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/default_recent"

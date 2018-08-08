@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_light_background"
+    android:orientation="vertical"
+    android:weightSum="10"
+    tools:context=".Activity_detail">
+
+    <android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:grid="http://schemas.android.com/apk/res-auto"
+
+        android:id="@+id/mainGrid"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="8"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        grid:alignmentMode="alignMargins"
+        grid:columnCount="2"
+        grid:columnOrderPreserved="false"
+        grid:layout_constraintHorizontal_bias="1.0"
+        grid:layout_constraintVertical_bias="0.0"
+        grid:rowCount="4">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@color/cardview_light_background"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="4dp"
+            grid:layout_columnWeight="1"
+            grid:layout_rowWeight="1"
+            android:clickable="true">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="0dp"
+                android:clickable="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_foto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Foto"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.505"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_conversion_absoluteHeight="1dp"
+                    tools:layout_conversion_absoluteWidth="37dp" />
+
+                <TextView
+                    android:id="@+id/photo_icon_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/pictureicon"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/color_photo"
+                    android:textSize="36sp"
+                    app:layout_constraintBottom_toTopOf="@+id/text_foto"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!-- COLUMN 2  -->
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@color/cardview_light_background"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="4dp"
+            grid:layout_columnWeight="1"
+            grid:layout_rowWeight="1">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="0dp"
+                android:clickable="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_disease"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Doença"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.505"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_conversion_absoluteHeight="1dp"
+                    tools:layout_conversion_absoluteWidth="37dp" />
+
+                <TextView
+                    android:id="@+id/disease_icon_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/diseaseicon"
+
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/color_disease"
+                    android:textSize="36sp"
+                    grid:layout_constraintBottom_toTopOf="@+id/text_disease"
+                    grid:layout_constraintEnd_toEndOf="parent"
+                    grid:layout_constraintStart_toStartOf="parent"
+                    grid:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <!-- ROW 2  -->
+        <!-- COLUMN 1  -->
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@color/cardview_light_background"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="4dp"
+            grid:layout_columnWeight="1"
+            grid:layout_rowWeight="1">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="0dp"
+                android:clickable="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_planting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Plantio"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.505"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_conversion_absoluteHeight="1dp"
+                    tools:layout_conversion_absoluteWidth="37dp" />
+
+                <TextView
+                    android:id="@+id/planting_icon_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/plantingicon"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/color_planting"
+                    android:textSize="36sp"
+                    grid:layout_constraintBottom_toTopOf="@+id/text_planting"
+                    grid:layout_constraintEnd_toEndOf="parent"
+                    grid:layout_constraintStart_toStartOf="parent"
+                    grid:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!-- COLUMN 2  -->
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@color/cardview_light_background"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="4dp"
+            grid:layout_columnWeight="1"
+            grid:layout_rowWeight="1">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="0dp"
+                android:clickable="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_risk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Risco"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.505"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_conversion_absoluteHeight="1dp"
+                    tools:layout_conversion_absoluteWidth="37dp" />
+
+                <TextView
+                    android:id="@+id/risk_icon_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/riskicon"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/color_risk"
+                    android:textSize="36sp"
+                    grid:layout_constraintBottom_toTopOf="@+id/text_risk"
+                    grid:layout_constraintEnd_toEndOf="parent"
+                    grid:layout_constraintStart_toStartOf="parent"
+                    grid:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <!-- ROW 3  -->
+        <!-- COLUMN 1  -->
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@color/cardview_light_background"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="4dp"
+            grid:layout_columnWeight="1"
+            grid:layout_rowWeight="1">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="0dp"
+                android:clickable="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_curiosity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Curiosidade"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.505"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_conversion_absoluteHeight="1dp"
+                    tools:layout_conversion_absoluteWidth="37dp" />
+
+                <TextView
+                    android:id="@+id/curiosity_icon_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/curiosityicon"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/color_curiosity"
+                    android:textSize="36sp"
+                    grid:layout_constraintBottom_toTopOf="@+id/text_curiosity"
+                    grid:layout_constraintEnd_toEndOf="parent"
+                    grid:layout_constraintStart_toStartOf="parent"
+                    grid:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!-- COLUMN 2  -->
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@color/cardview_light_background"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="4dp"
+            grid:layout_columnWeight="1"
+            grid:layout_rowWeight="1">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="0dp"
+                android:clickable="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_death"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Morte"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.505"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_conversion_absoluteHeight="1dp"
+                    tools:layout_conversion_absoluteWidth="37dp" />
+
+                <TextView
+                    android:id="@+id/death_icon_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/deathicon"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/color_death_icon"
+                    android:textSize="36sp"
+                    grid:layout_constraintBottom_toTopOf="@+id/text_death"
+                    grid:layout_constraintEnd_toEndOf="parent"
+                    grid:layout_constraintStart_toStartOf="parent"
+                    grid:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@color/cardview_light_background"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="4dp"
+            grid:layout_columnWeight="1"
+            grid:layout_rowWeight="1">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="0dp"
+                android:clickable="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_menssure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Medição"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.505"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_conversion_absoluteHeight="1dp"
+                    tools:layout_conversion_absoluteWidth="37dp" />
+
+                <TextView
+                    android:id="@+id/measurement_icon_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/measurementicon"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/color_measurement"
+                    android:textSize="36sp"
+                    grid:layout_constraintBottom_toTopOf="@+id/text_menssure"
+                    grid:layout_constraintEnd_toEndOf="parent"
+                    grid:layout_constraintStart_toStartOf="parent"
+                    grid:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <!-- COLUMN 2  -->
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@color/cardview_light_background"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="4dp"
+            grid:layout_columnWeight="1"
+            grid:layout_rowWeight="1">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_margin="0dp"
+                android:clickable="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tex_death"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Comentário"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.505"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_conversion_absoluteHeight="1dp"
+                    tools:layout_conversion_absoluteWidth="37dp" />
+
+                <TextView
+                    android:id="@+id/comment_icon_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/commenticon"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/color_comment"
+                    android:textSize="36sp"
+                    grid:layout_constraintBottom_toTopOf="@+id/tex_death"
+                    grid:layout_constraintEnd_toEndOf="parent"
+                    grid:layout_constraintStart_toStartOf="parent"
+                    grid:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+    </android.support.v7.widget.GridLayout>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="41dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Add New Envent"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

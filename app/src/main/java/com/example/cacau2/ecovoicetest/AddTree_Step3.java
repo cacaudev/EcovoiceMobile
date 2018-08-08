@@ -36,9 +36,23 @@ import retrofit2.Response;
 
 import static com.example.cacau2.ecovoicetest.LoadTrees.mProgressDialog;
 
-public class AddTree_Step3 extends AppCompatActivity {
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+public class AddTree_Step3 extends Fragment {
     public static final int PICK_IMAGE = 1;
     public static final int TAKE_PICTURE = 10;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_add_tree__step3, container, false);
+    }
+
+
+
 
     ProgressDialog mProgressDialog;
     EditText latitude, longitude;
@@ -47,25 +61,24 @@ public class AddTree_Step3 extends AppCompatActivity {
     Bundle params;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_tree__step3);
 
         //Recupera dados dos ultimos passos
-        Intent it = getIntent();
+        Intent it = getActivity().getIntent();
         params = it.getExtras();
 
         //Cria pasta EcoVoice dentro da pasta de fotos do sistema
         dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/EcoVoice/";
         File newdir = new File(dir);
         newdir.mkdirs();
-        session = new SessionManagement(getApplicationContext());
+        session = new SessionManagement(getActivity().getApplicationContext());
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Toast.makeText(this,"chamei onActivityResult",Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,"chamei onActivityResult",Toast.LENGTH_LONG).show();
 
         //VERIFICA SE O CODIGO DE RETORNO É DE FOTO DA CAMERA OU DA GALERIA
         if(requestCode == TAKE_PICTURE){
@@ -79,7 +92,7 @@ public class AddTree_Step3 extends AppCompatActivity {
                     Bitmap foto = (Bitmap) bundle.get("data");
 
                     //atualiza imagem na tela para testar
-                    ImageView tela = (ImageView) findViewById(R.id.photo);
+                    ImageView tela = (ImageView) getActivity().findViewById(R.id.photo);
                     tela.setImageBitmap(foto);
                 }
             }
@@ -90,7 +103,7 @@ public class AddTree_Step3 extends AppCompatActivity {
                 Uri selectedImage = data.getData();
                 String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
-                Cursor cursor = getContentResolver().query(selectedImage,
+                Cursor cursor = getActivity().getContentResolver().query(selectedImage,
                         filePathColumn, null, null, null);
                 cursor.moveToFirst();
 
@@ -100,7 +113,7 @@ public class AddTree_Step3 extends AppCompatActivity {
 
                 Bitmap foto = BitmapFactory.decodeFile(picturePath);
 
-                ImageView tela = findViewById(R.id.photo);
+                ImageView tela = getActivity().findViewById(R.id.photo);
                 tela.setImageBitmap(foto);
             }
         }
@@ -156,30 +169,25 @@ public class AddTree_Step3 extends AppCompatActivity {
         String nomeCientifico = params.getString("scientificName");
         String nomeComum = params.getString("commonName");
 
-        EditText obs = findViewById(R.id.obsEdit);
-        String observacao = obs.getText().toString();
+        //EditText obs = findViewById(R.id.obsEdit);
+      // String observacao = obs.getText().toString();
 
-        Toast.makeText(getBaseContext(), "Inserido no Banco"
+        /*Toast.makeText(getActivity().getBaseContext(), "Inserido no Banco"
                 +"\nLocal: "+latitude+", "+longitude
                 +"\nNome Cientifico "+nomeCientifico
-                +"\nNome Comum: "+nomeComum
-                +"\nObservação: "+observacao, Toast.LENGTH_LONG).show();
+                +"\nNome Comum: "+nomeComum);*/
 
 
-        //Fecha as activities apos a conclusão do processo
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                AddTree_Step1.primeiroPasso.finish();
-                AddTree_Step2.segundoPasso.finish();
-                finish();
-            }
-        },1000);
+
+
+
         createSingleTree(latitude, longitude, session.getUserID());
 
     }
+
+
     public void createSingleTree(Double latitude, Double longitude, int user_id) {
-        mProgressDialog = new ProgressDialog(AddTree_Step3.this);
+        mProgressDialog = new ProgressDialog(getActivity().getBaseContext());
         mProgressDialog.setMax(100);
         mProgressDialog.setIndeterminate(false);
         mProgressDialog.setMessage("Cadastrando....");
@@ -207,7 +215,7 @@ public class AddTree_Step3 extends AppCompatActivity {
                                 " Message: " + apiResponse.getString("message"));
 
                         mProgressDialog.dismiss();
-                        Toast.makeText(getApplicationContext(), "Árvore criada com sucesso", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Árvore criada com sucesso", Toast.LENGTH_SHORT).show();
 
                     } catch (Exception e) {
                         Log.v("API", "Código: " + response.code() + " Erro de Exceção: " + e.getMessage());
@@ -220,7 +228,7 @@ public class AddTree_Step3 extends AppCompatActivity {
                                 + response.code() + " STATUS: "
                                 + jsonObject.getString("status")
                                 + " Message: " + jsonObject.getString("message"));
-                        Toast.makeText(getApplicationContext(), "Email já em uso", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Email já em uso", Toast.LENGTH_SHORT).show();
                         //TODO
                     } catch (Exception e) {
                         Log.v("API", "Código: " + response.code() + " Erro de Exceção: " + e.getMessage());
@@ -233,7 +241,7 @@ public class AddTree_Step3 extends AppCompatActivity {
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.v("API", "Api Failure: " + t.toString());
                 mProgressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), R.string.connection_timeout, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getApplicationContext(), R.string.connection_timeout, Toast.LENGTH_SHORT).show();
                 //TODO
             }
         });
@@ -243,7 +251,7 @@ public class AddTree_Step3 extends AppCompatActivity {
     public String getAddress(double latitude, double longitude) {
         String address = "Not found";
         try {
-            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            Geocoder geocoder = new Geocoder(getActivity().getBaseContext(), Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
             if (addresses.size() > 0) {
                 address = addresses.get(0).toString();

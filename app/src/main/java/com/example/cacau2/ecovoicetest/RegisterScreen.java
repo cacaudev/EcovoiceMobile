@@ -16,7 +16,9 @@ public class RegisterScreen extends AppCompatActivity implements OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setTitle("Register"); //Muda nome da barra superior da activity
-        setContentView(R.layout.activity_register_screen);
+        getSupportActionBar().hide();
+
+        setContentView(R.layout.activity_user_register);
 
         add_account = findViewById(R.id.register_button);
         add_account.setOnClickListener(this);

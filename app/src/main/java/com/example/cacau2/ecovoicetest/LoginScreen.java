@@ -37,9 +37,12 @@ public class LoginScreen extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        this.setTitle("Login"); //Muda nome da barra superior da activity
-        setContentView(R.layout.activity_login_screen);
+        //this.setTitle("Login"); //Muda nome da barra superior da activity
+        getSupportActionBar().hide();
+
+        setContentView(R.layout.activity_login);
 
         email_text = findViewById(R.id.login_email_text);
         password_text = findViewById(R.id.login_password_text);
@@ -127,7 +130,10 @@ public class LoginScreen extends AppCompatActivity{
     }
 
     public void forgotPassword(View view) {
-        Toast.makeText(getApplicationContext(),"Tela Mandar Senha ainda não foi implementada.",Toast.LENGTH_SHORT).show();
+        if (!checkInternet()) return;
+        Intent forgot_password = new Intent(getBaseContext(), Activity_forgot_password.class);
+        startActivity(forgot_password);
+        //Toast.makeText(getApplicationContext(),"Tela Mandar Senha ainda não foi implementada.",Toast.LENGTH_SHORT).show();
     }
 
     public void callCreateSession(String email, String password) {

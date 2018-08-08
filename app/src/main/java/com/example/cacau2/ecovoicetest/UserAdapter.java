@@ -31,7 +31,7 @@ public class UserAdapter extends ArrayAdapter<User> {
 
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.layout_row_user_view, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_list_users, parent, false);
         }
 
         TextView name_text = convertView.findViewById(R.id.name_user_view_item);

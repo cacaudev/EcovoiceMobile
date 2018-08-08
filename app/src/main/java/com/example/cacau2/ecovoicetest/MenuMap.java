@@ -5,8 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -24,9 +24,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -42,20 +40,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.clustering.ClusterManager;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.qap.ctimelineview.TimelineRow;
-import org.qap.ctimelineview.TimelineViewAdapter;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MenuMap extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener,LocationListener {
@@ -97,7 +86,7 @@ public class MenuMap extends AppCompatActivity
         List<Comment_data> comments5 = new ArrayList<>();
 
 
-        comments1.add(new Comment_data("Igor Oliveira","Teste", "1",0));
+       comments1.add(new Comment_data("Igor Oliveira","Teste", "1",0));
         comments1.add(new Comment_data("Igor Oliveira","Teste", "1",0));
 
         comments2.add(new Comment_data("Igor Oliveira","Teste", "2",1));
@@ -105,9 +94,12 @@ public class MenuMap extends AppCompatActivity
         comments4.add(new Comment_data("Igor Oliveira","Teste", "4",3));
         comments5.add(new Comment_data("Igor Oliveira","Teste", "5",4));
 
-        comments.add(new Comment_data("Igor Oliveira","Teste", "6",5));
+        //comments.add(new Comment_data("Igor Oliveira","Teste", "6",5));
 
-        data.add(new Event_data("Batman vs Superman", "Following the destruction of Metropolis, Batman embarks on a personal vendetta against Superman  Batman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against Superman Batman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against SupermanBatman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against SupermanBatman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against SupermanBatman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against SupermanBatman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against Superman", R.drawable.ic_launcher_background,1,"igor",comments));
+        data.add(new Event_data("Batman vs Superman", "Following the destruction of Metropolis, Batman embarks on a personal vendetta against Superman  Batman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal " +
+                "vendetta against Superman Batman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against SupermanBatman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against SupermanBatman" +
+                " vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against SupermanBatman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against SupermanBatman vs Superman, Following the destruction " +
+                "of Metropolis, Batman embarks on a personal vendetta against Superman", R.drawable.ic_launcher_background,1,"igor",comments));
         data.add(new Event_data("X-Men: Apocalypse", "X-Men: Apocalypse is an upcoming American superhero film based on the X-Men characters that appear in Marvel Comics ", R.drawable.ic_launcher_background,2,"igor",comments1));
         data.add(new Event_data("Captain America: Civil War", "A feud between Captain America and Iron Man leaves the Avengers in turmoil.  ", R.drawable.ic_launcher_background,3,"igor",comments2));
         data.add(new Event_data("Kung Fu Panda 3", "After reuniting with his long-lost father, Po  must train a village of pandas", R.drawable.ic_launcher_background,4,"igor",comments3));
@@ -175,7 +167,7 @@ public class MenuMap extends AppCompatActivity
 
         //maps
 
-        ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
+        ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.add_tree_map)).getMapAsync(this);
 
 
         small_info = (LinearLayout) findViewById(R.id.small_info);
@@ -300,6 +292,7 @@ public class MenuMap extends AppCompatActivity
         map = googleMap;
 
         mClusterManager = new ClusterManager<Tree_item>(this, map);
+       ///// map.setOnCameraMoveListener(mClusterManager);
         // map.setOnCameraMoveListener((GoogleMap.OnCameraMoveListener) mClusterManager);
 
         map.setOnMarkerClickListener(this);
@@ -333,7 +326,7 @@ public class MenuMap extends AppCompatActivity
         });
 
 
-        LoadTrees loadTrees = new LoadTrees(session,findViewById(R.id.map).getContext(),this.map);
+        LoadTrees loadTrees = new LoadTrees(session,findViewById(R.id.add_tree_map).getContext(),this.map);
         this.arrayTrees = loadTrees.getArrayTree();
 
 
@@ -345,6 +338,7 @@ public class MenuMap extends AppCompatActivity
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         adapter = new Event_view_adapter(fill_with_data(), getApplication());
         recyclerView.setAdapter(adapter);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         if(!marker.equals(myPos)) {
             if (currentMarker == null && myPos != null) {
@@ -394,6 +388,14 @@ public class MenuMap extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_map, menu);
+
+        for(int i = 0; i < menu.size(); i++){
+            Drawable drawable = menu.getItem(i).getIcon();
+            if(drawable != null) {
+                drawable.mutate();
+                drawable.setColorFilter(getResources().getColor(R.color.cardview_light_background), PorterDuff.Mode.SRC_ATOP);
+            }
+        }
         return true;
     }
 
@@ -412,7 +414,11 @@ public class MenuMap extends AppCompatActivity
             finish();
             return true;
         } else if (id == R.id.add_tree) {
-            it = new Intent(this,AddTree_Step1.class);
+            it = new Intent(this,Activity_tab_add_tree.class);
+            startActivity(it);
+            return true;
+        }else if(id == R.id.feedback_bar){
+            it = new Intent(this,Activity_feedback.class);
             startActivity(it);
             return true;
         }
@@ -428,9 +434,16 @@ public class MenuMap extends AppCompatActivity
 
         if (id == R.id.nav_profile) {
             //TODO current user
+            Intent it = new Intent(getBaseContext(),Activity_tab_profile.class);
+            startActivity(it);
         } else if (id == R.id.nav_profile_edit) {
+            Intent it = new Intent(getBaseContext(),Activity_edit_profile.class);
+            startActivity(it);
+
 
         } else if (id == R.id.nav_feedback) {
+            Intent it = new Intent(getBaseContext(),Activity_feedback.class);
+            startActivity(it);
 
         } else if (id == R.id.nav_feed) {
 
@@ -439,6 +452,8 @@ public class MenuMap extends AppCompatActivity
             Intent intent = new Intent(getBaseContext(), ShowTreesTest.class);
             startActivity(intent);
         } else if (id == R.id.nav_species) {
+            Intent intent = new Intent(getBaseContext(), Activity_list_species.class);
+            startActivity(intent);
             //TODO all species
         } else if (id == R.id.nav_companies) {
 
@@ -519,6 +534,12 @@ public class MenuMap extends AppCompatActivity
 
     public void onStatusChanged(String provider, int status, Bundle extras) {
         Log.d("LOCATION", "Provedor mudou de estado");
+    }
+    public void newEvent(View v){
+        Intent it;
+        it = new Intent(this,Activity_detail.class);
+        startActivity(it);
+
     }
 
 }

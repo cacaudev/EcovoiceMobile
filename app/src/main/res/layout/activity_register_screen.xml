@@ -105,7 +105,7 @@
         app:layout_constraintVertical_bias="0.469" />
 
     <EditText
-        android:id="@+id/register_password_field"
+        android:id="@+id/register_confirm_password_text"
         android:layout_width="303dp"
         android:layout_height="wrap_content"
         android:contentDescription="@string/password"

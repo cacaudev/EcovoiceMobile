@@ -63,6 +63,9 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDHFkYMSwGSYiNQN7nJ89s7qrx-Pf3wyxA" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <activity
             android:name=".MenuMap"
@@ -70,17 +73,26 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ShowUsersScreen" />
         <activity android:name=".RegisterTree" />
-        <activity android:name=".ShowTreesTest"></activity>
+        <activity android:name=".ShowTreesTest" />
         <activity android:name=".Activity_comments" />
         <activity android:name=".Event_view_adapter" />
-        <activity android:name=".Activity_post_event"/>
         <activity
             android:name=".AddTree_Step1"
             android:label="@string/title_activity_add_tree__step1" />
         <activity android:name=".AddTree_Step2" />
-        <activity android:name=".AddTree_Step3"></activity>
-
-
+        <activity android:name=".AddTree_Step3" />
+        <activity android:name=".Activity_detail" />
+        <activity android:name=".Activity_my_profile" />
+        <activity
+            android:name=".Activity_feedback"
+            android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
+        <activity android:name=".Activity_tab_profile" />
+        <activity android:name=".Activity_forgot_password" />
+        <activity android:name=".Activity_user_register" />
+        <activity android:name=".Activity_list_species" />
+        <activity android:name=".Activity_create_specie" />
+        <activity android:name=".Activity_edit_profile" />
+        <activity android:name=".Activity_tab_add_tree"></activity>
     </application>
 
 </manifest>

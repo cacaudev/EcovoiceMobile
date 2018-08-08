@@ -42,7 +42,7 @@ public class Cadastro_de_Arvore extends FragmentActivity implements OnMapReadyCa
         this.setTitle("@+id/textLocalizacao"); //Muda nome da barra superior da activity
         setContentView(R.layout.activity_cadastro_de_arvore);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
+        ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.add_tree_map)).getMapAsync(this);
 
         //Location Manager
         lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);

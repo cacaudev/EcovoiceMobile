@@ -11,7 +11,7 @@
     sothree:umanoParallaxOffset="20dp"
     sothree:umanoPanelHeight="0dp"
     sothree:umanoShadowHeight="4dp"
-    android:layout_below="@+id/map"
+    android:layout_below="@+id/add_tree_map"
     android:paddingTop="?android:attr/actionBarSize"
 
     xmlns:tools="http://schemas.android.com/tools"

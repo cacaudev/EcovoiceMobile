@@ -2,9 +2,11 @@ package com.example.cacau2.ecovoicetest;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -12,12 +14,18 @@ import android.widget.ListView;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 public class Activity_comments extends AppCompatActivity implements Serializable {
 
     private ListView comment_list;
     private ArrayList<Comment_data> comment_list_data;
     private Comment_view_adapter adaptador;
     private Button menu;
+    @Nullable
+    View emptyView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +35,7 @@ public class Activity_comments extends AppCompatActivity implements Serializable
         Bundle args = intent.getBundleExtra("BUNDLE");
         comment_list_data = (ArrayList<Comment_data>) args.getSerializable("ARRAYLIST");
 
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         RecyclerView r = findViewById(R.id.recyclerview);
 
@@ -35,6 +44,7 @@ public class Activity_comments extends AppCompatActivity implements Serializable
 
         comment_list = this.findViewById(R.id.list_comments);
         comment_list.setAdapter(adaptador);
+      // comment_list.setEmptyView(findViewById(R.id.emptyElement));
 
 
         Button post_comment = findViewById(R.id.post_comment);
@@ -50,6 +60,7 @@ public class Activity_comments extends AppCompatActivity implements Serializable
 
                 adaptador.insertComment(comment_data);
                 adaptador.notifyDataSetChanged();
+
                 comment_list.invalidateViews();
 
                 post_text.setText("");
