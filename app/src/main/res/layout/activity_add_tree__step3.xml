@@ -29,11 +29,10 @@
 
             <ImageView
                 android:id="@+id/photo"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4"
                 app:layout_constraintVertical_chainStyle="packed"
@@ -50,20 +49,17 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/concluir"
+                android:id="@+id/finish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginStart="8dp"
                 android:background="@drawable/btn_rounded_post"
                 android:onClick="insereArvore"
                 android:text="Concluir"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/linearLayout5" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <include
                 layout="@layout/divider_layout"
@@ -76,44 +72,18 @@
                 app:layout_constraintStart_toStartOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout5"
+            <Button
+                android:id="@+id/id_choose_pic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="8dp"
                 android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/concluir"
+                android:background="@drawable/btn_add_pic_tree"
+                app:layout_constraintBottom_toTopOf="@+id/finish"
                 app:layout_constraintEnd_toEndOf="@+id/photo"
                 app:layout_constraintStart_toStartOf="@+id/photo"
-                app:layout_constraintTop_toBottomOf="@+id/photo"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintTop_toBottomOf="@+id/photo" />
 
-                <Button
-                    android:id="@+id/cameraButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="false"
-                    android:background="@drawable/btn_add_cam"
-                    android:onClick="tirarFoto"
-                    android:scaleType="fitXY"
-                    tools:layout_editor_absoluteX="42dp"
-                    tools:layout_editor_absoluteY="411dp" />
-
-                <Button
-                    android:id="@+id/galleryButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/btn_add_galery"
-                    android:onClick="abreGaleria"
-                    android:scaleType="fitXY"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="463dp" />
-            </LinearLayout>
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 

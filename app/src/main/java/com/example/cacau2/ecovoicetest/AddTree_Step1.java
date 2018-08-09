@@ -93,24 +93,7 @@ public class AddTree_Step1 extends android.support.v4.app.Fragment implements On
      viewPager = getActivity().findViewById(R.id.pager);
      FloatingActionButton newPage =  view.findViewById(R.id.floatingActionButton);
      newPage.setOnClickListener(new View.OnClickListener() {
-         public void  SendNewTree(){
-             //Pega a posição do Marcador Selecionado
-             //Se tiver sido selecionado
-             if(newTree != null){
-                 LatLng selectedTree = newTree.getPosition();
-                 Intent it = new Intent(view.getContext(),AddTree_Step2.class);
-                 Bundle params = new Bundle();
-                 params.putDouble("lat",selectedTree.latitude);
-                 params.putDouble("lon",selectedTree.longitude);
 
-                 it.putExtras(params);
-                 viewPager.setCurrentItem(1);
-             }
-             else{
-                 Toast.makeText(view.getContext(),"Clique e Segure para Marcar a Arvore",Toast.LENGTH_SHORT).show();
-             }
-
-         }
 
          @Override
          public void onClick(View v) {
@@ -123,7 +106,24 @@ public class AddTree_Step1 extends android.support.v4.app.Fragment implements On
  }
 
 
+    public void  SendNewTree(){
+        //Pega a posição do Marcador Selecionado
+        //Se tiver sido selecionado
+        if(newTree != null){
+            LatLng selectedTree = newTree.getPosition();
+            Intent it = new Intent(view.getContext(),AddTree_Step2.class);
+            Bundle params = new Bundle();
+            params.putDouble("lat",selectedTree.latitude);
+            params.putDouble("lon",selectedTree.longitude);
 
+            it.putExtras(params);
+            viewPager.setCurrentItem(1);
+        }
+        else{
+            Toast.makeText(view.getContext(),"Clique e Segure para Marcar a Arvore",Toast.LENGTH_SHORT).show();
+        }
+
+    }
 
 
     @Override

@@ -14,7 +14,11 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -45,10 +49,34 @@ import android.view.ViewGroup;
 public class AddTree_Step3 extends Fragment {
     public static final int PICK_IMAGE = 1;
     public static final int TAKE_PICTURE = 10;
-
+    View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_add_tree__step3, container, false);
+
+        View rootView = inflater.inflate(R.layout.activity_add_tree__step3, container, false);
+        view = rootView;
+        Button add_photo =  view.findViewById(R.id.id_choose_pic);
+        Button finish = view.findViewById(R.id.finish);
+
+        //registerForContextMenu(add_photo);
+        add_photo.setOnCreateContextMenuListener(this);
+        add_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               v.showContextMenu();
+
+
+            }
+        });
+        finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                insereArvore();
+            }
+        });
+
+
+        return rootView;
     }
 
 
@@ -119,7 +147,7 @@ public class AddTree_Step3 extends Fragment {
         }
     }
 
-    public void tirarFoto(View v){
+    public void tirarFoto(){
         // cria arquivo JPG dentro da pasta IntentCamera.
         // Nome do arquivo contem a hora do sistema no nome.
         String file = "IMG_" + System.currentTimeMillis() + ".jpg";
@@ -144,7 +172,7 @@ public class AddTree_Step3 extends Fragment {
         startActivityForResult(it, TAKE_PICTURE);
     }
 
-    public void abreGaleria(View view){
+    public void abreGaleria(){
         //Pega conteudo do tipo Imagem pelo visualizador de Documentos embutido
         Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
         getIntent.setType("image/*");
@@ -160,7 +188,9 @@ public class AddTree_Step3 extends Fragment {
         startActivityForResult(chooserIntent, PICK_IMAGE);
     }
 
-    public void insereArvore(View view){
+
+
+    public void insereArvore(){
         //
         // Cadastra arvore no banco
         //
@@ -261,6 +291,32 @@ public class AddTree_Step3 extends Fragment {
         }
 
         return address;
+    }
+    @Override
+    public boolean onContextItemSelected (MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.new_tree_pic:
+
+                tirarFoto();
+                return true;
+            case R.id.add_tree_pic_galery:
+
+                abreGaleria();
+                return true;
+
+            default:
+                return false;
+        }
+    }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        menu.setHeaderTitle(R.string.header_menu_add_tree);
+
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.menu_add_tree_pic,menu);
     }
 
 }
