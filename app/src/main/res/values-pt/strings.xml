@@ -117,6 +117,13 @@
     <string name="insertPicture">Insira uma imagem</string>
     <string name="identification">Identificação</string>
     <string name="geolocation">Geolocalização</string>
+    <string name="logout_sucess">Desconectado com sucesso</string>
+    <string name="user_not_authenticated">Usuário não autenticado</string>
+    <string name="logout_error">Erro ao tentar desconectar</string>
+    <string name="device_not_connected">Dispositivo sem conexão</string>
+    <string name="accessing">Acessando</string>
+    <string name="passwords_different">Senhas não são iguais</string>
+    <string name="email_already_used">Email já está em uso</string>
 
 
 </resources>

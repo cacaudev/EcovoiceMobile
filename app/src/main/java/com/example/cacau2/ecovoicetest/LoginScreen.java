@@ -15,8 +15,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONObject;
-
 import java.util.HashMap;
 
 import retrofit2.Call;
@@ -27,12 +25,10 @@ public class LoginScreen extends AppCompatActivity{
 
     public TextView email_text, password_text, forgot_password;
     public EditText email_field, password_field;
-    public Button create_account, access, registerTree;
+    public Button create_account, access;
 
     SessionManagement session;
     Switch remember_me_switch;
-    User current_user;
-    String auth_token;
     ProgressDialog mProgressDialog;
 
     @Override
@@ -67,22 +63,24 @@ public class LoginScreen extends AppCompatActivity{
     protected  void onResume() {
         super.onResume();
 
-        // Se o usuario ainda estiver logado, mas apenas colocou a activity em espera
+        /**
+         * If the user is logged, but the activity is on background, load home activity
+         * if not logged, check if remember-me option was marked and complete fields
+         **/
+
         if(session.isLoggedIn()) {
             Intent intent = new Intent(getBaseContext(), MenuMap.class);
             startActivity(intent);
             finish();
+        } else if(session.isRememberChecked()){
+            remember_me_switch.setChecked(true);
+            HashMap<String, String> current_user = session.getUserDetails();
+            email_field.setText(current_user.get(SessionManagement.KEY_EMAIL));
+            password_field.setText(current_user.get(SessionManagement.KEY_PASSWORD));
         }
-        else
-            //Get user data if remember-me option was checked (auth-token is always renewed so dont save it)
-            if(session.isRememberChecked()){
-                remember_me_switch.setChecked(true);
-                HashMap<String, String> current_user = session.getUserDetails();
-                email_field.setText(current_user.get(SessionManagement.KEY_EMAIL));
-                password_field.setText(current_user.get(SessionManagement.KEY_PASSWORD));
-            }
     }
 
+    //TODO COLOCAR ESSA FUNÇÃO COMO HELPER PARA QUE OUTRAS ACTIVITIES POSSAM ACESSÁ-LO
     public Boolean checkInternet() {
         ConnectivityManager cm =
                 (ConnectivityManager) getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -92,7 +90,7 @@ public class LoginScreen extends AppCompatActivity{
                 activeNetwork.isConnectedOrConnecting();
 
         if (!isConnected){
-            Toast.makeText(getApplicationContext(), "Não há conexão internet", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.device_not_connected, Toast.LENGTH_SHORT).show();
         }
 
         return isConnected;
@@ -105,7 +103,7 @@ public class LoginScreen extends AppCompatActivity{
         mProgressDialog = new ProgressDialog(LoginScreen.this);
         mProgressDialog.setMax(100);
         mProgressDialog.setIndeterminate(false);
-        mProgressDialog.setMessage("Acessando....");
+        mProgressDialog.setMessage(getResources().getString(R.string.accessing));
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mProgressDialog.show();
 
@@ -121,10 +119,8 @@ public class LoginScreen extends AppCompatActivity{
             callCreateSession(email_user, password_plain);
     }
 
-
     public void signUp(View view) {
         if (!checkInternet()) return;
-
         Intent register_screen = new Intent(getBaseContext(), RegisterScreen.class);
         startActivity(register_screen);
     }
@@ -133,14 +129,19 @@ public class LoginScreen extends AppCompatActivity{
         if (!checkInternet()) return;
         Intent forgot_password = new Intent(getBaseContext(), Activity_forgot_password.class);
         startActivity(forgot_password);
-        //Toast.makeText(getApplicationContext(),"Tela Mandar Senha ainda não foi implementada.",Toast.LENGTH_SHORT).show();
     }
 
     public void callCreateSession(String email, String password) {
 
-        SessionEndPointsAPI apiService = ApiClient.getClient().
-                create(SessionEndPointsAPI.class);
+        /**
+         * Codes for API in Sessions:
+         * 201 - Session created (User logged successfully and token was generated).
+         * 401 - User not authenticated. Token was'nt sent with request (In login means the password
+         *  sent was incorrect).
+         * 404 - Resource not found (Means the email sent was not found).
+         **/
 
+        SessionEndPointsAPI apiService = ApiClient.getClient().create(SessionEndPointsAPI.class);
         Call<ResponseApiObject> createSession = apiService.login(email, password);
 
         createSession.enqueue(new Callback<ResponseApiObject>() {
@@ -148,19 +149,16 @@ public class LoginScreen extends AppCompatActivity{
             public void onResponse(Call<ResponseApiObject> call, Response<ResponseApiObject> response) {
 
                 if (response.code() == 201) {
-                    ResponseApiObject resultado = response.body();
-                    Log.v("API", "Código: " + response.code() +
-                            " Status: " + response.body().getStatus() +
-                            " Message: " + response.body().getMessage());
-
-                    //Toast.makeText(getApplicationContext(), R.string.user_logged, Toast.LENGTH_SHORT).show();
-
                     try {
+                        Log.v("API", "Código: " + response.code() +
+                                " Status: " + response.body().getStatus() +
+                                " Message: " + response.body().getMessage());
+
                         User current_user = response.body().getData().getUser();
+                        String auth_token = response.body().getData().getAuth_token();
+
                         Log.v("API", "usuario encontrado: " + current_user.getFull_name());
                         Log.v("API", "Auth-Token: " + response.body().getData().getAuth_token());
-
-                        String auth_token = response.body().getData().getAuth_token();
 
                         if (remember_me_switch.isChecked())
                             session.saveLoginSession(email, password,current_user.getFull_name(),
@@ -175,28 +173,16 @@ public class LoginScreen extends AppCompatActivity{
                         finish();
 
                     } catch (Exception e) {
-                        Log.v("API", "Erro ao converter o objeto json data: " + e.getMessage());
+                        Log.v("API", "Erro de exceção ao converter o objeto json data: " + e.getMessage());
                     }
-
-                } else {
-                    try {
-                        JSONObject jsonObject = new JSONObject(response.errorBody().string());
-                        Log.v("API", "Código: "
-                                + response.code() + " STATUS: "
-                                + jsonObject.getString("status")
-                                + " Message: " + jsonObject.getString("message"));
-                        mProgressDialog.dismiss();
-
-                        if (response.code() == 401) {
-                            Toast.makeText(getApplicationContext(), R.string.password_incorrect, Toast.LENGTH_SHORT).show();
-                        } else if (response.code() == 404) {
-                            Toast.makeText(getApplicationContext(), R.string.email_not_found, Toast.LENGTH_SHORT).show();
-                        }
-
-                    } catch (Exception e) {
-                        Log.v("API", "Código: " + response.code() + " Erro de Exceção: " + e.getMessage());
-                    }
-
+                }
+                if (response.code() == 401) {
+                    mProgressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), R.string.password_incorrect, Toast.LENGTH_SHORT).show();
+                }
+                if (response.code() == 404) {
+                    mProgressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), R.string.email_not_found, Toast.LENGTH_SHORT).show();
                 }
             }
 

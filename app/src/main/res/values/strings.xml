@@ -74,6 +74,19 @@
     <string name="insertPicture">Insert a picture</string>
     <string name="identification">Identification</string>
     <string name="geolocation">Geolocation</string>
+    <string name="logout_sucess">Logged out successfully</string>
+    <string name="user_not_authenticated">User not authenticated</string>
+    <string name="logout_error">Logout error</string>
+    <string name="user_created_success">User created successfully</string>
+    <string name="device_not_connected">device_not_connected</string>
+    <string name="accessing">Loading</string>
+    <string name="email_blank">Email blank</string>
+    <string name="password">Password</string>
+    <string name="password_blank">Password blank</string>
+    <string name="password_incorrect">Password Incorrect</string>
+    <string name="passwords_different">passwords_different</string>
+    <string name="email_already_used">email already in use</string>
+    <string name="email_not_found">Email not found</string>
 
 
 </resources>

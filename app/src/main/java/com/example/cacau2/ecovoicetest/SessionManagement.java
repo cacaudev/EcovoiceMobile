@@ -6,11 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
-
 import org.json.JSONObject;
-
 import java.util.HashMap;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,7 +63,7 @@ public class SessionManagement {
 
     /**
      *  Create login session
-     * */
+     **/
     public void saveLoginSession(String email, String password, String full_name,
                                  Boolean remember_choice, String auth_token, int id){
         // Storing login value as TRUE
@@ -125,7 +122,7 @@ public class SessionManagement {
 
     /**
      * Get stored session data
-     * */
+     **/
     public HashMap<String, String> getUserDetails(){
         HashMap<String, String> user = new HashMap<String, String>();
 
@@ -149,7 +146,7 @@ public class SessionManagement {
      * Check login method will check user login status
      * If false it will redirect user to login page
      * Else won't do anything
-     * */
+     **/
     public void checkLogin(){
         // Check login status
         if(!this.isLoggedIn()){
@@ -168,7 +165,7 @@ public class SessionManagement {
 
     /**
      * Clear session details
-     * */
+     **/
     public void logoutUser(String token){
         // Clearing all data from Shared Preferences
 
@@ -189,8 +186,9 @@ public class SessionManagement {
         // Send delete auth-token request to api (Não consegui pegar a variavel localmente!)
         this.deleteSession(token);
 
-        // After logout redirect user to Loing Activity
+        // After logout redirect user to Login Activity
         Intent i = new Intent(_context, LoginScreen.class);
+
         // Closing all the Activities
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
@@ -203,7 +201,7 @@ public class SessionManagement {
 
     /**
      *  Send logout request to API
-     * */
+     **/
     public void deleteSession(String token) {
         SessionEndPointsAPI apiService = ApiClient.getClient().
                 create(SessionEndPointsAPI.class);
@@ -217,12 +215,18 @@ public class SessionManagement {
             public void onResponse(Call<ResponseApiObject> call, Response<ResponseApiObject> response) {
 
                 if (response.code() == 200) {
-                    ResponseApiObject resultado = response.body();
+                    Toast.makeText(_context, R.string.logout_sucess, Toast.LENGTH_SHORT).show();
+                    Log.v("API", "Código: " + response.code() +
+                            " Status: " + response.body().getStatus() +
+                            " Message: " + response.body().getMessage());
+                } else if (response.code() == 401) {
+                    Toast.makeText(_context, R.string.user_not_authenticated, Toast.LENGTH_SHORT).show();
                     Log.v("API", "Código: " + response.code() +
                             " Status: " + response.body().getStatus() +
                             " Message: " + response.body().getMessage());
                 } else {
                     try {
+                        Toast.makeText(_context, R.string.logout_error, Toast.LENGTH_SHORT).show();
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
                         Log.v("API", "Código: "
                                 + response.code() + " STATUS: "
