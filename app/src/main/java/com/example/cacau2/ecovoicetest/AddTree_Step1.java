@@ -203,6 +203,11 @@ public class AddTree_Step1 extends android.support.v4.app.Fragment implements On
             currentLocation = vicosa;//getLocation(provider);
             updateCamera(currentLocation, z);
             createMyLocationMarker(currentLocation);
+        }else{
+            currentLocation = vicosa;//getLocation(provider);
+            updateCamera(currentLocation, z);
+            createMyLocationMarker(currentLocation);
+
         }
         mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
 
@@ -293,8 +298,9 @@ public class AddTree_Step1 extends android.support.v4.app.Fragment implements On
     public void onStart() {
         super.onStart();
 
+
         //Obtem melhor provedor habilitado com o critério estabelecido
-        provider = lm.getBestProvider( criteria, true );
+
 
         if ( provider == null ){
             Log.e( "PROVEDOR", "Nenhum provedor encontrado!" );
@@ -302,7 +308,7 @@ public class AddTree_Step1 extends android.support.v4.app.Fragment implements On
             Log.i( "PROVEDOR", "Está sendo utilizado o provedor: " + provider );
 
             //Obtem atualizações de posição
-            // lm.requestSingleUpdate(provider,this,null );
+             lm.requestSingleUpdate(provider,this,null );
         }
     }
 

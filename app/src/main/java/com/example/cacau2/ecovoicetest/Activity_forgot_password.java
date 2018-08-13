@@ -15,10 +15,14 @@ public class Activity_forgot_password extends AppCompatActivity {
         getSupportActionBar().hide();
     }
     public void sendInstruction(View view){
+        Intent it = new Intent(getBaseContext(),Activity_validate_and_change_password.class);
+        startActivity(it);
+        finish();
 
     }
     public void haveAcount(View view){
         Intent register = new Intent(getBaseContext(), RegisterScreen.class);
         startActivity(register);
+        finish();
     }
 }

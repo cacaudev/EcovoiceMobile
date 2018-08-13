@@ -129,6 +129,7 @@ public class LoginScreen extends AppCompatActivity{
         if (!checkInternet()) return;
         Intent forgot_password = new Intent(getBaseContext(), Activity_forgot_password.class);
         startActivity(forgot_password);
+
     }
 
     public void callCreateSession(String email, String password) {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EcovoiceTest</string>
+    <string name="app_name">Ecovoice mobile</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="password_confirm">Confirm password</string>
@@ -11,23 +11,23 @@
     <string name="first_name">Name</string>
     <string name="last_name">Last Name</string>
     <string name="have_account_question">Already have an account?</string>
-    <string name="create_tree">Place Tree</string>
+    <string name="create_tree">Place tree</string>
     <string name="scientificName">Scientific Name</string>
-    <string name="commonName">Common Name</string>
-    <string name="moreInfo">Additional Info</string>
-    <string name="addPhotos">Add Photos</string>
-    <string name="location">Tree Location</string>
-    <string name="successInsert">Tree Inserted!</string>
+    <string name="commonName">Common name</string>
+    <string name="moreInfo">Additional info</string>
+    <string name="addPhotos">Add photos</string>
+    <string name="location">Tree location</string>
+    <string name="successInsert">Tree inserted!</string>
     <string name="title_activity_cadastro_de__arvore">Register Tree</string>
 
     <string name="profile">Profile</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="feedback">Feedback</string>
-    <string name="news_feed">News Feed</string>
+    <string name="news_feed">News feed</string>
     <string name="trees">Trees</string>
     <string name="species">Species</string>
     <string name="companies">Companies</string>
-    <string name="my_companies">My Companies</string>
+    <string name="my_companies">My companies</string>
     <string name="users">Users</string>
     <string name="add_tree">Add Tree</string>
     <string name="btn_detail">Detail</string>
@@ -35,7 +35,7 @@
     <string name="res_com_name">Common name</string>
     <string name="res_prof">Profile</string>
     <string name="res_pos">Position</string>
-    <string name="res_link_prof">Profile Link</string>
+    <string name="res_link_prof">Profile link</string>
     <string name="res_date_add">Creation date</string>
     <string name="dont_know">Não sei</string>
     <string name="next">Proceed</string>
@@ -107,6 +107,32 @@
     <string name="yes_seed">Yes</string>
     <string name="identification">Identification</string>
     <string name="geolocation">Geolocation</string>
+    <string name="header_menu_add_tree">Add image</string>
+    <string name="accessing">Acessing</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="button">Button</string>
+    <string name="connection_timeout">"Connection timed out "</string>
+    <string name="device_not_connected">"Device not connected "</string>
+    <string name="email_already_used">Email already in use</string>
+    <string name="email_not_found">Email not found</string>
+    <string name="first_name_blank">Name blank</string>
+    <string name="sociedades">Companies</string>
+    <string name="logout_sucess">"Successfully disconnected "</string>
+    <string name="user_not_authenticated">Unauthenticated user</string>
+    <string name="user_created_success">User created successfully</string>
+    <string name="passwords_different">The passwords are different</string>
+    <string name="user_logged">Login successfully done</string>
+    <string name="last_name_blank">Last name in blank</string>
+    <string name="password_confirmation_blank">Confirmation password blank</string>
+    <string name="logout_error">Error when you log out</string>
+    <string name="new_password">"New password "</string>
+    <string name="new_password_confirm">"Confirm the new password "</string>
+    <string name="new_password_key">"Enter the code sent by email "</string>
+    <string name="invalid_key">"Invalid validation code "</string>
+    <string name="validation_code">"Validation code "</string>
+    <string name="authenticate">Authenticate</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm_new_password">"Confirm new password "</string>
 
 
 </resources>

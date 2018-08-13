@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EcovoiceTest</string>
+    <string name="app_name">Ecovoice mobile</string>
     <string name="email">E-mail</string>
     <string name="password">Contraseña</string>
     <string name="password_confirm">Confirmar contraseña</string>
@@ -10,7 +10,7 @@
     <string name="register">Registro</string>
     <string name="first_name">Nombre</string>
     <string name="last_name">Apellido</string>
-    <string name="have_account_question">ya tienes una cuenta?</string>
+    <string name="have_account_question">Ya tienes una cuenta?</string>
     <string name="title_activity_cadastro_de__arvore">Cadastro</string>
     <string name = "profile"> Perfil </string>
     <string name = "edit_profile"> Editar perfil </string>
@@ -27,7 +27,7 @@
     <string name="res_com_name">Nombre común</string>
     <string name="res_prof">Perfil</string>
     <string name="res_pos">Posición</string>
-    <string name="res_link_prof">Link Perfil</string>
+    <string name="res_link_prof">Link perfil</string>
     <string name="res_date_add">Fecha de creación</string>
     <string name="dont_know">No sé</string>
     <string name="next">Continuar</string>
@@ -99,13 +99,38 @@
     <string name="geolocation">Geolocalización</string>
     <string name="logout_sucess">Desconectado con éxito</string>
     <string name="user_not_authenticated">Usuario no autenticado</string>
-    <string name="logout_error">" Error al desconectar"</string>
+    <string name="logout_error">Error al desconectar</string>
     <string name="user_created_success">Usuario creado con éxito</string>
     <string name="device_not_connected">Dispositivo no conectado</string>
     <string name="accessing">Cargando</string>
     <string name="passwords_different">Las contraseñas son diferentes</string>
     <string name="email_already_used">Email ya en uso</string>
     <string name="email_not_found">Email no encontrado</string>
+    <string name="header_menu_add_tree">"Insertar imagen "</string>
+    <string name="addPhotos">"Añadir nueva foto "</string>
+    <string name="create_tree">"Añadir árbol "</string>
+    <string name="commonName">"Nombre común "</string>
+    <string name="moreInfo">"Informaciones adicionales "</string>
+    <string name="observations">"Observaciones "</string>
+    <string name="navigation_drawer_close">"Cerrar el cajón de navegación "</string>
+    <string name="button">Botón</string>
+    <string name="connection_timeout">"Tiempo de conexión agotado "</string>
+    <string name="first_name_blank">Nombre en blanco</string>
+    <string name="location">"Ubicación del arbol "</string>
+    <string name="successInsert">"¡Árbol insertado con éxito! "</string>
+    <string name="user_logged">Iniciar sesión con éxito</string>
+    <string name="last_name_blank">Apellidos en blanco</string>
+    <string name="password_confirmation_blank">Confirmación de contraseña en blanco</string>
+    <string name="responsible_nursery">Vivero responsable</string>
+    <string name="scientific_name">Nombre científico</string>
+    <string name="new_password">Nueva contraseña</string>
+    <string name="new_password_confirm">Confirme la nueva contraseña</string>
+    <string name="new_password_key">Introduzca el código enviado por correo electrónico</string>
+    <string name="invalid_key">Código de validación no válido</string>
+    <string name="validation_code">Código de validación</string>
+    <string name="authenticate">Autenticar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="confirm_new_password">Confirmar nueva contraseña</string>
 
 
 </resources>

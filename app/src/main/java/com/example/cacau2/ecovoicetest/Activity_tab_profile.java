@@ -20,93 +20,43 @@ public class Activity_tab_profile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tab_profile);
-        ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
-        adapterViewPager = new PagerAdapter(getSupportFragmentManager());
+            setContentView(R.layout.activity_tab_profile);
+        ViewPager vpPager =  findViewById(R.id.vpPager);
+
         vpPager.setAdapter(adapterViewPager);
-    }
 
 
+        TabLayout tabLayout =  findViewById(R.id.tab_layout_profile);
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-
-
-
-    public class PagerAdapter extends FragmentPagerAdapter {
-        private int NUM_ITEMS = 3;
-
-        public PagerAdapter(FragmentManager fragmentManager) {
-            super(fragmentManager);
-        }
-
-        // Returns total number of pages
-        @Override
-        public int getCount() {
-            return NUM_ITEMS;
-        }
-
-        // Returns the fragment to display for that page
-        @Override
-        public Fragment getItem(int position) {
-            switch (position) {
-                case 0: // Fragment # 0 - This will show FirstFragment
-                    return Activity_my_profile.newInstance(0, "Page # 1");
-                case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return Activity_my_trees.newInstance(1, "Page # 2");
-                case 2: // Fragment # 1 - This will show SecondFragment
-                    return Activity_my_species.newInstance(2, "Page # 3");
-                default:
-                    return null;
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.vpPager);
+        final com.example.cacau2.ecovoicetest.PagerAdapterProfile adapter = new com.example.cacau2.ecovoicetest.PagerAdapterProfile(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
             }
-        }
 
-        // Returns the page title for the top indicator
-        @Override
-        public CharSequence getPageTitle(int position) {
-            String s = "";
-            switch (position){
-                case 0:
-                    s = getResources().getString(R.string.profile);
-                    return s;
-                case 1:
-                    s =getResources().getString(R.string.trees);
-                    return s;
-                case 2:
-                    s =getResources().getString(R.string.species);
-                    return s;
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
 
             }
-            return "";
-        }
 
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
-    // Adapter for the viewpager using FragmentPagerAdapter
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
 
 
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
 
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
 
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
 
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
-    }
+
 }

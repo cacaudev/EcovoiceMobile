@@ -4,7 +4,7 @@
     <string name="title_activity_menu_map">Tela mapa</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="app_name">EcovoiceTest</string>
+    <string name="app_name">Ecovoice mobile</string>
     <string name="email">Email</string>
     <string name="password">Senha</string>
     <string name="password_confirm">Confirmação de senha</string>
@@ -16,32 +16,32 @@
     <string name="first_name">Nome</string>
     <string name="last_name">Sobrenome</string>
     <string name="have_account_question">Já tem uma conta?</string>
-    <string name="create_tree">Adicionar Árvore</string>
+    <string name="create_tree">Adicionar árvore</string>
     <string name="scientificName">Nome Científico</string>
-    <string name="commonName">Nome Comum</string>
-    <string name="moreInfo">Informações Adicionais</string>
+    <string name="commonName">Nome comum</string>
+    <string name="moreInfo">Informações adicionais</string>
     <string name="addPhotos">Adicionar Fotos</string>
-    <string name="location">Localização da Arvore</string>
-    <string name="successInsert">Arvore Inserida com Sucesso!</string>
+    <string name="location">Localização da arvore</string>
+    <string name="successInsert">Arvore inserida com sucesso!</string>
     <string name="title_activity_cadastro_de__arvore">Cadastro</string>
     <string name="profile">Perfil</string>
     <string name="edit_profile">Editar Perfil</string>
     <string name="feedback">Feedback</string>
-    <string name="news_feed">Feed Notícias</string>
+    <string name="news_feed">Feed notícias</string>
     <string name="trees">Árvores</string>
     <string name="species">Espécies</string>
     <string name="companies">Empresas</string>
-    <string name="my_companies">Minhas Empresas</string>
+    <string name="my_companies">Minhas empresas</string>
     <string name="users">Usuários</string>
     <string name="add_tree">Adicionar árvore</string>
     <string name="btn_detail">Detalhe</string>
     <string name="res_scient_name">Não identificada</string>
-    <string name="res_com_name">Nome Comum</string>
+    <string name="res_com_name">Nome comum</string>
     <string name="res_prof">Perfil</string>
     <string name="res_pos">Posição</string>
     <string name="res_date_add">Data criação</string>
 
-    <string name="password_incorrect">Senha Incorreta</string>
+    <string name="password_incorrect">Senha incorreta</string>
     <string name="email_blank">Email em branco</string>
     <string name="password_blank">Senha em branco</string>
 
@@ -117,6 +117,26 @@
     <string name="insertPicture">Insira uma imagem</string>
     <string name="identification">Identificação</string>
     <string name="geolocation">Geolocalização</string>
+    <string name="header_menu_add_tree">Inserir imagem</string>
+    <string name="accessing">Acessando</string>
+    <string name="button">Botão</string>
+    <string name="device_not_connected">"Dispositivo no conectado "</string>
+    <string name="dont_know">Don\'t know</string>
+    <string name="email_already_used">E-mail já em uso</string>
+    <string name="res_link_prof">Link perfil</string>
+    <string name="sociedades">Empresas</string>
+    <string name="logout_sucess">Desconectado com sucesso</string>
+    <string name="user_not_authenticated">Usuário não autenticado</string>
+    <string name="passwords_different">As senhas são diferentes</string>
+    <string name="logout_error">Error ao efetuar logout</string>
+    <string name="new_password">Nova senha</string>
+    <string name="new_password_confirm">Confirme a nova senha</string>
+    <string name="new_password_key">Digite o código enviado por e-mail</string>
+    <string name="invalid_key">Código de validação inválido</string>
+    <string name="validation_code">Código de validação</string>
+    <string name="authenticate">Autenticar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="confirm_new_password">Confirmar nova senha</string>
 
 
 </resources>
