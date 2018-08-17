@@ -24,17 +24,19 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/news_feed_bar"
-        android:icon="@drawable/ic_menu_gallery"
+        android:icon="@drawable/ic_dvr_black_48dp"
         android:orderInCategory="100"
         android:title="@string/news_feed"
-        app:showAsAction="always"
+        app:showAsAction="always "
+        android:alphabeticShortcut="@string/news_feed"
+
         />
     <item
         android:id="@+id/feedback_bar"
         android:icon="@drawable/ic_feedback_black_48dp"
-
+        android:alphabeticShortcut="@string/feedback"
         android:iconTintMode="src_atop"
-        android:iconTint="@color/cardview_light_background"
+        android:iconTint="@color/white"
         android:orderInCategory="100"
         android:title="@string/feedback"
         android:visible="true"

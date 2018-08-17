@@ -146,6 +146,8 @@
     <string name="position">Posição</string>
     <string name="position_text">Você tem mais árvores que  dos usuários</string>
     <string name="user_tree_portfolio_text">Usuários com os maiores portfólios de árvores</string>
+    <string name="address">Endereço</string>
+    <string name="set_location">Definir sua localização</string>
 
 
 </resources>

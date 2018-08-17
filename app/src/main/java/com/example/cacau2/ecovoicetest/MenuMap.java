@@ -296,7 +296,7 @@ public class MenuMap extends AppCompatActivity
         // map.setOnCameraMoveListener((GoogleMap.OnCameraMoveListener) mClusterManager);
 
         map.setOnMarkerClickListener(this);
-        map.getUiSettings().setMyLocationButtonEnabled(true);
+        //map.getUiSettings().setMyLocationButtonEnabled(true);
         if(provider != null) {
             currentLocation  = vicosa;//= getLocation(provider);
             updateCamera(currentLocation, z);

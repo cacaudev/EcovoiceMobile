@@ -163,6 +163,8 @@
     <string name="position">Position</string>
     <string name="position_text">You have more trees than the users</string>
     <string name="user_tree_portfolio_text">Users with the largest tree portfolios</string>
+    <string name="address">Address</string>
+    <string name="set_location">Define your location</string>
 
 
 </resources>
