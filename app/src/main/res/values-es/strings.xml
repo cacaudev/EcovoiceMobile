@@ -131,6 +131,15 @@
     <string name="authenticate">Autenticar</string>
     <string name="cancel">Cancelar</string>
     <string name="confirm_new_password">Confirmar nueva contraseña</string>
+    <string name="settings">Ajustes</string>
+    <string name="new_tree_location">"Ubicación "</string>
+    <string name="images">"Imágenes "</string>
+    <string name="time_line">"Linea de tiempo "</string>
+    <string name="my_trees">"Mis árboles "</string>
+    <string name="stats">"Stats "</string>
+    <string name="position">Posición</string>
+    <string name="position_text">Usted tiene más árboles de los usuarios</string>
+    <string name="user_tree_portfolio_text">Usuarios con los más grandes portafolios de árboles</string>
 
 
 </resources>

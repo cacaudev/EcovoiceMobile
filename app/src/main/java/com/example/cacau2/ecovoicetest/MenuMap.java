@@ -393,7 +393,7 @@ public class MenuMap extends AppCompatActivity
             Drawable drawable = menu.getItem(i).getIcon();
             if(drawable != null) {
                 drawable.mutate();
-                drawable.setColorFilter(getResources().getColor(R.color.cardview_light_background), PorterDuff.Mode.SRC_ATOP);
+                drawable.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
             }
         }
         return true;
@@ -414,7 +414,11 @@ public class MenuMap extends AppCompatActivity
             finish();
             return true;
         } else if (id == R.id.add_tree) {
-            it = new Intent(this,Activity_tab_add_tree.class);
+            it = new Intent(this, Activity_tab_add_tree.class);
+            startActivity(it);
+            return true;
+        }else if(id == R.id.news_feed_bar){
+            it = new Intent(this, Activity_tab_news_feed.class);
             startActivity(it);
             return true;
         }else if(id == R.id.feedback_bar){
@@ -446,10 +450,12 @@ public class MenuMap extends AppCompatActivity
             startActivity(it);
 
         } else if (id == R.id.nav_feed) {
+            Intent it = new Intent(getBaseContext(),Activity_tab_news_feed.class);
+            startActivity(it);
 
         } else if (id == R.id.nav_trees) {
             //TODO all trees
-            Intent intent = new Intent(getBaseContext(), ShowTreesTest.class);
+            Intent intent = new Intent(getBaseContext(), MenuMap.class);
             startActivity(intent);
         } else if (id == R.id.nav_species) {
             Intent intent = new Intent(getBaseContext(), Activity_list_species.class);

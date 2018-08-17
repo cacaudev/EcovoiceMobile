@@ -41,12 +41,12 @@
 
                     <com.example.cacau2.ecovoicetest.CircularImageView
                         android:id="@+id/circularImageView"
-                        android:layout_width="89dp"
-                        android:layout_height="84dp"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
                         android:layout_marginTop="24dp"
                         android:adjustViewBounds="true"
-                        android:cropToPadding="true"
-                        android:scaleType="fitXY"
+                        android:cropToPadding="false"
+                        android:scaleType="fitCenter"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.501"
                         app:layout_constraintStart_toStartOf="parent"

@@ -35,7 +35,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeMeu">
-        <activity android:name=".SplashScreen">
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/AppThemeMeu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -70,7 +72,7 @@
         <activity
             android:name=".MenuMap"
             android:label="@string/title_activity_menu_map"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/ecovoice.theme.ActionBar" />
         <activity android:name=".ShowUsersScreen" />
         <activity android:name=".RegisterTree" />
         <activity android:name=".ShowTreesTest" />
@@ -94,7 +96,10 @@
         <activity android:name=".Activity_edit_profile" />
         <activity android:name=".Activity_tab_add_tree" />
         <activity android:name=".Activity_validate_and_change_password" />
-        <activity android:name=".Activity_register_new_password"></activity>
+        <activity android:name=".Activity_register_new_password" />
+        <activity
+            android:name=".Activity_tab_news_feed"
+            android:label="@string/title_activity_tab_news_feed"></activity>
     </application>
 
 </manifest>

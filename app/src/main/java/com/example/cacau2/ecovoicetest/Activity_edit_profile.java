@@ -1,6 +1,12 @@
 package com.example.cacau2.ecovoicetest;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -15,14 +21,36 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.PopupMenu;
 
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.zip.Inflater;
 
-public class Activity_edit_profile extends AppCompatActivity {
+public class Activity_edit_profile extends AppCompatActivity  {
     String dir;
     public static final int PICK_IMAGE = 1;
     public static final int TAKE_PICTURE = 10;
+    private GoogleMap mMap;
+    public LocationManager lm;
+    public Criteria criteria;
+    public String provider;
+    private LatLng currentLocation;
+    private Marker myPos;
+    private LatLng vicosa = new LatLng(-20.752946, -42.879097);
+    int z = 17;
+    private MapView mMapView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +61,35 @@ public class Activity_edit_profile extends AppCompatActivity {
         registerForContextMenu(btn);
         btn.setOnCreateContextMenuListener(this);
 
+
+       /* //Location Manager
+        lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        criteria = new Criteria();
+
+        //Testa se o aparelho tem GPS
+        PackageManager packageManager = getPackageManager();
+        boolean hasGPS = packageManager.hasSystemFeature(PackageManager.FEATURE_LOCATION_GPS);
+
+        //Estabelece critério de precisão
+        if(hasGPS){
+            criteria.setAccuracy( Criteria.ACCURACY_FINE );
+            Log.i("LOCATION", "Usando GPS");
+        }else{
+            Log.i("LOCATION", "Usando WI-FI ou dados");
+            criteria.setAccuracy( Criteria.ACCURACY_COARSE );
+        }
+
+        mMapView = (MapView) findViewById(R.id.map_view_edit_profile);
+        mMapView.onCreate(savedInstanceState);
+        mMapView.getMapAsync(this);
+
+        mMapView.onResume(); // needed to get the map to display immediately
+
+        try {
+            MapsInitializer.initialize(getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
 
     }
     public void change_image(View view) {
@@ -108,7 +165,68 @@ public class Activity_edit_profile extends AppCompatActivity {
         }
     }
 
+/*
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+    @SuppressLint("MissingPermission")
+    public LatLng getLocation(String provider)
+    {
+        if(provider != null) {
+            lm.requestSingleUpdate(provider, (android.location.LocationListener) this, null);
+            Location l = lm.getLastKnownLocation(provider);
+            if (l != null){
+                return new LatLng(l.getLatitude(), l.getLongitude());
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        if(provider != null) {
+            currentLocation = vicosa;//getLocation(provider);
+            updateCamera(currentLocation, z);
+            createMyLocationMarker(currentLocation);
+        }else{
+            currentLocation = vicosa;//getLocation(provider);
+            updateCamera(currentLocation, z);
+            createMyLocationMarker(currentLocation);
+
+        }
 
 
+    }
+
+    public void createMyLocationMarker(LatLng c){
+        if(myPos == null) {
+            myPos = mMap.addMarker(new MarkerOptions()
+                    .position(c).zIndex(-1));
+            myPos.setTag("My location");
+        }else{
+            myPos.setPosition(c);
+        }
+    }
+    public void updateCamera(LatLng target,int zoom){
+        if(mMap != null) {
+            CameraUpdate c = CameraUpdateFactory.newCameraPosition(
+                    new CameraPosition.Builder()
+                            .target(target)
+                            .zoom(zoom)
+                            .build());
+            mMap.animateCamera(c);
+        }
+    }
+    @SuppressLint("MissingPermission")
+    public void request_location(View view){
+            currentLocation = vicosa;//getLocation(provider);
+            Log.i("BUTTON", "Requested location");
+
+            updateCamera(currentLocation, z);
+            createMyLocationMarker(currentLocation);
+    }*/
 
 }

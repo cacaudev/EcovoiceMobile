@@ -13,9 +13,9 @@ tools:context="com.example.cacau2.ecovoicetest.Activity_tab_profile">
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/toolbar"
-    android:background="?attr/colorPrimary"
     android:elevation="0dp"
-    android:minHeight="?attr/actionBarSize"
+    style="@style/TabLayoutStyle"
+
    />
 
 <android.support.v4.view.ViewPager

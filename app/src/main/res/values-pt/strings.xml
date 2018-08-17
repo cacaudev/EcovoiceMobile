@@ -27,7 +27,7 @@
     <string name="profile">Perfil</string>
     <string name="edit_profile">Editar Perfil</string>
     <string name="feedback">Feedback</string>
-    <string name="news_feed">Feed notícias</string>
+    <string name="news_feed">Feed de notícias</string>
     <string name="trees">Árvores</string>
     <string name="species">Espécies</string>
     <string name="companies">Empresas</string>
@@ -137,6 +137,15 @@
     <string name="authenticate">Autenticar</string>
     <string name="cancel">Cancelar</string>
     <string name="confirm_new_password">Confirmar nova senha</string>
+    <string name="settings">Configurações</string>
+    <string name="new_tree_location">Localização</string>
+    <string name="images">Imagens</string>
+    <string name="time_line">Linha do tempo</string>
+    <string name="my_trees">Minhas árvores</string>
+    <string name="stats">Estatísticas</string>
+    <string name="position">Posição</string>
+    <string name="position_text">Você tem mais árvores que  dos usuários</string>
+    <string name="user_tree_portfolio_text">Usuários com os maiores portfólios de árvores</string>
 
 
 </resources>

@@ -169,7 +169,7 @@ public class LoginScreen extends AppCompatActivity{
                                     false, auth_token, current_user.getId());
 
                         mProgressDialog.dismiss();
-                        Intent intent = new Intent(getBaseContext(), MenuMap.class);
+                        Intent intent = new Intent(getBaseContext(), Activity_tab_news_feed.class);
                         startActivity(intent);
                         finish();
 

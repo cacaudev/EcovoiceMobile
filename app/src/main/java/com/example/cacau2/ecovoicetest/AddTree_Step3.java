@@ -194,7 +194,7 @@ public class AddTree_Step3 extends Fragment {
         //
         // Cadastra arvore no banco
         //
-        Double latitude = params.getDouble("lat");
+       Double latitude = params.getDouble("lat");
         Double longitude = params.getDouble("lon");
         String nomeCientifico = params.getString("scientificName");
         String nomeComum = params.getString("commonName");

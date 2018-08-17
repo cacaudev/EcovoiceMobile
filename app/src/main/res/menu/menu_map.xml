@@ -7,7 +7,7 @@
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/settings"
         app:showAsAction="never" />
 
     <item
@@ -22,6 +22,13 @@
         android:orderInCategory="100"
         android:title="@string/add_tree"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/news_feed_bar"
+        android:icon="@drawable/ic_menu_gallery"
+        android:orderInCategory="100"
+        android:title="@string/news_feed"
+        app:showAsAction="always"
+        />
     <item
         android:id="@+id/feedback_bar"
         android:icon="@drawable/ic_feedback_black_48dp"
