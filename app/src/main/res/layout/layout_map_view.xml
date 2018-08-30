@@ -108,7 +108,7 @@
                 android:layout_marginBottom="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/btn_rounded_post"
-                android:text="@string/set_location"
+                android:text="@string/conclude"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/editText14"

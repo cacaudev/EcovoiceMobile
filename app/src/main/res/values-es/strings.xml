@@ -142,6 +142,11 @@
     <string name="user_tree_portfolio_text">Usuarios con los más grandes portafolios de árboles</string>
     <string name="address">Dirección</string>
     <string name="set_location">Definir su ubicación</string>
+    <string name="conclude">Completo</string>
+    <string name="edit_profile_change_password">Deseo cambiar mi contraseña</string>
+    <string name="personal_information">Informaciones personales</string>
+    <string name="your_location">Su ubicación</string>
+    <string name="education_companies">Educación y empresas</string>
 
 
 </resources>

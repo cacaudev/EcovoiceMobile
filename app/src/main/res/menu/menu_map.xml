@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<menu xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
@@ -36,7 +34,6 @@
         android:icon="@drawable/ic_feedback_black_48dp"
         android:alphabeticShortcut="@string/feedback"
         android:iconTintMode="src_atop"
-        android:iconTint="@color/white"
         android:orderInCategory="100"
         android:title="@string/feedback"
         android:visible="true"

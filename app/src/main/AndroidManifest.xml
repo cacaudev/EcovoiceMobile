@@ -88,18 +88,20 @@
         <activity
             android:name=".Activity_feedback"
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
-        <activity android:name=".Activity_tab_profile" />
+        <activity
+            android:name=".Activity_tab_profile"
+            android:theme="@style/ecovoice.theme.ActionBar" />
         <activity android:name=".Activity_forgot_password" />
         <activity android:name=".Activity_user_register" />
         <activity android:name=".Activity_list_species" />
         <activity android:name=".Activity_create_specie" />
-        <activity android:name=".Activity_edit_profile" />
+        <activity android:name=".Activity_tab_edit_profile" />
         <activity android:name=".Activity_tab_add_tree" />
         <activity android:name=".Activity_validate_and_change_password" />
         <activity android:name=".Activity_register_new_password" />
         <activity
             android:name=".Activity_tab_news_feed"
-            android:label="@string/title_activity_tab_news_feed"></activity>
+            android:label="@string/title_activity_tab_news_feed" />
     </application>
 
 </manifest>

@@ -216,7 +216,6 @@
                         android:layout_marginTop="16dp"
                         android:background="@drawable/circle_button"
                         android:gravity="bottom|center"
-                        android:onClick="change_image"
                         app:layout_constraintBottom_toBottomOf="@+id/circularImageView3"
                         app:layout_constraintEnd_toEndOf="@+id/circularImageView3"
                         app:layout_constraintHorizontal_bias="1.0"
@@ -256,7 +255,22 @@
                         android:layout_marginBottom="16dp"
                         android:background="@drawable/btn_rounded_sucess"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="@string/conclude"
+                        android:textColor="@color/white"
                         app:layout_constraintEnd_toEndOf="@+id/include19" />
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/btn_rounded_post"
+                        android:text="@string/edit_profile_change_password"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@+id/button13"
+                        app:layout_constraintEnd_toStartOf="@+id/button13"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/include19"
+                        app:layout_constraintTop_toTopOf="@+id/button13" />
 
                 </android.support.constraint.ConstraintLayout>
 

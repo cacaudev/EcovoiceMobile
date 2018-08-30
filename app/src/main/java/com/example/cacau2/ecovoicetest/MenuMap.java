@@ -441,7 +441,7 @@ public class MenuMap extends AppCompatActivity
             Intent it = new Intent(getBaseContext(),Activity_tab_profile.class);
             startActivity(it);
         } else if (id == R.id.nav_profile_edit) {
-            Intent it = new Intent(getBaseContext(),Activity_edit_profile.class);
+            Intent it = new Intent(getBaseContext(), Activity_tab_edit_profile.class);
             startActivity(it);
 
 

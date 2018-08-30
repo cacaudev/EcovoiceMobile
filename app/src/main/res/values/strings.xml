@@ -165,6 +165,17 @@
     <string name="user_tree_portfolio_text">Users with the largest tree portfolios</string>
     <string name="address">Address</string>
     <string name="set_location">Define your location</string>
+    <string name="conclude">Conclude</string>
+    <string name="edit_profile_change_password">I want to change my password</string>
+    <string name="personal_information">Personal information</string>
+    <string name="your_location">Your location</string>
+    <string name="education_companies">Education and companies</string>
+    <string name="title_activity_teste">TESTE</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="action_example">Example action</string>
 
 
 </resources>
