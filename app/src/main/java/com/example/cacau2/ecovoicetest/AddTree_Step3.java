@@ -126,7 +126,7 @@ public class AddTree_Step3 extends Fragment {
             }
         }
 
-        if(requestCode == PICK_IMAGE){
+        else if(requestCode == PICK_IMAGE){
             if(data != null){
                 Uri selectedImage = data.getData();
                 String[] filePathColumn = { MediaStore.Images.Media.DATA };

@@ -21,6 +21,7 @@ public class UserQuery {
     private Connection conexaoUsada = null;
 
     // Constructor
+
     public UserQuery(Connection connection){
         this.conexaoUsada = connection;
     }
