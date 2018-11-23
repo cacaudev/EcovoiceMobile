@@ -5,12 +5,12 @@
         <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
            <item>
                <shape android:shape="oval">
-                   <solid android:color="#0949fa"/>
+                   <solid android:color="#3bb940"/>
                    <padding android:top="9dp" android:bottom="9dp" android:right="9dp" android:left="9dp"/>
 
                </shape>
            </item>
-            <item android:drawable="@drawable/cam_icon"/>
+            <item android:drawable="@drawable/add_cam_icon"/>
 
         </layer-list>
 
@@ -22,11 +22,11 @@
         <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
             <item>
                 <shape android:shape="oval">
-                    <solid android:color="#053bc2"/>
+                    <solid android:color="#3ca440"/>
                     <padding android:top="9dp" android:bottom="9dp" android:right="9dp" android:left="9dp"/>
                 </shape>
             </item>
-            <item android:drawable="@drawable/cam_icon"/>
+            <item android:drawable="@drawable/add_cam_icon"/>
 
         </layer-list>
     </item>

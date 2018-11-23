@@ -16,7 +16,7 @@
         android:minHeight="0dp">
 
 
-        <com.example.cacau2.ecovoicetest.CircularImageView
+        <Base.CircularImageView
             android:id="@+id/circularImageView2"
             android:layout_width="50dp"
             android:layout_height="50dp"

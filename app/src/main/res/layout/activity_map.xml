@@ -21,11 +21,11 @@
 
     <Button
         android:id="@+id/mylocation"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="84dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/btn_request_focus"
         android:clickable="true"
         android:onClick="myLocation"

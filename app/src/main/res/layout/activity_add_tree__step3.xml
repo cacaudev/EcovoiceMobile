@@ -11,32 +11,21 @@
     <android.support.v7.widget.CardView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         app:cardBackgroundColor="@color/cardview_light_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/photo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4"
-                app:layout_constraintVertical_chainStyle="packed"
-                app:srcCompat="@drawable/cast_album_art_placeholder" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -50,39 +39,44 @@
 
             <Button
                 android:id="@+id/finish"
-                android:layout_width="wrap_content"
+                style="@style/MyButtons"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
                 android:layout_marginBottom="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/btn_rounded_post"
+                android:background="@drawable/btn_rounded_blue"
                 android:onClick="insereArvore"
                 android:text="Concluir"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="@+id/include9"
+                app:layout_constraintStart_toStartOf="@+id/include9" />
 
             <include
+                android:id="@+id/include8"
                 layout="@layout/divider_layout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-            <Button
-                android:id="@+id/id_choose_pic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <include
+                android:id="@+id/include9"
+                layout="@layout/layout_add_images"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/btn_add_pic_tree"
                 app:layout_constraintBottom_toTopOf="@+id/finish"
-                app:layout_constraintEnd_toEndOf="@+id/photo"
-                app:layout_constraintStart_toStartOf="@+id/photo"
-                app:layout_constraintTop_toBottomOf="@+id/photo" />
+                app:layout_constraintEnd_toEndOf="@+id/include8"
+                app:layout_constraintStart_toStartOf="@+id/include8"
+                app:layout_constraintTop_toBottomOf="@+id/include8"
+                app:layout_constraintVertical_bias="0.0" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

@@ -3,7 +3,6 @@
     <string name="todo" translatable="false">TODO</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_detail">detail</string>
-    <string name="title_activity_menu_map">MenuMap</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -118,7 +117,7 @@
     <string name="password_incorrect">Password incorrect</string>
     <string name="password_blank">Password blank</string>
     <string name="logout">Logout</string>
-    <string name="remember_me">Remember me</string>
+    <string name="remember_me">Remember my data</string>
     <string name="hint_email">Your email</string>
     <string name="hint_password">Your password</string>
     <string name="login_divider">Login</string>
@@ -176,6 +175,13 @@
     <string name="title_section3">Section 3</string>
 
     <string name="action_example">Example action</string>
+    <string name="forgot_me">Forget my data</string>
+    <string name="new_tree_menu">New Tree</string>
+    <string name="title_activity_menu_map" translatable="false">" "</string>
+    <string name="send_feedback">Send feedback</string>
+    <string name="edit">Edit</string>
+    <string name="cientific_search_hint">Search...</string>
+    <string name="empty_images_trees">No image selected</string>
 
 
 </resources>

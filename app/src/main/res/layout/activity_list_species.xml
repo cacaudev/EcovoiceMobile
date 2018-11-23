@@ -128,7 +128,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:background="@drawable/btn_rounded_post"
+                            android:background="@drawable/btn_rounded_green"
                             android:gravity="center_vertical|center_horizontal"
                             android:onClick="register_specie"
                             android:tag="2"

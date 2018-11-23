@@ -36,7 +36,7 @@ public class Activity_my_profile extends android.support.v4.app.Fragment {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Activity_edit_profile.class);
+                Intent intent = new Intent(getActivity(), Activity_tab_edit_profile.class);
 
                 startActivity(intent);
                 getActivity().finish();

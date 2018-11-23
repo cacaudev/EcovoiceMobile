@@ -99,7 +99,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
-                android:background="@drawable/btn_rounded_sucess"
+                android:background="@drawable/btn_rounded_blue"
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="center"
                 android:padding="10dp"

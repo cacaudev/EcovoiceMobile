@@ -1,11 +1,17 @@
 package com.example.cacau2.ecovoicetest;
 
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
-public class Activity_tab_edit_profile extends AppCompatActivity {
+import Base.BaseMenuActivity;
+
+public class Activity_tab_edit_profile extends BaseMenuActivity {
 
 
     @Override
@@ -13,7 +19,8 @@ public class Activity_tab_edit_profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_edit_profile);
         ViewPager viewPager = findViewById(R.id.view_pager_edit_profile);
-        getSupportActionBar().setElevation(0);
+
+        this.setUpLayout();
 
 
         TabLayout tabLayout = findViewById(R.id.tabs_layout_edit_profile);

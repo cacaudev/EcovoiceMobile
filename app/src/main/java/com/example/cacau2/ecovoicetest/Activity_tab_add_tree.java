@@ -10,22 +10,25 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 
 import com.example.cacau2.ecovoicetest.PagerAdapter;
 import com.example.cacau2.ecovoicetest.R;
 
+import Base.BaseMenuActivity;
 
-public class Activity_tab_add_tree extends AppCompatActivity {
+
+public class Activity_tab_add_tree extends BaseMenuActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_add_tree);
-        getSupportActionBar().setElevation(0);
 
 
+        this.setUpLayout();
+        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         TabLayout tabLayout = findViewById(R.id.tab_layout);
-
         tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.new_tree_location)));
         tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.identification)));
         tabLayout.addTab(tabLayout.newTab().setText(getResources().getString(R.string.images)));
@@ -44,12 +47,10 @@ public class Activity_tab_add_tree extends AppCompatActivity {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
 

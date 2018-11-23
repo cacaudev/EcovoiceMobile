@@ -23,7 +23,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoadTrees {
-    public static ArrayList<Tree> arrayTrees = new ArrayList<Tree>();;
+    public static ArrayList<Tree> arrayTrees = new ArrayList<Tree>();
     public static SessionManagement session;
     public static ProgressDialog mProgressDialog;
     public static Context context;
@@ -39,7 +39,7 @@ public class LoadTrees {
     }
 
 
-    void insert_trees(ArrayList<Tree> list, GoogleMap map){
+    /*void insert_trees(ArrayList<Tree> list, GoogleMap map){
         LatLng pos;
         Tree aux;
         if(map != null) {
@@ -52,14 +52,14 @@ public class LoadTrees {
             }
         }
 
-    }
+    }*/
     public ArrayList<Tree> getArrayTree(){
         this.getAllTrees();
         return this.arrayTrees;
     }
     public void/*ArrayList<Tree>*/ getAllTrees() {
         mProgressDialog = new ProgressDialog(LoadTrees.context);
-        mProgressDialog.setMax(100);
+        //mProgressDialog.setMax(100);
         mProgressDialog.setIndeterminate(false);
         mProgressDialog.setMessage("Carregando árvores....");
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -88,7 +88,7 @@ public class LoadTrees {
                         JSONArray list = jsonObject.getJSONArray("data");
                         Log.v("API", "O array tem tamanho: " + list.length());
                         Tree tmpTree = new Tree();
-
+                        trees.clear();
                         // looping through All Contacts
                         for (int i = 0; i < list.length(); i++) {
                             JSONObject c = list.getJSONObject(i);
@@ -130,7 +130,7 @@ public class LoadTrees {
                         Log.v("API", "Código: " + response.code() + " Erro de Exceção: " + e.getMessage());
                     }
                     mProgressDialog.dismiss();
-                    insert_trees(this.trees,map);
+                   // insert_trees(this.trees,map);
 
                 } else {
                     try {
@@ -146,6 +146,7 @@ public class LoadTrees {
                     Toast.makeText(context, "Erro na request ", Toast.LENGTH_SHORT).show();
                 }
                 Log.d("LOADS", this.trees.size() + "  ARVoRES");
+                arrayTrees.clear();
                 arrayTrees.addAll(this.trees);
             }
 

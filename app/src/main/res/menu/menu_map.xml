@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/settings"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_logout"
-        android:orderInCategory="100"
-        android:title="@string/logout"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/add_tree"
+        android:id="@+id/add_tree_bar"
         android:icon="@drawable/pluss_tree"
         android:orderInCategory="100"
         android:title="@string/add_tree"
@@ -25,7 +12,7 @@
         android:icon="@drawable/ic_dvr_black_48dp"
         android:orderInCategory="100"
         android:title="@string/news_feed"
-        app:showAsAction="always "
+        app:showAsAction="always"
         android:alphabeticShortcut="@string/news_feed"
 
         />
@@ -38,5 +25,59 @@
         android:title="@string/feedback"
         android:visible="true"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/new_tree_menu"
+        android:title="@string/new_tree_menu"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/news_feed_menu"
+        android:title="@string/news_feed"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/tree_menu"
+        android:title="@string/trees"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/especies_menu"
+        android:title="@string/species"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/companies_menu"
+        android:title="@string/companies"
+        app:showAsAction="never"/>
+
+
+    <item
+        android:id="@+id/my_companiews_menu"
+        android:title="@string/my_companies"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/users_menu"
+        android:title="@string/users"
+        app:showAsAction="never"
+        />
+    <group
+        android:id="@+id/user_logout"
+        android:visible="true">
+        <item
+
+            android:id="@+id/edit_perfil_menu"
+            android:title="@string/edit_profile"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/logout_menu"
+            android:title="@string/logout"
+            app:showAsAction="never" />
+
+    </group>
+
+
 
 </menu>

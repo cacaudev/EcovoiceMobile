@@ -1,5 +1,6 @@
 package com.example.cacau2.ecovoicetest;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Context;
@@ -13,16 +14,21 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Activity;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -41,13 +47,21 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.zip.Inflater;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
-public class AddTree_Step1 extends android.support.v4.app.Fragment implements OnMapReadyCallback,LocationListener,GoogleMap.OnMapLongClickListener, GoogleMap.OnMapClickListener{
+import static butterknife.ButterKnife.bind;
+
+
+public class AddTree_Step1 extends android.support.v4.app.Fragment implements OnMapReadyCallback, LocationListener, GoogleMap.OnMapLongClickListener, GoogleMap.OnMapClickListener {
 
     MapView mMapView;
     private GoogleMap googleMap;
@@ -66,63 +80,94 @@ public class AddTree_Step1 extends android.support.v4.app.Fragment implements On
     View view;
     Geocoder geocoder;
 
+    //@BindView(R.id.btn_place_tree)
+    Button btn_place_tree;
+
 
     private SupportMapFragment mSupportMapFragment;
+    public Unbinder unbinder;
+    @BindView(R.id.edit_text_lat)
+    EditText mLatitude;
 
- @Nullable
- @Override
- public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-     View rootView = inflater.inflate(R.layout.activity_add_tree__step1, container, false);
-     view = rootView;
-     textView = view.findViewById(R.id.tree_address);
-
-     mMapView = (MapView) rootView.findViewById(R.id.add_tree_map);
-     mMapView.onCreate(savedInstanceState);
-
-     mMapView.onResume(); // needed to get the map to display immediately
-
-     try {
-         MapsInitializer.initialize(getActivity().getApplicationContext());
-     } catch (Exception e) {
-         e.printStackTrace();
-     }
+    @BindView(R.id.edit_text_long)
+    EditText mLongitude;
 
 
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.activity_add_tree__step1, container, false);
+        view = rootView;
+        ButterKnife.bind(this, view);
 
-     mMapView.getMapAsync(this);
-     viewPager = getActivity().findViewById(R.id.pager);
-     FloatingActionButton newPage =  view.findViewById(R.id.floatingActionButton);
-     newPage.setOnClickListener(new View.OnClickListener() {
+        btn_place_tree = view.findViewById(R.id.btn_place_tree);
+        //unbinder = ButterKnife.bind(this, rootView);
+        btn_place_tree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setCurrentLocation();
+            }
+        });
 
+        mLatitude.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
 
-         @Override
-         public void onClick(View v) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                        actionId == EditorInfo.IME_ACTION_DONE ||
+                        event != null &&
+                                event.getAction() == KeyEvent.ACTION_DOWN &&
+                                event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                    if (event == null) {
+                        // the user is done typing.
+                        v.getText();
+                        updateMarker(new LatLng(Double.valueOf(mLatitude.getText().toString()), Double.valueOf(mLongitude.getText().toString())));
+                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
-             SendNewTree();
+                        return true; // consume.
+                    }
+                }
+                return false; // pass on to other listeners.
+            }
+        });
+        mLongitude.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                        actionId == EditorInfo.IME_ACTION_DONE ||
+                        event != null &&
+                                event.getAction() == KeyEvent.ACTION_DOWN &&
+                                event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                    if (event == null || !event.isShiftPressed()) {
+                        // the user is done typing.
+                        v.getText();
+                        updateMarker(new LatLng(Double.valueOf(mLatitude.getText().toString()), Double.valueOf(mLongitude.getText().toString())));
+                        return true; // consume.
+                    }
+                }
+                return false; // pass on to other listeners.
+            }
+        });
 
-         }
-     });
-     return rootView;
- }
+        textView = view.findViewById(R.id.tree_address);
 
+        mMapView = (MapView) rootView.findViewById(R.id.add_tree_map);
+        mMapView.onCreate(savedInstanceState);
 
-    public void  SendNewTree(){
-        //Pega a posição do Marcador Selecionado
-        //Se tiver sido selecionado
-        if(newTree != null){
-            LatLng selectedTree = newTree.getPosition();
-            Intent it = new Intent(view.getContext(),AddTree_Step2.class);
-            Bundle params = new Bundle();
-            params.putDouble("lat",selectedTree.latitude);
-            params.putDouble("lon",selectedTree.longitude);
+        mMapView.onResume(); // needed to get the map to display immediately
 
-            it.putExtras(params);
-            viewPager.setCurrentItem(1);
+        try {
+            MapsInitializer.initialize(getActivity().getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        else{
-            Toast.makeText(view.getContext(),"Clique e Segure para Marcar a Arvore",Toast.LENGTH_SHORT).show();
-        }
 
+
+        mMapView.getMapAsync(this);
+        viewPager = getActivity().findViewById(R.id.pager);
+
+        return rootView;
     }
 
 
@@ -134,6 +179,7 @@ public class AddTree_Step1 extends android.support.v4.app.Fragment implements On
 
         //Location Manager
         lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+
         criteria = new Criteria();
 
         //Testa se o aparelho tem GPS
@@ -141,16 +187,13 @@ public class AddTree_Step1 extends android.support.v4.app.Fragment implements On
         boolean hasGPS = packageManager.hasSystemFeature(PackageManager.FEATURE_LOCATION_GPS);
 
         //Estabelece critério de precisão
-        if(hasGPS){
-            criteria.setAccuracy( Criteria.ACCURACY_FINE );
+        if (hasGPS) {
+            criteria.setAccuracy(Criteria.ACCURACY_FINE);
             Log.i("LOCATION", "Usando GPS");
-        }else{
+        } else {
             Log.i("LOCATION", "Usando WI-FI ou dados");
-            criteria.setAccuracy( Criteria.ACCURACY_COARSE );
+            criteria.setAccuracy(Criteria.ACCURACY_COARSE);
         }
-
-
-
 
 
     }
@@ -158,12 +201,12 @@ public class AddTree_Step1 extends android.support.v4.app.Fragment implements On
 
     @Override
     public void onMapLongClick(LatLng point) {
-        if(mMap!= null) {
-            if(newTree == null) {
+        if (mMap != null) {
+            if (newTree == null) {
                 newTree = mMap.addMarker(new MarkerOptions()
                         .position(point).zIndex(1).draggable(true).icon(BitmapDescriptorFactory.fromResource(R.drawable.tree_icon)));
                 setEditText(point);
-            }else{
+            } else {
                 newTree.setPosition(point);
                 setEditText(point);
             }
@@ -171,23 +214,81 @@ public class AddTree_Step1 extends android.support.v4.app.Fragment implements On
         }
 
     }
-    public void setEditText(LatLng latLng){
+
+    public void setEditText(LatLng latLng) {
         EditText latitude_field = view.findViewById(R.id.edit_text_lat);
         EditText longitude_field = view.findViewById(R.id.edit_text_long);
         latitude_field.setText((String.valueOf(latLng.latitude)));
         longitude_field.setText((String.valueOf(latLng.longitude)));
 
 
+    }
+
+    public void updateMarker(LatLng pos) {
+        if (newTree == null) {
+            newTree = mMap.addMarker(new MarkerOptions()
+                    .position(pos).zIndex(1).draggable(true).icon(BitmapDescriptorFactory.fromResource(R.drawable.tree_icon)));
+            setEditText(pos);
+        } else {
+            updateCamera(pos, z);
+            newTree.setPosition(pos);
+            setEditText(pos);
+        }
+        setAddress(pos);
 
     }
 
+    public void setCurrentLocation() {
+        Location pos = getDeviceLoc();
+        LatLng point = new LatLng(pos.getLatitude(), pos.getLongitude());
+
+        if (newTree == null) {
+            newTree = mMap.addMarker(new MarkerOptions()
+                    .position(point).zIndex(1).draggable(true).icon(BitmapDescriptorFactory.fromResource(R.drawable.tree_icon)));
+            setEditText(point);
+        } else {
+            updateCamera(point, z);
+            newTree.setPosition(point);
+            setEditText(point);
+        }
+        setAddress(point);
+    }
+
+    /**
+     * Get the current location of the device
+     * ref: https://chantisandroid.blogspot.ca/2017/06/get-current-location-example-in-android.html
+     *
+     * @return current location
+     */
+    private Location getDeviceLoc() {
+        /*if (this.getActivity().checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
+                (this.getContext(),  android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            this.getActivity().requestPermissions(new String[]{ android.Manifest.permission.ACCESS_FINE_LOCATION},101);
+
+        } else {*/
+        Location location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        Location location1 = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        Location location2 = lm.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+        if (location != null) {
+            return location;
+        } else if (location1 != null) {
+            return location1;
+        } else if (location2 != null) {
+            return location2;
+        } else {
+            //  Toast.makeText(this, "Unable to trace your location", Toast.LENGTH_SHORT).show();
+        }
+        //}
+        return null;
+    }
+
     @SuppressLint("MissingPermission")
-    public LatLng getLocation(String provider)
-    {
-        if(provider != null) {
-            lm.requestSingleUpdate(provider, this, null);
-            Location l = lm.getLastKnownLocation(provider);
-            if (l != null){
+    public LatLng getLocation(String provider) {
+        if (provider != null) {
+            Location l = getDeviceLoc();
+            if (l != null) {
                 return new LatLng(l.getLatitude(), l.getLongitude());
             }
         }
@@ -197,16 +298,17 @@ public class AddTree_Step1 extends android.support.v4.app.Fragment implements On
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.getUiSettings().setMyLocationButtonEnabled(false);
+        mMap.getUiSettings().setMapToolbarEnabled(false);
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         mMap.setOnMapLongClickListener(this);
-        if(provider != null) {
-            currentLocation = vicosa;//getLocation(provider);
-            updateCamera(currentLocation, z);
-            createMyLocationMarker(currentLocation);
-        }else{
-            currentLocation = vicosa;//getLocation(provider);
-            updateCamera(currentLocation, z);
-            createMyLocationMarker(currentLocation);
+        if (provider != null) {
+            currentLocation = getLocation(provider);
+            if (currentLocation != null) {
+                updateCamera(currentLocation, z);
+
+                createMyLocationMarker(currentLocation);
+            }
 
         }
         mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
@@ -231,20 +333,21 @@ public class AddTree_Step1 extends android.support.v4.app.Fragment implements On
             }
         });
     }
+
     private String getAddress(LatLng pos) {
         StringBuilder result = new StringBuilder();
         String strAddress = null;
         try {
             geocoder = new Geocoder(view.getContext(), Locale.getDefault());
-            List<Address> addresses = geocoder.getFromLocation(pos.latitude,pos.longitude,1);
+            List<Address> addresses = geocoder.getFromLocation(pos.latitude, pos.longitude, 1);
             if (addresses.size() > 0) {
 
                 Address address = addresses.get(0);
                 StringBuffer str = new StringBuffer();
                 str.append(address.getThoroughfare() + ",");
-                str.append(address.getSubThoroughfare()+ ",");
-                str.append(address.getLocality()+ " - ");
-                str.append(address.getAdminArea()+ ",");
+                str.append(address.getSubThoroughfare() + ",");
+                str.append(address.getLocality() + " - ");
+                str.append(address.getAdminArea() + ",");
                 str.append(address.getCountryName());
 
 
@@ -258,22 +361,25 @@ public class AddTree_Step1 extends android.support.v4.app.Fragment implements On
 
         return strAddress;
     }
-    public void setAddress(LatLng pos){
+
+    public void setAddress(LatLng pos) {
         String address = getAddress(pos);
 
         textView.setText(address);
     }
-    public void createMyLocationMarker(LatLng c){
-        if(myPos == null) {
+
+    public void createMyLocationMarker(LatLng c) {
+        if (myPos == null) {
             myPos = mMap.addMarker(new MarkerOptions()
                     .position(c).zIndex(-1));
             myPos.setTag("My location");
-        }else{
+        } else {
             myPos.setPosition(c);
         }
     }
-    public void updateCamera(LatLng target,int zoom){
-        if(mMap != null) {
+
+    public void updateCamera(LatLng target, int zoom) {
+        if (mMap != null) {
             CameraUpdate c = CameraUpdateFactory.newCameraPosition(
                     new CameraPosition.Builder()
                             .target(target)
@@ -284,15 +390,6 @@ public class AddTree_Step1 extends android.support.v4.app.Fragment implements On
     }
 
 
-
-
-
-
-
-
-
-
-
     @SuppressLint("MissingPermission")
     @Override
     public void onStart() {
@@ -300,15 +397,15 @@ public class AddTree_Step1 extends android.support.v4.app.Fragment implements On
 
 
         //Obtem melhor provedor habilitado com o critério estabelecido
+        provider = lm.getBestProvider(criteria, true);
 
-
-        if ( provider == null ){
-            Log.e( "PROVEDOR", "Nenhum provedor encontrado!" );
-        }else{
-            Log.i( "PROVEDOR", "Está sendo utilizado o provedor: " + provider );
+        if (provider == null) {
+            Log.e("PROVEDOR", "Nenhum provedor encontrado!");
+        } else {
+            Log.i("PROVEDOR", "Está sendo utilizado o provedor: " + provider);
 
             //Obtem atualizações de posição
-             lm.requestSingleUpdate(provider,this,null );
+            lm.requestLocationUpdates(provider, 1000, 1, this);
         }
     }
 
@@ -317,19 +414,21 @@ public class AddTree_Step1 extends android.support.v4.app.Fragment implements On
         //interrompe o Location Manager
         lm.removeUpdates(this);
 
-        Log.w("PROVEDOR","Provedor " + provider + " parado!");
+        Log.w("PROVEDOR", "Provedor " + provider + " parado!");
         super.onDestroy();
     }
+
     @SuppressLint("MissingPermission")
-    public void myLocation(View v){
-        currentLocation = vicosa;//getLocation(provider);
+    public void myLocation(View v) {
+        currentLocation = getLocation(provider);
         updateCamera(currentLocation, z);
         createMyLocationMarker(currentLocation);
     }
+
     @Override
     public void onLocationChanged(Location location) {
-        if(location != null){
-            currentLocation = new LatLng(location.getLatitude(),location.getLongitude());
+        if (location != null) {
+            currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
         }
     }
 

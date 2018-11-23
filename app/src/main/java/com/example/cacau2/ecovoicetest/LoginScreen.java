@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -17,9 +20,13 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+
+
 
 public class LoginScreen extends AppCompatActivity{
 
@@ -35,7 +42,6 @@ public class LoginScreen extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        //this.setTitle("Login"); //Muda nome da barra superior da activity
         getSupportActionBar().hide();
 
         setContentView(R.layout.activity_login);
@@ -44,7 +50,12 @@ public class LoginScreen extends AppCompatActivity{
         password_text = findViewById(R.id.login_password_text);
 
         email_field = findViewById(R.id.login_email_field);
-        password_field = findViewById(R.id.login_password_field);
+        password_field = findViewById(R.id.login_password);
+
+        TextInputLayout layout = findViewById(R.id.login_input_layout);
+        layout.setHintAnimationEnabled(false);
+        layout.setAnimation(null);
+
 
         create_account = findViewById(R.id.login_create_account_button);
         access = findViewById(R.id.login_access_button);
@@ -54,6 +65,20 @@ public class LoginScreen extends AppCompatActivity{
 
         //Create a login session manager
         session = new SessionManagement(getApplicationContext());
+        remember_me_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    remember_me_switch.setText(getResources().getString(R.string.forgot_me));
+                    remember_me_switch.setTextOn(getResources().getString(R.string.forgot_me));
+                }
+                else {
+                    remember_me_switch.setText(getResources().getString(R.string.remember_me));
+                    remember_me_switch.setTextOn(getResources().getString(R.string.remember_me));
+                }
+            }
+        });
+
+
     }
 
     @Override
@@ -101,7 +126,7 @@ public class LoginScreen extends AppCompatActivity{
         if (!checkInternet()) return;
 
         mProgressDialog = new ProgressDialog(LoginScreen.this);
-        mProgressDialog.setMax(100);
+        //mProgressDialog.setMax(100);
         mProgressDialog.setIndeterminate(false);
         mProgressDialog.setMessage(getResources().getString(R.string.accessing));
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -161,12 +186,18 @@ public class LoginScreen extends AppCompatActivity{
                         Log.v("API", "usuario encontrado: " + current_user.getFull_name());
                         Log.v("API", "Auth-Token: " + response.body().getData().getAuth_token());
 
-                        if (remember_me_switch.isChecked())
-                            session.saveLoginSession(email, password,current_user.getFull_name(),
+                        if (remember_me_switch.isChecked()) {
+                            session.saveLoginSession(email, password, current_user.getFull_name(),
                                     true, auth_token, current_user.getId());
-                        else
-                            session.saveLoginSession(email, password,current_user.getFull_name(),
+                            remember_me_switch.setText(getResources().getString(R.string.forgot_me));
+                             remember_me_switch.setTextOn(getResources().getString(R.string.forgot_me));
+                        }
+                        else {
+                            session.saveLoginSession(email, password, current_user.getFull_name(),
                                     false, auth_token, current_user.getId());
+                            remember_me_switch.setText(getResources().getString(R.string.remember_me));
+                            remember_me_switch.setTextOn(getResources().getString(R.string.remember_me));
+                        }
 
                         mProgressDialog.dismiss();
                         Intent intent = new Intent(getBaseContext(), Activity_tab_news_feed.class);

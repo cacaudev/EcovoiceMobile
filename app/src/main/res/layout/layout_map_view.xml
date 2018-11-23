@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/btn_rounded_post"
+                android:background="@drawable/btn_rounded_green"
                 android:text="@string/conclude"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"

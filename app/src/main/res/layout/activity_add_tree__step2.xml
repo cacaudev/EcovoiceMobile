@@ -38,18 +38,6 @@
                     android:layout_height="match_parent"
                     tools:layout_editor_absoluteY="146dp">
 
-                    <Spinner
-                        android:id="@+id/ScientificNameEdit"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/edittext_rect"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/textView2"
-                        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
@@ -70,20 +58,27 @@
                         android:layout_marginTop="8dp"
                         android:text="@string/commonName"
                         android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="@+id/ScientificNameEdit"
+                        app:layout_constraintEnd_toEndOf="@+id/searchView"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/ScientificNameEdit"
-                        app:layout_constraintTop_toBottomOf="@+id/ScientificNameEdit" />
+                        app:layout_constraintStart_toStartOf="@+id/searchView"
+                        app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
-                    <EditText
+
+                    <SearchView
                         android:id="@+id/commonNameEdit"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/edittext_rect"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        app:layout_constraintEnd_toEndOf="@+id/ScientificNameEdit"
+                        android:clickable="true"
+
+                        android:iconifiedByDefault="false"
+                        android:paddingLeft="-16dp"
+                        app:layout_constraintEnd_toEndOf="@+id/include10"
+
+
+
+
                         app:layout_constraintStart_toStartOf="@+id/textView3"
                         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -91,14 +86,12 @@
                         android:id="@+id/next"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
                         android:layout_marginTop="16dp"
+                        android:layout_marginBottom="8dp"
                         android:background="@drawable/btn_rounded_white"
                         android:onClick="nextStep"
                         android:text="@string/next"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/ScientificNameEdit"
-                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="@+id/commonNameEdit"
                         app:layout_constraintTop_toBottomOf="@+id/more_info_layout" />
 
@@ -135,7 +128,7 @@
                         android:layout_marginTop="8dp"
                         android:background="@drawable/btn_rounded_white"
                         android:text="@string/add_more_info"
-                        android:textSize="12sp"
+                        android:textSize="15sp"
                         app:layout_constraintEnd_toEndOf="@+id/commonNameEdit"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/commonNameEdit"
@@ -162,6 +155,21 @@
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/textView53"
                         app:layout_constraintTop_toBottomOf="@+id/textView53" />
+
+                    <SearchView
+                        android:id="@+id/searchView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edittext_rect"
+                        android:clickable="true"
+
+                        android:iconifiedByDefault="false"
+                        android:paddingLeft="-16dp"
+                        app:layout_constraintEnd_toEndOf="@+id/include10"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/textView2"
+                        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
                 </android.support.constraint.ConstraintLayout>
             </android.support.v7.widget.CardView>

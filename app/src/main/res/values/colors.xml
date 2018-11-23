@@ -18,12 +18,15 @@
     <color name="half_white">#edda2e</color>
     <color name="color_empty_position_bar">#eaebec</color>
     <color name="color_filled_position_bar">#4caf50</color>
-    <color name="color_not_pressed">#34ffffff</color>
-    <color name="color_pressed">#d3c8c8c8</color>
+    <color name="color_not_pressed">#0bffffff</color>
+    <color name="color_pressed">#d3e6e6e6</color>
     <color name="background_material_light">#ffffff</color>
     <color name="colorBackground">#ffffff</color>
+    <color name="default_button_color">#696868</color>
 
-
+    <color name="color_not_pressed_gray">#bce9e6e6</color>
+    <color name="color_pressed_gray">#f5cfcbcb</color>
+    <color name="water_mark">#79dadada</color>
     <color name="colorPrimary">#3f51b5</color>
     <color name="colorPrimaryDark">#303f9f</color>
     <color name="colorAccent">#FF4081</color>

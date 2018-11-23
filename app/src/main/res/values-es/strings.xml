@@ -39,7 +39,7 @@
 
     <string name="action_settings">Ajustes</string>
     <string name="logout">Cerrar Sesión</string>
-    <string name="remember_me">Recuérdame</string>
+    <string name="remember_me">"Recordar mis datos "</string>
     <string name="hint_email">Su e-mail</string>
     <string name="hint_password">Su contraseña</string>
     <string name="btn_send_instructions">Envíeme instrucciones</string>
@@ -147,6 +147,8 @@
     <string name="personal_information">Informaciones personales</string>
     <string name="your_location">Su ubicación</string>
     <string name="education_companies">Educación y empresas</string>
+    <string name="forgot_me">Olvidar mis datos</string>
+    <string name="empty_images_trees">"No hay imágenes seleccionadas "</string>
 
 
 </resources>

@@ -12,11 +12,14 @@
         android:name="com.example.cacau2.ecovoicetest.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
+
+
     <uses-permission android:name="com.example.cacau2.ecovoicetest.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <uses-feature
@@ -60,16 +63,17 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+
         <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDHFkYMSwGSYiNQN7nJ89s7qrx-Pf3wyxA" />
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC5yotgGI--nw6KMECChO9vBkWQxy0IcuY"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
         <activity
             android:name=".MenuMap"
-            android:label="@string/title_activity_menu_map"
             android:theme="@style/ecovoice.theme.ActionBar" />
         <activity android:name=".ShowUsersScreen" />
         <activity android:name=".RegisterTree" />
@@ -77,8 +81,7 @@
         <activity android:name=".Activity_comments" />
         <activity android:name=".Event_view_adapter" />
         <activity
-            android:name=".AddTree_Step1"
-            android:label="@string/title_activity_add_tree__step1" />
+            android:name=".AddTree_Step1"/>
         <activity android:name=".AddTree_Step2" />
         <activity android:name=".AddTree_Step3" />
         <activity android:name=".Activity_detail" />
@@ -88,18 +91,24 @@
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
         <activity
             android:name=".Activity_tab_profile"
-            android:theme="@style/ecovoice.theme.ActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Activity_forgot_password" />
         <activity android:name=".Activity_user_register" />
         <activity android:name=".Activity_list_species" />
         <activity android:name=".Activity_create_specie" />
-        <activity android:name=".Activity_tab_edit_profile" />
-        <activity android:name=".Activity_tab_add_tree" />
+        <activity android:name=".Activity_tab_edit_profile"
+            android:theme="@style/AppTheme.NoActionBar"
+
+            />
+        <activity android:name=".Activity_tab_add_tree"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity android:name=".Activity_validate_and_change_password" />
         <activity android:name=".Activity_register_new_password" />
         <activity
             android:name=".Activity_tab_news_feed"
-            android:label="@string/title_activity_tab_news_feed" />
+            android:label="@string/title_activity_tab_news_feed"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

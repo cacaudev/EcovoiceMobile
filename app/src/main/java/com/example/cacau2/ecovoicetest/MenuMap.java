@@ -5,8 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
+import android.content.res.Resources;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -16,14 +15,13 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -34,10 +32,11 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.maps.android.clustering.Cluster;
+import com.google.maps.android.clustering.ClusterManager;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.maps.android.clustering.ClusterManager;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import org.qap.ctimelineview.TimelineRow;
@@ -46,17 +45,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MenuMap extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener,LocationListener {
+import Base.BaseMenuActivity;
 
-    public static ArrayList<Tree> arrayTrees= new ArrayList<Tree>();
+public class MenuMap extends BaseMenuActivity
+        implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, LocationListener {
+
+    private static Location location;
+    public static ArrayList<Tree> arrayTrees = new ArrayList<Tree>();
     SessionManagement session;
     private ClusterManager<Tree_item> mClusterManager;
 
     private LatLng vicosa = new LatLng(-20.752946, -42.879097);
-    private LatLng google = new LatLng(37.25194,  -122.084017);
+    private LatLng google = new LatLng(37.25194, -122.084017);
     private Marker currentMarker;
     private Marker myPos;
+    private Marker marker;
     private GoogleMap map;
     private SlidingUpPanelLayout slidingLayout;
     private LinearLayout small_info;
@@ -67,7 +70,7 @@ public class MenuMap extends AppCompatActivity
     private Criteria criteria;
     private String provider;
 
-    private  ArrayList<TimelineRow> timelineRowsList = new ArrayList<>();
+    private ArrayList<TimelineRow> timelineRowsList = new ArrayList<>();
 
     private View tree_id;
     ProgressDialog mProgressDialog;
@@ -75,6 +78,7 @@ public class MenuMap extends AppCompatActivity
 
     private ArrayList<Comment_data> comment_list_data;
     Event_view_adapter adapter;
+
     public List<Event_data> fill_with_data() {
 
         List<Event_data> data = new ArrayList<>();
@@ -86,37 +90,35 @@ public class MenuMap extends AppCompatActivity
         List<Comment_data> comments5 = new ArrayList<>();
 
 
-       comments1.add(new Comment_data("Igor Oliveira","Teste", "1",0));
-        comments1.add(new Comment_data("Igor Oliveira","Teste", "1",0));
+        comments1.add(new Comment_data("Igor Oliveira", "Teste", "1", 0));
+        comments1.add(new Comment_data("Igor Oliveira", "Teste", "1", 0));
 
-        comments2.add(new Comment_data("Igor Oliveira","Teste", "2",1));
-        comments3.add(new Comment_data("Igor Oliveira","Teste", "3",2));
-        comments4.add(new Comment_data("Igor Oliveira","Teste", "4",3));
-        comments5.add(new Comment_data("Igor Oliveira","Teste", "5",4));
+        comments2.add(new Comment_data("Igor Oliveira", "Teste", "2", 1));
+        comments3.add(new Comment_data("Igor Oliveira", "Teste", "3", 2));
+        comments4.add(new Comment_data("Igor Oliveira", "Teste", "4", 3));
+        comments5.add(new Comment_data("Igor Oliveira", "Teste", "5", 4));
 
         //comments.add(new Comment_data("Igor Oliveira","Teste", "6",5));
 
         data.add(new Event_data("Batman vs Superman", "Following the destruction of Metropolis, Batman embarks on a personal vendetta against Superman  Batman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal " +
                 "vendetta against Superman Batman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against SupermanBatman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against SupermanBatman" +
                 " vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against SupermanBatman vs Superman, Following the destruction of Metropolis, Batman embarks on a personal vendetta against SupermanBatman vs Superman, Following the destruction " +
-                "of Metropolis, Batman embarks on a personal vendetta against Superman", R.drawable.ic_launcher_background,1,"igor",comments));
-        data.add(new Event_data("X-Men: Apocalypse", "X-Men: Apocalypse is an upcoming American superhero film based on the X-Men characters that appear in Marvel Comics ", R.drawable.ic_launcher_background,2,"igor",comments1));
-        data.add(new Event_data("Captain America: Civil War", "A feud between Captain America and Iron Man leaves the Avengers in turmoil.  ", R.drawable.ic_launcher_background,3,"igor",comments2));
-        data.add(new Event_data("Kung Fu Panda 3", "After reuniting with his long-lost father, Po  must train a village of pandas", R.drawable.ic_launcher_background,4,"igor",comments3));
-        data.add(new Event_data("Warcraft", "Fleeing their dying home to colonize another, fearsome orc warriors invade the peaceful realm of Azeroth. ", R.drawable.ic_launcher_background,5,"igor",comments4));
-        data.add(new Event_data("Alice in Wonderland", "Alice in Wonderland: Through the Looking Glass ", R.drawable.ic_launcher_background,6,"igor",comments5));
+                "of Metropolis, Batman embarks on a personal vendetta against Superman", R.drawable.ic_launcher_background, 1, "igor", comments));
+        data.add(new Event_data("X-Men: Apocalypse", "X-Men: Apocalypse is an upcoming American superhero film based on the X-Men characters that appear in Marvel Comics ", R.drawable.ic_launcher_background, 2, "igor", comments1));
+        data.add(new Event_data("Captain America: Civil War", "A feud between Captain America and Iron Man leaves the Avengers in turmoil.  ", R.drawable.ic_launcher_background, 3, "igor", comments2));
+        data.add(new Event_data("Kung Fu Panda 3", "After reuniting with his long-lost father, Po  must train a village of pandas", R.drawable.ic_launcher_background, 4, "igor", comments3));
+        data.add(new Event_data("Warcraft", "Fleeing their dying home to colonize another, fearsome orc warriors invade the peaceful realm of Azeroth. ", R.drawable.ic_launcher_background, 5, "igor", comments4));
+        data.add(new Event_data("Alice in Wonderland", "Alice in Wonderland: Through the Looking Glass ", R.drawable.ic_launcher_background, 6, "igor", comments5));
 
         return data;
     }
-
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
 
-
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 
         super.onCreate(savedInstanceState);
@@ -125,45 +127,23 @@ public class MenuMap extends AppCompatActivity
         List<Event_data> data = fill_with_data();
 
 
-
-
-
         setContentView(R.layout.activity_menu_map);
 
-        // *****************************************************************************************
 
         //Create a login session manager
         session = new SessionManagement(getApplicationContext());
 
-
-        Log.d("LOAD",this.arrayTrees.size()+ "  ARRAY ");
 
         //Get user data from session
         HashMap<String, String> current_user = session.getUserDetails();
         String user_name = current_user.get(SessionManagement.KEY_NAME);
         String user_email = current_user.get(SessionManagement.KEY_EMAIL);
 
-        Toast.makeText(getApplicationContext(),
-                "Logado(a) com " + user_name + " email: " + user_email ,Toast.LENGTH_SHORT).show();
-
         // *****************************************************************************************
 
-
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-
-
+        this.setUpLayout();
         currentMarker = null;
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        marker = null;
 
         //maps
 
@@ -171,16 +151,17 @@ public class MenuMap extends AppCompatActivity
 
 
         small_info = (LinearLayout) findViewById(R.id.small_info);
+        anchor = pxFromDp(this, small_info.getLayoutParams().height);
 
+
+        Log.d("ANCOR", String.format("aaaaaaaaaa %f", anchor));
         slidingLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
 
-
-        Log.d("IGOR", "onCreate:        "+ anchor);
 
         slidingLayout.setFadeOnClickListener(new SlidingUpPanelLayout.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("SLID","CLICK");
+                Log.i("SLID", "CLICK");
             }
         });
         slidingLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
@@ -231,37 +212,52 @@ public class MenuMap extends AppCompatActivity
         boolean hasGPS = packageManager.hasSystemFeature(PackageManager.FEATURE_LOCATION_GPS);
 
         //Estabelece critério de precisão
-        if(hasGPS){
-            criteria.setAccuracy( Criteria.ACCURACY_FINE );
+        if (!hasGPS) {
+            criteria.setAccuracy(Criteria.ACCURACY_FINE);
             Log.i("LOCATION", "Usando GPS");
-        }else{
+        } else {
             Log.i("LOCATION", "Usando WI-FI ou dados");
-            criteria.setAccuracy( Criteria.ACCURACY_COARSE );
+            criteria.setAccuracy(Criteria.ACCURACY_COARSE);
         }
         provider = lm.getBestProvider(criteria, true);
 
 
+        if (map != null) {
+            arrayTrees.clear();
 
+            LoadTrees loadTrees = new LoadTrees(session, findViewById(R.id.add_tree_map).getContext(), this.map);
+            this.arrayTrees = loadTrees.getArrayTree();
+            if (map != null) {
+                mClusterManager.clearItems();
+                for (Tree tree : this.arrayTrees) {
 
+                    mClusterManager.addItem(new Tree_item(tree));
+                }
+            }
+            mClusterManager.cluster();
+
+        }
 
     }
 
-    public void closePanel(View v){
+    public void closePanel(View v) {
         slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
 
     }
-    public void createMyLocationMarker(LatLng c){
-        if(myPos == null && c != null && map != null) {
+
+    public void createMyLocationMarker(LatLng c) {
+        if (myPos == null && c != null && map != null) {
             myPos = map.addMarker(new MarkerOptions()
                     .position(c).zIndex(-1));
             myPos.setTag("My location");
-        }else if(myPos != null && c != null){
+        } else if (myPos != null && c != null) {
             myPos.setPosition(c);
         }
 
     }
-    public void updateCamera(LatLng target,int zoom){
-        if(map != null && target != null) {
+
+    public void updateCamera(LatLng target, int zoom) {
+        if (map != null && target != null) {
             CameraUpdate c = CameraUpdateFactory.newCameraPosition(
                     new CameraPosition.Builder()
                             .target(target)
@@ -271,43 +267,157 @@ public class MenuMap extends AppCompatActivity
         }
     }
 
-    public void createMarker(LatLng pos) {
-        //mClusterManager.addItem(new StringClusterItem("Marker #" + (i + 1), latLng));
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (map != null) {
+            map.clear();
+            if (map != null) {
+                arrayTrees.clear();
 
-        //mClusterManager.cluster();
+                LoadTrees loadTrees = new LoadTrees(session, findViewById(R.id.add_tree_map).getContext(), this.map);
+                this.arrayTrees = loadTrees.getArrayTree();
+                if (map != null) {
+                    mClusterManager.clearItems();
+                    for (Tree tree : this.arrayTrees) {
 
-        if(map != null) {
-            map.addMarker(new MarkerOptions()
+                        mClusterManager.addItem(new Tree_item(tree));
+                    }
+                }
+                mClusterManager.cluster();
+
+            }
+        }
+
+    }
+
+    public void createMarker() {
+
+
+        if (map != null) {
+            for (Tree tree : arrayTrees) {
+                mClusterManager.addItem(new Tree_item(tree));
+            }
+            mClusterManager.cluster();
+            /*map.addMarker(new MarkerOptions()
                     .position(pos)
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.tree_icon)));
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.tree_icon)));*/
         }
     }
 
-    public static float pxFromDp(final Context context, final float dp) {
-        return dp * context.getResources().getDisplayMetrics().density;
+    public static int getActionBarParam(Context context) {
+        Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            return resources.getDimensionPixelSize(resourceId);
+        }
+        return 0;
     }
+
+    public float pxFromDp(final Context context, final float layout) {
+        TypedValue tv = new TypedValue();
+        int actionBarHeigh = 0;
+        if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+            actionBarHeigh = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
+        }
+
+        Float anc = ((layout) / (context.getResources().getDisplayMetrics().heightPixels - getActionBarParam(context) - actionBarHeigh));
+        return anc - (anc * 0.07f);
+
+    }
+    @SuppressLint("MissingPermission")
+    private Location getDeviceLoc() {
+        /*if (this.getActivity().checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
+                (this.getContext(),  android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            this.getActivity().requestPermissions(new String[]{ android.Manifest.permission.ACCESS_FINE_LOCATION},101);
+
+        } else {*/
+        Location location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        Location location1 = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        Location location2 = lm.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+        if (location != null) {
+            return location;
+        } else if (location1 != null) {
+            return location1;
+        } else if (location2 != null) {
+            return location2;
+        } else {
+            //  Toast.makeText(this, "Unable to trace your location", Toast.LENGTH_SHORT).show();
+        }
+        //}
+        return null;
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
         map = googleMap;
+        mClusterManager = new ClusterManager<>(this, map);
 
-        mClusterManager = new ClusterManager<Tree_item>(this, map);
-       ///// map.setOnCameraMoveListener(mClusterManager);
-        // map.setOnCameraMoveListener((GoogleMap.OnCameraMoveListener) mClusterManager);
+        map.setOnCameraIdleListener(mClusterManager);
+        map.setOnMarkerClickListener(mClusterManager);
+        // mClusterManager.setRenderer();
+        mClusterManager.setAnimation(true);
 
-        map.setOnMarkerClickListener(this);
-        //map.getUiSettings().setMyLocationButtonEnabled(true);
-        if(provider != null) {
-            currentLocation  = vicosa;//= getLocation(provider);
+
+        map.getUiSettings().setMyLocationButtonEnabled(false);
+        map.getUiSettings().setMapToolbarEnabled(false);
+
+        if (provider != null) {
+            location = getDeviceLoc();
+            currentLocation = new LatLng(location.getLatitude(),location.getLongitude());
+
             updateCamera(currentLocation, z);
             createMyLocationMarker(currentLocation);
         }
+
+        CustomClusterRenderer customClusterRenderer = new CustomClusterRenderer(this, map, mClusterManager);
+
         map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mClusterManager.setOnClusterItemClickListener(
+                tree_item -> {
+                    RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+                    adapter = new Event_view_adapter(fill_with_data(), getApplication());
+                    recyclerView.setAdapter(adapter);
 
-        createMarker(vicosa);
-        createMarker(google);
-        currentMarker = null;
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                    marker = customClusterRenderer.getMarker(tree_item);
+                    updateCamera(marker.getPosition(), z);
+                    if (!marker.equals(myPos)) {
+                        if (currentMarker == null) {
+                            currentMarker = marker;
 
+                            slidingLayout.setAnchorPoint(anchor);
+                            slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
+                            currentMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.tree_selected));
+                        } else if (currentMarker != null) {
+                            currentMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.tree_icon));
+                            slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+
+                            currentMarker = marker;
+                            slidingLayout.setAnchorPoint(anchor);
+                            slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
+                            currentMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.tree_selected));
+                        }
+                    }
+
+                    return true;
+                });
+
+        mClusterManager.setRenderer(customClusterRenderer);
+        mClusterManager.setOnClusterClickListener(new ClusterManager.OnClusterClickListener<Tree_item>() {
+            @Override
+            public boolean onClusterClick(final Cluster<Tree_item> cluster) {
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                        cluster.getPosition(), (float) Math.floor(map
+                                .getCameraPosition().zoom + 1)), 500,
+                        null);
+                return true;
+            }
+        });
+        map.setOnMarkerClickListener(mClusterManager);
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng point) {
@@ -316,44 +426,33 @@ public class MenuMap extends AppCompatActivity
                     currentMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.tree_icon));
                     currentMarker = null;
                     slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-                    Log.i("MAPA","CLICK");
+                    Log.i("MAPA", "CLICK");
 
-                }else{
+                } else {
                     slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-                    Log.i("MAPA","CLICK");
+                    Log.i("MAPA", "CLICK");
                 }
             }
         });
 
 
-        LoadTrees loadTrees = new LoadTrees(session,findViewById(R.id.add_tree_map).getContext(),this.map);
+        LoadTrees loadTrees = new LoadTrees(session, findViewById(R.id.add_tree_map).getContext(), this.map);
         this.arrayTrees = loadTrees.getArrayTree();
-
-
-
-    }
-
-    @Override
-    public boolean onMarkerClick(Marker marker) {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        adapter = new Event_view_adapter(fill_with_data(), getApplication());
-        recyclerView.setAdapter(adapter);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        if(!marker.equals(myPos)) {
-            if (currentMarker == null && myPos != null) {
-                currentMarker = marker;
-                slidingLayout.setAnchorPoint(anchor);
-                slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
-                currentMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.tree_selected));
-            } else if(currentMarker != null && myPos != null) {
-                currentMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.tree_icon));
-                slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-                currentMarker = null;
+        if (map != null) {
+            mClusterManager.clearItems();
+            for (Tree tree : this.arrayTrees) {
+                mClusterManager.addItem(new Tree_item(tree));
             }
         }
-        return false;
+        mClusterManager.cluster();
+
     }
+    /*@Override
+    protected void onClusterItemRendered(Tree_item clusterItem, Marker marker) {
+
+
+    }*/
+
 
 
     @Override
@@ -364,17 +463,16 @@ public class MenuMap extends AppCompatActivity
         } else if (slidingLayout != null && slidingLayout.getPanelState() != SlidingUpPanelLayout.PanelState.COLLAPSED) {
             if (slidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED) {
                 slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-            }
-            else if (slidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
+            } else if (slidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
                 slidingLayout.setAnchorPoint(anchor);
                 slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
                 small_info.setVisibility(View.VISIBLE);
-            }
-            else if (currentMarker != null) {
+            } else if (currentMarker != null) {
                 currentMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.tree_icon));
                 currentMarker = null;
             }
         } else if (currentMarker != null) {
+
             currentMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.tree_icon));
             currentMarker = null;
         } else {
@@ -384,122 +482,46 @@ public class MenuMap extends AppCompatActivity
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_map, menu);
 
-        for(int i = 0; i < menu.size(); i++){
-            Drawable drawable = menu.getItem(i).getIcon();
-            if(drawable != null) {
-                drawable.mutate();
-                drawable.setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        Intent it;
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        } else if(id == R.id.action_logout) {
-            session.logoutUser(session.getToken());
-            finish();
-            return true;
-        } else if (id == R.id.add_tree) {
-            it = new Intent(this, Activity_tab_add_tree.class);
-            startActivity(it);
-            return true;
-        }else if(id == R.id.news_feed_bar){
-            it = new Intent(this, Activity_tab_news_feed.class);
-            startActivity(it);
-            return true;
-        }else if(id == R.id.feedback_bar){
-            it = new Intent(this,Activity_feedback.class);
-            startActivity(it);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_profile) {
-            //TODO current user
-            Intent it = new Intent(getBaseContext(),Activity_tab_profile.class);
-            startActivity(it);
-        } else if (id == R.id.nav_profile_edit) {
-            Intent it = new Intent(getBaseContext(), Activity_tab_edit_profile.class);
-            startActivity(it);
-
-
-        } else if (id == R.id.nav_feedback) {
-            Intent it = new Intent(getBaseContext(),Activity_feedback.class);
-            startActivity(it);
-
-        } else if (id == R.id.nav_feed) {
-            Intent it = new Intent(getBaseContext(),Activity_tab_news_feed.class);
-            startActivity(it);
-
-        } else if (id == R.id.nav_trees) {
-            //TODO all trees
-            Intent intent = new Intent(getBaseContext(), MenuMap.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_species) {
-            Intent intent = new Intent(getBaseContext(), Activity_list_species.class);
-            startActivity(intent);
-            //TODO all species
-        } else if (id == R.id.nav_companies) {
-
-        } else if (id == R.id.nav_users) {
-            //TODO all users
-            Intent intent = new Intent(getBaseContext(), ShowUsersScreen.class);
-            startActivity(intent);
-            //finish();
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
     @SuppressLint("MissingPermission")
     @Override
     protected void onStart() {
         super.onStart();
 
         //Obtem melhor provedor habilitado com o critério estabelecido
-        provider = lm.getBestProvider( criteria, true );
+        provider = lm.getBestProvider(criteria, true);
 
-        if ( provider == null ){
-            Log.e( "PROVEDOR", "Nenhum provedor encontrado!" );
-        }else{
-            Log.i( "PROVEDOR", "Está sendo utilizado o provedor: " + provider );
+        if (provider == null) {
+            Log.e("PROVEDOR", "Nenhum provedor encontrado!");
+        } else {
+            Log.i("PROVEDOR", "Está sendo utilizado o provedor: " + provider);
 
             //Obtem atualizações de posição
             //lm.requestSingleUpdate(provider,this,null );
         }
+        if (map != null) {
+            this.arrayTrees.clear();
+            mClusterManager.clearItems();
+
+            LoadTrees loadTrees = new LoadTrees(session, findViewById(R.id.add_tree_map).getContext(), this.map);
+            this.arrayTrees = loadTrees.getArrayTree();
+            if (map != null) {
+                mClusterManager.clearItems();
+                for (Tree tree : this.arrayTrees) {
+                    mClusterManager.addItem(new Tree_item(tree));
+                }
+            }
+            mClusterManager.cluster();
+        }
     }
 
     @SuppressLint("MissingPermission")
-    public LatLng getLocation(String provider)
-    {
-        if(provider != null) {
+    public LatLng getLocation(String provider) {
+        if (provider != null) {
             lm.requestSingleUpdate(provider, this, null);
             Log.i("BUTTON", "Requested location2");
             Location l = lm.getLastKnownLocation(provider);
-            if (l != null){
+            if (l != null) {
                 LatLng pos = new LatLng(l.getLatitude(), l.getLongitude());
                 return pos;
             }
@@ -512,21 +534,22 @@ public class MenuMap extends AppCompatActivity
         //interrompe o Location Manager
         lm.removeUpdates(this);
 
-        Log.w("PROVEDOR","Provedor " + provider + " parado!");
+        Log.w("PROVEDOR", "Provedor " + provider + " parado!");
         super.onDestroy();
     }
-    @SuppressLint("MissingPermission")
-    public void myLocation(View v){
-        currentLocation = vicosa;//getLocation(provider);
-        Log.i("BUTTON", "Requested location");
 
+    @SuppressLint("MissingPermission")
+    public void myLocation(View v) {
+        location = getDeviceLoc();
+        currentLocation = new LatLng(location.getLatitude(),location.getLongitude());
         updateCamera(currentLocation, z);
         createMyLocationMarker(currentLocation);
     }
+
     @Override
     public void onLocationChanged(Location location) {
-        if(location != null){
-            currentLocation = new LatLng(location.getLatitude(),location.getLongitude());
+        if (location != null) {
+            currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
         }
     }
 
@@ -541,11 +564,16 @@ public class MenuMap extends AppCompatActivity
     public void onStatusChanged(String provider, int status, Bundle extras) {
         Log.d("LOCATION", "Provedor mudou de estado");
     }
-    public void newEvent(View v){
+
+    public void newEvent(View v) {
         Intent it;
-        it = new Intent(this,Activity_detail.class);
+        it = new Intent(this, Activity_detail.class);
         startActivity(it);
 
     }
 
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        return false;
+    }
 }

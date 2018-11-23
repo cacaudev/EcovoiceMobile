@@ -7,7 +7,7 @@
     sothree:umanoDragView="@+id/small_info"
     android:clickable="false"
     android:focusable="false"
-    sothree:umanoOverlay="true"
+    sothree:umanoOverlay="false"
     sothree:umanoParallaxOffset="20dp"
     sothree:umanoPanelHeight="0dp"
     sothree:umanoShadowHeight="4dp"
@@ -41,7 +41,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:orientation="horizontal"
             android:id="@+id/small_info">
             <include layout="@layout/small_info_layout"/>

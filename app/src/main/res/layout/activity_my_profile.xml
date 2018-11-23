@@ -39,7 +39,7 @@
                     android:layout_height="match_parent">
 
 
-                    <com.example.cacau2.ecovoicetest.CircularImageView
+                    <Base.CircularImageView
                         android:id="@+id/circularImageView"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
@@ -66,15 +66,16 @@
 
                     <Button
                         android:id="@+id/btn_edit_prof"
-                        android:layout_width="50dp"
-                        android:layout_height="26dp"
+                        style="@style/MyButtons"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:background="@drawable/btn_rounded_edit_profile"
+                        android:background="@drawable/btn_rounded_green"
                         android:fontFamily="sans-serif"
                         android:gravity="center_vertical|center_horizontal"
-                        android:text="Editar"
-                        android:textColor="@color/cardview_light_background"
-                        android:textSize="12sp"
+                        android:text="@string/edit_profile"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="@+id/textView7"
                         app:layout_constraintStart_toStartOf="@+id/textView7"

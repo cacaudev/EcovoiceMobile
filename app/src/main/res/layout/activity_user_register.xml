@@ -78,12 +78,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginTop="16dp"
                         android:text="@string/email"
                         app:layout_constraintEnd_toEndOf="@+id/register_divider2"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/register_divider2"
-                        app:layout_constraintTop_toBottomOf="@+id/register_divider2" />
+                        app:layout_constraintTop_toBottomOf="@+id/circularImageView4" />
 
                     <EditText
                         android:id="@+id/register_email_field"
@@ -221,7 +220,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
-                        android:background="@drawable/btn_rounded_post"
+                        android:background="@drawable/btn_rounded_green"
                         android:text="@string/register"
                         android:textColor="@color/cardview_light_background"
                         app:layout_constraintEnd_toEndOf="@+id/register_divider1"
@@ -235,13 +234,23 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="24dp"
                         android:layout_marginTop="8dp"
-                        android:background="@drawable/btn_rounded_sucess"
+                        android:background="@drawable/btn_rounded_blue"
                         android:text="@string/have_account_question"
                         android:textColor="@color/cardview_light_background"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/register_button"
                         app:layout_constraintStart_toStartOf="@+id/register_button"
                         app:layout_constraintTop_toBottomOf="@+id/register_button" />
+
+                    <include layout="@layout/layout_insert_picture"
+                        android:id="@+id/circularImageView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="@+id/register_divider2"
+                        app:layout_constraintStart_toStartOf="@+id/register_divider2"
+                        app:layout_constraintTop_toBottomOf="@+id/register_divider2"
+                         />
                 </android.support.constraint.ConstraintLayout>
             </android.support.v7.widget.CardView>
         </LinearLayout>
